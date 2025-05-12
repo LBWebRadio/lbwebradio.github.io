@@ -877,6 +877,49 @@ button[type="submit"] {
     
     .cta-buttons .btn {
         width: 100%;
+        /* Gradient direction */
+.bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+/* Gradient colors */
+.from-blue-500 {
+    --tw-gradient-from: #3b82f6;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0));
+}
+
+.to-blue-600 {
+    --tw-gradient-to: #2563eb;
+}
+
+/* Make text transparent to show gradient background */
+.text-transparent {
+    color: transparent;
+}
+
+/* Clip the background to text */
+.bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Text sizes */
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* Responsive text size for larger screens */
+@media (min-width: 640px) {
+    .sm\:text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}
     }
     
     .footer-content {
