@@ -821,63 +821,21 @@ button[type="submit"] {
         flex-direction: column;
     }
     
-    .hero-content {
-        padding-right: 0;
-        margin-bottom: 2rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 2.2rem;
-    }
-    
-    .features-page .feature {
-        flex-direction: column !important;
-    }
-    
-    .feature-text, .feature-img {
-        width: 100%;
-    }
-    
-    .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pricing-card {
-        margin-bottom: 2rem;
-    }
-    
-    .recommended {
-        position: static;
-        display: inline-block;
-        margin-bottom: 1rem;
-    }
-    
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
+  .hero-content h2 {
+    font-size: 1.8rem;
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        /* Gradient direction */
+.cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cta-buttons .btn {
+    width: 100%;
+}
+
+/* Gradient text styles - these should be outside any other selector */
+/* Gradient direction */
 .bg-gradient-to-r {
     background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -920,9 +878,7 @@ button[type="submit"] {
         line-height: 2rem;
     }
 }
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+
+.footer-content {
+    grid-template-columns: 1fr;
 }
