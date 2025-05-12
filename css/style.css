@@ -834,13 +834,13 @@ button[type="submit"] {
     width: 100%;
 }
 
-/* Gradient text styles - these should be outside any other selector */
-/* Gradient direction */
+/* Add these gradient text styles to your existing CSS */
+
+/* Gradient text utility classes */
 .bg-gradient-to-r {
     background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
-/* Gradient colors */
 .from-blue-500 {
     --tw-gradient-from: #3b82f6;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0));
@@ -850,18 +850,24 @@ button[type="submit"] {
     --tw-gradient-to: #2563eb;
 }
 
-/* Make text transparent to show gradient background */
 .text-transparent {
     color: transparent;
 }
 
-/* Clip the background to text */
 .bg-clip-text {
     -webkit-background-clip: text;
-    background-clip: text;
+            background-clip: text;
 }
 
-/* Text sizes */
+/* Update your h1 styles to work with the gradient */
+h1 {
+    font-size: 2.5rem;
+    /* Ensure these don't override your gradient classes */
+    color: unset;
+    background-image: unset;
+}
+
+/* Add responsive text sizing */
 .text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -871,7 +877,6 @@ button[type="submit"] {
     font-weight: 700;
 }
 
-/* Responsive text size for larger screens */
 @media (min-width: 640px) {
     .sm\:text-2xl {
         font-size: 1.5rem;
@@ -879,6 +884,9 @@ button[type="submit"] {
     }
 }
 
-.footer-content {
-    grid-template-columns: 1fr;
+/* Make sure your logo container aligns properly */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adds consistent spacing between logo image and text */
 }
