@@ -37,6 +37,55 @@
 <section class="blog-content">
     <div class="container">
         <article id="post-0" class="blog-post">
+            <h2>Version 0.6.0.0 Released: History Management & System Stability Revolution</h2>
+            <div class="blog-meta">
+                <div class="date">September 11, 2025</div>
+                <div class="tag">Update</div>
+            </div>
+            
+            <p>We're proud to announce Live Beats WebRadio Player version 0.6.0.0, a comprehensive stability and usability update that revolutionizes history management, enhances system reliability, and delivers the most robust radio streaming experience we've ever created. This release addresses core user workflow improvements while significantly strengthening the application's foundation.</p>
+            
+            <h3>Revolutionary History Management</h3>
+            <p>Take complete control of your listening history with our new advanced history management system. You can now clear all history with a single action or precisely manage individual entries using intuitive right-click context menus to delete specific songs or sessions. This granular control ensures your history stays exactly how you want it, whether you prefer a clean slate or selective curation of your listening experience.</p>
+            
+            <h3>Intelligent Song Recording</h3>
+            <p>Say goodbye to metadata clutter with our new intelligent song recording system. Song titles must now remain stable for 5 seconds before being recorded to history, effectively filtering out glitchy metadata, streaming errors, and rapid title changes that previously cluttered your song history. This ensures only genuine, stable song information makes it to your permanent listening record.</p>
+            
+            <h3>Enhanced Favorites Management</h3>
+            <p>Your top favorites now permanently stay at the top of your favorites list, making your most-loved stations instantly accessible. Combined with improved station switching reliability that properly resets favorites and scrolling states when changing stations, managing and accessing your preferred content has never been smoother or more predictable.</p>
+            
+            <h3>Rock-Solid System Stability</h3>
+            <ul>
+                <li><strong>Comprehensive Resource Management:</strong> All timers, audio streams, and system resources are now cleaned up safely with extensive under-the-hood improvements that prevent memory leaks and system instability.</li>
+                <li><strong>Optimized Memory Handling:</strong> The application no longer forces aggressive memory cleanup operations, resulting in smoother performance and reduced system strain during extended listening sessions.</li>
+                <li><strong>Lightning-Fast Operations:</strong> Stopping stations and closing the application is now significantly faster and smoother, eliminating the delays and stuttering that could occur during shutdown operations.</li>
+            </ul>
+            
+            <h3>Intelligent Error Recovery</h3>
+            <p>When fatal errors occur, the application now offers an intelligent automatic restart option instead of simply crashing. This user-friendly approach ensures minimal disruption to your listening experience while providing you with a clear choice about how to handle unexpected situations, maintaining your control over the application's behavior.</p>
+            
+            <h3>Enhanced Database Reliability</h3>
+            <p>Extensive database function improvements make the entire system more robust and reliable. These enhancements ensure your song history, favorites, and settings are consistently saved and retrieved accurately, providing a dependable foundation for all your listening data and preferences.</p>
+            
+            <h3>Smart Duplicate Prevention</h3>
+            <p>The song history system now intelligently ignores duplicate entries from the same station for 200 minutes, dramatically reducing metadata repetition while preserving genuine listening variety. This smart filtering ensures your history accurately reflects your actual listening experience without redundant entries.</p>
+            
+            <h3>Streamlined User Experience</h3>
+            <ul>
+                <li><strong>Fixed User Messages:</strong> Resolved issues where user message functionality would intermittently stop working, ensuring consistent communication and feedback throughout your listening sessions.</li>
+                <li><strong>Stable Interface During Monitoring:</strong> The player interface is now locked during station monitoring expansion to prevent accidental interruptions that could halt the monitoring process.</li>
+                <li><strong>Corrected Song Info Handling:</strong> Fixed the bug where saving song information from the LB Database history would incorrectly set it as the current title in the main player interface.</li>
+                <li><strong>Customizable Startup:</strong> Registered users can now choose to disable the greeting message on application startup, creating a cleaner, more personalized launch experience.</li>
+            </ul>
+            
+            <p>Version 0.6.0.0 represents our most comprehensive stability and usability update to date, focusing on the fundamental aspects of daily radio listening while strengthening every core system. These improvements ensure Live Beats WebRadio Player provides an enterprise-level reliable foundation wrapped in an intuitive, user-focused interface.</p>
+            
+            <div class="update-cta">
+                <p>Version 0.6.0.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+            </div>
+        </article>
+        
+        <article id="post-1" class="blog-post">
             <h2>Version 0.5.6.0 Released: Major Stability & Performance Overhaul</h2>
             <div class="blog-meta">
                 <div class="date">September 6, 2025</div>
@@ -82,33 +131,33 @@
                 <p>Version 0.5.6.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
             </div>
         </article>
-        <article id="post-1" class="blog-post">
+        
+        <article id="post-2" class="blog-post">
             <h2>Version 0.5.0.0 Released: Song History, Play Timer & Enhanced User Experience</h2>
             <div class="blog-meta">
-                <div class="date">August 28, 2025</div>
+                <div class="date">September 3, 2025</div>
                 <div class="tag">Update</div>
             </div>
             
             <p>We're excited to announce the release of Live Beats WebRadio Player version 0.5.0.0, delivering major new features including comprehensive song history tracking, enhanced radio browser functionality, and improved system reliability that takes your radio listening experience to the next level.</p>
             
-            <h3>Song History Tracking</h3>
-            <p>One of our most requested features is finally here! The new song history feature automatically saves the last 200 songs you've listened to when the database is enabled. You can now easily browse through your recent listening history in the LB database, making it simple to rediscover songs you enjoyed. The system intelligently maintains a maximum of 200 entries, automatically removing the oldest entries when the limit is reached to keep your history relevant and manageable.</p>
+            <h3>Enhanced User Experience</h3>
+            <p>Station name whitespace is now automatically trimmed when adding or editing stations, ensuring clean, consistent station management. The new drag & drop support for .lbrx (favorites), .config (settings), and theme files makes importing configurations effortless, with enhanced validation to ensure file integrity and compatibility.</p>
             
-            <h3>Play Timer for Stream Duration</h3>
-            <p>Stay informed about your listening habits with the new play timer that shows exactly how long a stream has been playing. This feature helps you track your listening sessions and provides valuable insight into how much time you spend with your favorite stations, making it easier to manage your radio time effectively.</p>
+            <h3>Expanded Song History</h3>
+            <p>Song history has been dramatically expanded from 200 to 300 titles and now includes powerful search functionality to help you quickly find specific tracks from your listening history. Timestamp display issues have been completely resolved, ensuring accurate time information for all locations and time zones.</p>
             
-            <h3>Enhanced Advanced Radio Browser</h3>
-            <p>The advanced radio browser now provides complete transparency about background operations, clearly showing which server is being used and what's happening behind the scenes. This improvement delivers a much better user experience by keeping you informed about the system's status and eliminating guesswork about connection states and server operations.</p>
+            <h3>Advanced Sleep Timer</h3>
+            <p>The sleep timer has been enhanced with specific date and time scheduling capability, allowing you to set precise shutdown times for your listening sessions. This advanced scheduling gives you complete control over when your radio sessions end, perfect for bedtime listening or timed recording sessions.</p>
             
-            <h3>Powerful Right-Click Context Menus</h3>
-            <p>We've added comprehensive right-click context menus in both the database and advanced radio browser, providing quick access to essential functions. You can now easily copy song titles, copy URLs, save song titles to files, and create custom playlists directly from the context menu, streamlining your workflow and making song management more efficient.</p>
+            <h3>Improved User Messaging System</h3>
+            <p>The user message system now supports intelligent queueing (up to 4 messages, 5 seconds each), ensuring important notifications aren't lost or overlapped. Automatic update check notifications have been refined with frequency changed to every 5 days for less intrusive but still timely update awareness.</p>
             
-            <h3>Improved System Reliability</h3>
-            <ul>
-                <li><strong>Enhanced Cache Management:</strong> Fixed a critical bug where cache files for the advanced radio browser would be left empty if an update failed. The system now preserves old cache files until a successful update occurs, ensuring uninterrupted functionality.</li>
-                <li><strong>Optimized Update Frequency:</strong> Cache files for the advanced radio browser now update every 5 days instead of every 3 days, reducing server load while maintaining fresh data.</li>
-                <li><strong>Privacy Controls:</strong> Added an option to hide your registered name from the main form, giving you more control over your privacy preferences. This setting can be found in the Register form.</li>
-            </ul>
+            <h3>Enhanced Radio Browser</h3>
+            <p>Advanced radio browser is now the default for registered users, providing immediate access to comprehensive station browsing capabilities. Added context menu support to copy station names in the advanced radio browser, streamlining station management and sharing workflows.</p>
+            
+            <h3>UI Improvements & New Themes</h3>
+            <p>Comprehensive UI improvements include better button alignment, repositioned LB database button for improved workflow, smaller Theme Designer window for less screen clutter, and fixed Played Time display bug that affected timing accuracy. The new LB Lilac theme has been added to the collection, while LB Dark is now the default theme for fresh installations, providing a modern, easy-on-the-eyes experience from the first launch.</p>
             
             <p>Version 0.5.0.0 represents a significant milestone in our commitment to providing a comprehensive, reliable, and user-friendly radio streaming experience. These enhancements focus on giving you better control over your listening history while improving system transparency and reliability.</p>
             
@@ -116,6 +165,8 @@
                 <p>Version 0.5.0.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
             </div>
         </article>
+    </div>
+</section>
         <article id="post2" class="blog-post">
             <h2>Version 0.4.8.0 Released: Advanced Song Detection & Enhanced User Experience</h2>
             <div class="blog-meta">
