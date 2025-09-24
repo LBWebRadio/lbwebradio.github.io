@@ -36,6 +36,46 @@
 </section>
 <section class="blog-content">
     <div class="container">
+        <article id="post-latest" class="blog-post">
+            <h2>Version 0.7.5.0 Released: Enhanced User Experience with Integrated Search</h2>
+            <div class="blog-meta">
+                <div class="date">September 24, 2025</div>
+                <div class="tag">Feature Update</div>
+            </div>
+            
+            <p>Live Beats WebRadio Player version 0.7.5.0 introduces a highly requested feature that transforms how users interact with their favorite radio stations. This update focuses on enhancing user experience through intelligent search functionality and improved application stability.</p>
+            
+            <h3>Enhancing User Experience: Adding an Integrated Search Button to Favorites</h3>
+            <p>One of the most requested features from our users has been the ability to quickly search through your favorite radio stations. Today, we're excited to share how we implemented a sleek, integrated search button that transforms your favorites management.</p>
+            
+            <h3>The Challenge</h3>
+            <p>Standard dropdown menus work great for short lists, but when you have hundreds of favorites finding what you want becomes tedious. Users were constantly scrolling through lengthy favorites lists, and the built-in type-ahead functionality wasn't quite cutting it for complex search scenarios.</p>
+            
+            <h3>The Solution: Integrated Search Button</h3>
+            <p>We developed a custom search button that appears seamlessly integrated into the favorites dropdown and now finding your favorite station among hundreds of favorites becomes easy and quick. Once you find the station you just double click to start playing.</p>
+            
+            <h3>Smart Functionality</h3>
+            <p>Maintains dropdown functionality - your original favorites menu still works perfectly. Added through checks for valid favorites imports and URLs used in the player.</p>
+            
+            <h3>Application Improvements</h3>
+            <p><strong>Memory Management Enhancement:</strong> Fixed several potential memory leak issues where system resources weren't being properly released when the application closed. This prevents the app from consuming unnecessary memory and improves overall system performance.</p>
+            
+            <h3>Station Monitoring System Improvements</h3>
+            <ul>
+                <li><strong>Random Timing Improvements:</strong> Updated how the app generates random intervals between metadata checks. The previous method was inefficient and could produce poor randomization. Now uses a more efficient approach that provides better distribution of update times.</li>
+                <li><strong>Resource Cleanup Architecture:</strong> Implemented multiple cleanup points throughout the application: immediate cleanup when features are disabled, comprehensive cleanup when closing forms, and automatic cleanup for temporary operations.</li>
+            </ul>
+            
+            <p>This ensures system resources are freed as soon as they're no longer needed, rather than waiting until the application exits.</p>
+            
+            <h3>Overall Impact</h3>
+            <p>These improvements make the application more responsive, stable, and efficient with system resources. Users should notice smoother operation, especially when using the station monitoring features with multiple stations active simultaneously.</p>
+            
+            <div class="update-cta">
+                <p>Version 0.7.5.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+            </div>
+        </article>
+
         <article id="post-newest" class="blog-post">
             <h2>Version 0.7.1.0 Released: Enhanced Station Monitoring & Performance Refinements</h2>
             <div class="blog-meta">
