@@ -36,7 +36,78 @@
 </section>
 <section class="blog-content">
     <div class="container">
-        <article id="post-latest" class="blog-post">
+       <article id="post-0760" class="blog-post">
+    <h2>Version 0.7.6.0 Released: Performance Optimization & Smart Database Maintenance</h2>
+    <div class="blog-meta">
+        <div class="date">October 2, 2025</div>
+        <div class="tag">Performance Update</div>
+    </div>
+    
+    <p>Live Beats WebRadio Player version 0.7.6.0 introduces intelligent performance optimizations that work behind the scenes to keep your listening experience fast and responsive. This release focuses on server efficiency, database health, and streamlined user interface elements.</p>
+    
+    <h3>Optimized Server Caching</h3>
+    <p>Radio station searches are now significantly faster thanks to enhanced server caching mechanisms. The application intelligently reduces file system access, resulting in quicker station discovery and improved overall responsiveness when browsing your favorite stations.</p>
+    
+    <h3>Streamlined Interface</h3>
+    <p>The Import/Export favorites tooltip has been refined by removing the "Settings" reference. Since Live Beats now uses the database exclusively for all settings storage, this change provides clearer, more accurate information about what the import/export functionality actually handles.</p>
+    
+    <h3>Automatic Database Optimization</h3>
+    <p>Perhaps the most significant addition in this version is the self-maintaining database system. Every 7 days, Live Beats automatically optimizes its database to maintain peak performance and responsiveness throughout extended usage.</p>
+    
+    <h3>Behind the Scenes: How Your App Stays Fast and Healthy</h3>
+    <p>Ever notice how some apps start fast when you first install them, but over time they get slower, heavier, or even a little buggy? That usually happens because the app's database — the "brain" where all your information is stored — gets cluttered and needs cleaning.</p>
+    
+    <p>Live Beats WRP has a built-in self-maintenance system that takes care of this automatically, without you ever needing to push a button. Here's how it works, behind the scenes:</p>
+    
+    <h4>1. A Quick Check When You Start Listening</h4>
+    <p>When you play a radio station for the first time in a session, Live Beats runs a quick internal check. This is like a warm-up routine — making sure everything is working correctly before you keep listening.</p>
+    
+    <h4>2. Weekly Database Maintenance</h4>
+    <p>Once that first check is done, the app also looks at when it last performed database maintenance. If it's been more than seven days, it immediately starts a background cleanup.</p>
+    
+    <p>This includes:</p>
+    <ul>
+        <li>Tidying up unused space so the database doesn't bloat unnecessarily</li>
+        <li>Reorganizing data so it can be read more quickly</li>
+        <li>Refreshing performance statistics so that Live Beats knows the best way to retrieve your information</li>
+    </ul>
+    
+    <p>Think of it like reorganizing a messy filing cabinet — your documents are still there, but now they're easier and faster to find. And don't worry: all your favorites, themes, and settings remain safely saved during this process.</p>
+    
+    <h4>3. No Interruptions, No Popups</h4>
+    <p>All of this happens silently. The app won't interrupt your music with popups or technical warnings. If maintenance is needed, it runs quietly in the background while you enjoy your radio station. Once it's complete, you'll see a small success message (about once every 7 days) letting you know the database has been optimized. This process was designed with you in mind: minimal impact and maximum benefit.</p>
+    
+    <h4>4. Smarter Scheduling</h4>
+    <p>The app keeps track of the last time maintenance was done. If it's too soon to run again, it waits — ensuring the process only happens when it's actually needed.</p>
+    
+    <h4>5. Manual Maintenance (Optional)</h4>
+    <p>If you ever want to run database maintenance yourself, you can do so from the Database window in the app. Most users will never need this since the process happens automatically in the background — but if you want to, running it manually won't hurt anything. It's just an extra tune-up on demand.</p>
+    
+    <h3>Frequently Asked Questions</h3>
+    
+    <h4>Do I need to run this myself?</h4>
+    <p>Nope! Maintenance happens automatically every 7 days. The manual option is there if you want to use it, but it's not required.</p>
+    
+    <h4>Will this slow down my computer while I'm listening?</h4>
+    <p>Not noticeably. The process is designed to be quick and silent. In most cases, you won't even know it's happening.</p>
+    
+    <h4>Why does it trigger when I play a radio station?</h4>
+    <p>Because that's the moment the app knows you're actively using it. It's a natural time to check if maintenance is due, without slowing things down during idle periods.</p>
+    
+    <h4>What's the benefit for me as a listener?</h4>
+    <p>Faster load times, smoother playback, and a database that doesn't grow unnecessarily large. Basically, your app stays just as responsive as the day you first installed it.</p>
+    
+    <h4>What if something goes wrong during maintenance?</h4>
+    <p>The process is designed to fail silently — meaning if there's ever a rare issue, the app won't interrupt your listening experience.</p>
+    
+    <h4>Do I need to wait until maintenance is done before I exit Live Beats?</h4>
+    <p>No. If you close the app during maintenance, it will simply stop and pick up again later when needed. You don't have to keep the app open for it to complete.</p>
+    
+    <div class="update-cta">
+        <p>In short: the next time you hit "play" on your favorite radio station, know that the app is quietly working behind the scenes to keep itself fast, clean, and optimized — and if you ever feel like giving it a little extra boost, you can run maintenance manually anytime from the Database window.</p>
+        <p>Version 0.7.6.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+    </div>
+</article>
             <h2>Version 0.7.5.5 Released: Minor Updates & Dependency Refresh</h2>
             <div class="blog-meta">
                 <div class="date">September 28, 2025</div>
