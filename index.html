@@ -107,6 +107,12 @@
         <h2>Latest Updates</h2>
         <div class="posts-grid">
             <div class="post">
+                <h3>Version 0.8.0.0 Released</h3>
+                <div class="date">October 19, 2025</div>
+                <p>Major database and stability update. Improved database checkpoint system with automatic retry logic and better handling of locks and busy states. Enhanced shutdown process now properly saves all changes with retry before closing, significantly reducing risk of data loss. Database export includes all recent changes even if not yet saved, and import operations now prevent corruption from background processes. Fixed critical crash when closing Advanced Radio Browser during shutdown and rare null reference crashes. Random station button now avoids consecutive repeats, and "Time Played" renamed to "Streaming".</p>
+                <a href="blog.html#post-0800" class="read-more">Read more updates in this version</a>
+            </div>
+            <div class="post">
                 <h3>Version 0.7.9.4 Released</h3>
                 <div class="date">October 17, 2025</div>
                 <p>Favorites search enhancements with random station playback button and station count display. Added checkbox to keep search window open after selection with persistent settings. Auto-selects currently playing station when opening favorites search. Improved Now Playing scrolling for long messages text. Enhanced metadata retry logic to prevent server hammering. Fixed Data Used display when defaulting to 160kbps bitrate estimation.</p>
@@ -117,12 +123,6 @@
                 <div class="date">October 16, 2025</div>
                 <p>Database and usability enhancements featuring custom date range selection for viewing listening statistics across any time period. New right-click option to add songs to SLSK Manager from history view, plus one-click export of complete song history to text file. Refined muted playback handling with less intrusive notifications. Enhanced debug window with refresh & clear errors button, plus helpful volume prompts. Improved label scrolling that auto-pauses on hover. Fixed error logging crashes and resolved Copy/Save Song button visibility issues with enhanced thread safety.</p>
                 <a href="blog.html#post-0790" class="read-more">Read more updates in this version</a>
-            </div>
-            <div class="post">
-                <h3>Version 0.7.8.0 Released</h3>
-                <div class="date">October 14, 2025</div>
-                <p>Maintenance and stability update with new debug commands for database diagnostics. Enhanced favorite station renaming with protection against reserved commands and improved retry logic. Fixed Radio Browser M3U playlist display issues. Improved playback stability with better thread safety and optimized metadata fetching. Added automatic stop after 30 minutes of muted playback with resume prompt.</p>
-                <a href="blog.html#post-0780" class="read-more">Read more updates in this version</a>
             </div>
         </div>
     </div>
