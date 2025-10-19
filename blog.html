@@ -36,6 +36,68 @@
 </section>
 <section class="blog-content">
     <div class="container">
+        <article id="post-0800" class="blog-post">
+    <h2>Version 0.8.0.0 Released: Major Database Overhaul & Enhanced Reliability</h2>
+    <div class="blog-meta">
+        <div class="date">October 19, 2025</div>
+        <div class="tag">Major Update</div>
+    </div>
+    
+    <p>Live Beats WebRadio Player version 0.8.0.0 represents a major leap forward in database reliability and data integrity. This release focuses on ensuring your listening history and favorites are always safely stored with extensive improvements to how the application handles database operations. We've also squashed several critical crashes and made meaningful refinements throughout the application.</p>
+    
+    <h3>Bulletproof Database Checkpoint System</h3>
+    <p>The database checkpoint system has been completely rebuilt with automatic retry logic that ensures your data is always properly saved. When performing major database operations the system now attempts multiple retries if the initial save fails. This means your listening history and station data are protected even in edge cases where database writes might encounter temporary issues. The new system monitors the save process and won't proceed with critical operations until it confirms everything is safely written to disk.</p>
+    
+    <h3>Enhanced Database Lock Handling</h3>
+    <p>We've added robust handling for database locks and busy states throughout the application. While these are edge cases that most users won't encounter the new protection ensures smooth operation even when multiple processes need database access simultaneously. The application now intelligently waits and retries rather than failing when the database is temporarily busy.</p>
+    
+    <h3>Safe Database Import Operations</h3>
+    <p>A critical bug has been fixed where importing a database could cause corruption if WAL (Write-Ahead Logging) files were present in the database directory during the import. The import process now properly handles these temporary database files and ensures background processes complete their work before performing the import. This prevents any potential data corruption and makes database restoration completely reliable.</p>
+    
+    <h3>Complete Database Export</h3>
+    <p>Database exports now force a complete checkpoint before creating the backup file. This ensures that all recent changes are included in the export even if they haven't been written to the main database file yet. When you export your database you can be confident that absolutely everything up to that exact moment is captured in the backup. No more wondering if your most recent listening session made it into the export.</p>
+    
+    <h3>Fail-Safe Shutdown Process</h3>
+    <p>The application shutdown sequence has been significantly enhanced with retry logic for database saves. When you close Live Beats WRP the system now makes multiple attempts to ensure all your data is properly saved before the application exits. While there were no known issues with data loss before this additional layer of protection provides peace of mind that your listening history and settings are always preserved. The shutdown process won't complete until it confirms everything is safely written to disk.</p>
+    
+    <h3>Reduced Risk of Data Loss</h3>
+    <p>All these database improvements work together to dramatically reduce any risk of data loss during normal operation. Whether you're importing a backup or shutting down the application or experiencing unexpected system conditions your data remains protected. The combination of retry logic and careful checkpoint management means your listening history and favorites are safer than ever.</p>
+    
+    <h3>Clearer Database Operation Messages</h3>
+    <p>We've improved the information messages displayed during database import and export operations. The messages now clearly explain what's happening at each step and provide better context about the process. This helps you understand what the application is doing with your data and removes any uncertainty about database operations.</p>
+    
+    <h3>Preserved Database Creation Date</h3>
+    <p>The database creation date is now properly preserved when clearing error logs from the database information viewer. Previously this date would be reset when clearing the log data. The creation date is now treated as permanent metadata that survives maintenance operations.</p>
+    
+    <h3>Critical Crash Fixes</h3>
+    <p>This release fixes a crash that could occur when closing the Advanced Radio Browser if the main application was already in the shutdown process. The browser window now detects when shutdown is in progress and closes gracefully without attempting operations on resources that are being cleaned up. We've also eliminated a rare null reference crash in a background task that could occur under specific timing conditions.</p>
+    
+    <h3>Auto-Stop Protection Fix</h3>
+    <p>An issue has been resolved where unmuting the player wouldn't properly reset the auto-stop protection timer. The 30-minute muted playback protection now correctly resets when you unmute ensuring the feature works as intended. You won't experience unexpected stops after unmuting if you had previously been playing muted.</p>
+    
+    <h3>Enhanced Station Information Display</h3>
+    <p>The database information and error log viewer now displays the full stream URL alongside each monitored station name. Previously only station names were shown which made troubleshooting difficult if an incorrect URL format made its way into the favorites system. The complete URL display helps identify any problematic links and provides better insight into which exact streams are being tracked in your database.</p>
+    
+    <h3>Improved Station Website Button</h3>
+    <p>The station website button now includes intelligent filtering that removes invalid and placeholder URLs before attempting to open them. We've enhanced the URL validation with better protection against malformed links that could cause errors. The button only activates for legitimate website addresses ensuring you never encounter broken links or error dialogs.</p>
+    
+    <h3>Smarter Random Station Selection</h3>
+    <p>The play random station button in the favorites search window now avoids selecting the same station consecutively. If you're already listening to a station and press the random button it will pick something different from your filtered results. This makes the random feature more useful for discovering other stations in your collection.</p>
+    
+    <h3>Performance Improvements</h3>
+    <p>Data usage tracking has been optimized for better stability and performance. We've also cached the regex pattern used for bitrate parsing which eliminates wasteful object recreation on every parse operation. These behind-the-scenes optimizations contribute to smoother overall performance.</p>
+    
+    <h3>Intuitive Label Change</h3>
+    <p>The "Time Played" label shown when connected to a station has been renamed to "Streaming". This more accurately describes what's happening and feels more intuitive. You're streaming the station rather than playing back a fixed duration of content.</p>
+    
+    <h3>Manual Temporarily Unavailable</h3>
+    <p>Please note that the Live Beats manual is currently disabled while we work on a completely new version. The updated manual is under construction and will be available soon with comprehensive coverage of all the latest features and improvements.</p>
+    
+    <div class="update-cta">
+        <p>Version 0.8.0.0 is a major milestone focused on data integrity and application stability. The extensive database improvements ensure your listening history and favorites are protected under all conditions. Combined with critical crash fixes and thoughtful refinements throughout the application this release provides a more reliable and polished experience.</p>
+        <p>Version 0.8.0.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+    </div>
+</article>
         <article id="post-0794" class="blog-post">
     <h2>Version 0.7.9.4 Released: Smart Favorites Search & Improved Metadata Handling</h2>
     <div class="blog-meta">
