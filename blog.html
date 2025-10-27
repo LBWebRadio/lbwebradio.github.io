@@ -36,6 +36,44 @@
 </section>
 <section class="blog-content">
     <div class="container">
+        <article id="post-0810" class="blog-post">
+    <h2>Version 0.8.1.0 Released: Enhanced Error Recovery & Network Protection</h2>
+    <div class="blog-meta">
+        <div class="date">October 27, 2025</div>
+        <div class="tag">Feature Update</div>
+    </div>
+    
+    <p>Live Beats WebRadio Player version 0.8.1.0 brings significant improvements to error handling and network stability. This release focuses on graceful recovery from unexpected situations and better protection when your internet connection drops. We've also refined random station selection and added database maintenance tools to keep your application running smoothly over time.</p>
+    
+    <h3>Redesigned Error Handler</h3>
+    <p>The Live Beats error handler has been completely redesigned to give you control when unexpected errors occur. Instead of simply logging the error and continuing the new handler presents four clear options: Restart the application to reset everything cleanly. View Debug Info to see technical details about what went wrong. Continue running if you believe the error won't affect your session. Or Exit the application if you prefer to stop completely. This puts you in control of how to respond to problems rather than forcing a single behavior. Hopefully you'll never need to see this dialog but if something unexpected happens you now have meaningful choices.</p>
+    
+    <h3>Network Connection Loss Protection</h3>
+    <p>The player now detects when your internet connection drops and handles it gracefully. When network connectivity is lost during streaming the player will attempt to stop the stream cleanly rather than hanging or causing errors. A clear message appears in the player window explaining that the connection was lost. This prevents the application from getting stuck in a bad state when your network goes down and makes recovery much smoother when connectivity returns.</p>
+    
+    <h3>Improved Random Station Selection</h3>
+    <p>The random station button has been enhanced to avoid selecting both the currently playing station and the station that was previously chosen by the random function. If you press the random button multiple times you won't get the same station back-to-back and you won't land on the station you're already listening to. This makes the random feature more useful for exploring your favorites collection.</p>
+    
+    <h3>Enhanced Metadata Filtering</h3>
+    <p>Song title filtering has been expanded to exclude more metadata error messages from appearing in your history. When stations send malformed or error data the filter now catches these patterns and prevents them from being logged as legitimate song titles. This keeps your listening history cleaner and more accurate.</p>
+    
+    <h3>Database Maintenance Option</h3>
+    <p>A new maintenance option allows you to delete listening records older than 12 months from your database. Over time your database can grow quite large if you listen frequently and this can impact performance. The new cleanup option helps prevent the database from becoming too large or slow. You maintain full control over when to run this cleanup and your recent listening history remains untouched.</p>
+    
+    <h3>UI Dialog Protection</h3>
+    <p>The Save Debug Info and Clear Error Log buttons in the database viewer are now disabled while dialogs are open. This prevents UI stacking issues where multiple dialogs could appear on top of each other. The buttons re-enable automatically once the current dialog closes. This simple change eliminates confusion and ensures dialogs are handled one at a time.</p>
+    
+    <h3>Shutdown Process Refinement</h3>
+    <p>A duplicate loop in the shutdown process has been removed. The shutdown sequence now runs more efficiently without redundant operations. This contributes to faster and cleaner application exit.</p>
+    
+    <h3>Updated WebView2</h3>
+    <p>The WebView2 runtime has been updated to the latest version. This ensures compatibility with modern web standards and provides any security improvements from the newest release. The browser component used for displaying station websites and other web content now runs on the most current version available.</p>
+    
+    <div class="update-cta">
+        <p>Version 0.8.1.0 strengthens Live Beats with better error recovery and network handling. The new error dialog gives you control when problems occur while the connection loss protection prevents streaming issues when your network drops. Combined with smarter random selection and database maintenance tools this release keeps your listening experience smooth and your data manageable.</p>
+        <p>Version 0.8.1.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+    </div>
+</article>
         <article id="post-0800" class="blog-post">
     <h2>Version 0.8.0.0 Released: Major Database Overhaul & Enhanced Reliability</h2>
     <div class="blog-meta">
