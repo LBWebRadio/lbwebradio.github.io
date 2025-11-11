@@ -1,0 +1,4 @@
+# robots.txt for https://lbwebradio.github.io/
+
+User-agent: *
+Allow: /
