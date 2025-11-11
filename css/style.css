@@ -76,7 +76,7 @@ header {
     top: 0;
     z-index: 100;
 }
-.logo h1 {
+.logo span {
     color: #1e90ff;
 }
 .logo {
