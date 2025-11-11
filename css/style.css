@@ -76,7 +76,9 @@ header {
     top: 0;
     z-index: 100;
 }
-
+.logo h1 {
+    color: #1e90ff;
+}
 .logo {
     display: flex;
     align-items: center;
