@@ -34,6 +34,41 @@
         <p>Updates, tips, and news about internet radio and our player</p>
     </div>
 </section>
+    <article id="post-0860" class="blog-post">
+    <h2>Version 0.8.6.0 Released: Interface Refinements & System Integration</h2>
+    <div class="blog-meta">
+        <div class="date">November 13, 2025</div>
+        <div class="tag">UI Enhancement</div>
+    </div>
+    
+    <p>Live Beats WebRadio Player version 0.8.6.0 brings refined interface interactions and improved system integration with a focus on visual polish and user experience. This release enhances the application's presence in the Windows environment while adding delightful interaction animations and modern styling effects that elevate the overall interface quality.</p>
+    
+    <h3>Task Manager Display Name</h3>
+    <p>The application now displays its proper name "Live Beats WebRadio Player" in Windows Task Manager instead of the generic "WebRadio" label that appeared previously. This improvement makes process identification easier and more professional especially when managing multiple applications. Users can now quickly locate and manage Live Beats in their system processes with clear and accurate identification that matches the application's branding.</p>
+    
+    <h3>Button Click Animations</h3>
+    <p>Version 0.8.6.0 introduces smooth click animations for all image-based buttons throughout the interface. When you click a button with a background image the button rotates briefly providing satisfying visual feedback that confirms your interaction. The animation system uses asynchronous processing with automatic image management and proper disposal of temporary rotated images to maintain optimal memory usage.</p>
+    
+    <h3>Advanced Rotation System</h3>
+    <p>The click animation system employs sophisticated image handling that prevents concurrent rotations on the same button and maintains references to original images for efficient return animations. Rotations are calculated using high-quality bicubic interpolation with proper alpha transparency support ensuring crisp and professional-looking animations. The system includes comprehensive error handling and validation to ensure stability even with unusual image dimensions or edge cases.</p>
+    
+    <h3>Glass Effect Buttons</h3>
+    <p>Buttons without background images now feature a modern glass effect that creates visual depth and sophistication. The TransparentButton class has been enhanced with optional glass effect rendering that applies a subtle gradient overlay to the upper portion of buttons. This creates a glossy appearance reminiscent of modern interface design trends while maintaining excellent performance through optimized rendering techniques.</p>
+    
+    <h3>Enhanced Button States</h3>
+    <p>The glass effect system integrates seamlessly with existing hover and press states providing dynamic visual feedback. Buttons automatically brighten when hovered and darken when pressed while preserving alpha channel transparency for proper blending with gradient backgrounds. The system intelligently adjusts gradient heights based on button dimensions ensuring optimal visual appearance across different button sizes throughout the application.</p>
+    
+    <h3>Gradient Background Integration</h3>
+    <p>The new glass effect buttons work harmoniously with the gradient backgrounds introduced in version 0.8.5.1. Transparent button backgrounds properly inherit the parent form's gradient creating a cohesive floating appearance where interface elements blend naturally with their surroundings. This integration maintains the modern premium aesthetic while ensuring all interactive elements remain clearly visible and functional.</p>
+    
+    <h3>Technical Excellence</h3>
+    <p>All new features in version 0.8.6.0 maintain Live Beats' commitment to performance and stability. The animation system uses efficient async/await patterns with proper resource cleanup and the glass effect rendering employs optimized graphics paths and cached brushes. The task manager integration required careful attention to application metadata and assembly properties ensuring accurate system-level identification across all Windows versions.</p>
+    
+    <div class="update-cta">
+        <p>Version 0.8.6.0 continues Live Beats WebRadio Player's evolution with thoughtful refinements that enhance daily use. While these may seem like small details they contribute significantly to the overall polish and professional feel of the application making every interaction more satisfying and visually pleasing.</p>
+        <p>Version 0.8.6.0 is available now for all users. Download the latest version from our <a href="download.html">download page</a>.</p>
+    </div>
+</article>
 <section class="blog-content">
     <div class="container">
         <article id="post-0851" class="blog-post">
