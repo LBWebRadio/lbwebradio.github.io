@@ -34,6 +34,29 @@
         <p>Updates, tips and news about internet radio and our player</p>
     </div>
 </section>
+    <article id="post-0917" class="blog-post">
+    <h2>Version 0.9.1.7 Released: Stability and Efficiency Improvements</h2>
+    <div class="blog-meta">
+        <div class="date">May 21, 2026</div>
+        <div class="tag">Stability Release</div>
+    </div>
+    <p>Live Beats WebRadio Player version 0.9.1.7 focuses on under the hood stability improvements, tighter resource usage and a few small fixes discovered during ongoing development.</p>
+    <h3>Stability Improvements</h3>
+    <p>A crash that could occur when closing a form while it was still fading in has been fixed. The fade animation now safely checks whether the form is still available before updating it, and the opacity calculation has been corrected to prevent it from overshooting its target.</p>
+    <p>The mute auto-stop timer has been made more accurate. Reminder notifications at 15, 20 and 25 minutes could previously be missed or fire slightly early due to a rounding issue. This has been corrected and the 30 minute auto-stop now triggers reliably.</p>
+    <p>A thread safety gap in the user message display system has been fixed. In certain situations clearing messages from a background thread could cause an issue when the UI was being updated at the same time.</p>
+    <p>URL filtering has been made stricter for both stream URLs and station website links. Internal addresses such as localhost and 127.0.0.1 are now blocked, and only supported streaming protocols are accepted for playback.</p>
+    <h3>Resource Efficiency</h3>
+    <p>The scrolling timer for song titles and station names previously ran continuously regardless of whether any text actually needed to scroll. It now stops automatically when all labels fit within their bounds and restarts when longer text comes in, reducing unnecessary background activity during long listening sessions.</p>
+    <p>The error log cleanup query has been optimized to only run when the log actually exceeds its limit, rather than on every new entry.</p>
+    <h3>Recording Logs</h3>
+    <p>Metadata timestamps in the recording logs now include an explanation of the format so exported logs are easier to read and understand without any prior knowledge of how the timestamps are generated.</p>
+    <h3>File Type Icons</h3>
+    <p>File type icons for .lbrx, .lbtm and .sig files were not registering correctly in Windows Explorer after switching to the new installer. This has been fixed and all three file types now display their correct icons.</p>
+    <div class="update-cta">
+        <p>Version 0.9.1.7 is available now. Download the latest version from our <a href="download.html">download page</a>.</p>
+    </div>
+</article>
     <article id="post-0910" class="blog-post">
     <h2>Version 0.9.1.0 Released: Recorder Improvements and Bug Fixes</h2>
     <div class="blog-meta">
