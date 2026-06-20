@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Live Beats WebRadio</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #ffffff;
+  }
+  h1 {
+    font-size: 1.6em;
+    margin-bottom: 0.2em;
+  }
+  .updated {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 2em;
+  }
+  h2 {
+    font-size: 1.15em;
+    margin-top: 2em;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 6px;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  li {
+    margin-bottom: 0.5em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 0.92em;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+  }
+  th {
+    background: #f7f7f7;
+  }
+  a {
+    color: #0066cc;
+  }
+  .note {
+    background: #f7f7f7;
+    border-left: 3px solid #ccc;
+    padding: 10px 14px;
+    font-size: 0.92em;
+    margin: 1.2em 0;
+  }
+  footer {
+    margin-top: 3em;
+    font-size: 0.85em;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Live Beats WebRadio · Last updated: June 20, 2026</p>
+
+<p>
+  Live Beats WebRadio ("the app") is an internet radio player. Here's what the app accesses, what
+  gets sent to third parties, and what never leaves your device. Short version: we built it to
+  collect as little as possible.
+</p>
+
+<h2>Summary</h2>
+<ul>
+  <li>No account needed. We don't collect your name, email, or any other personal identifier.</li>
+  <li>No analytics, no ads, no crash-reporting SDKs. None of that is in the app.</li>
+  <li>Your favorites, settings, and preferences live in Android DataStore, on your device. We never see them.</li>
+  <li>A few things do go to outside services — finding stations, pulling up album art — and they're listed below.</li>
+</ul>
+
+<h2>Information Stored On Your Device</h2>
+<p>The following stays on your device and is never transmitted to us:</p>
+<ul>
+  <li>Your favorite stations, including any "Super Favorites" and genre tags</li>
+  <li>App settings (theme, language, album art preference, data tracking preference, sleep timer, etc.)</li>
+  <li>Listening session history (previous/next station navigation)</li>
+  <li>Estimated data usage statistics, if you enable that feature</li>
+  <li>Saved songs, if you use that feature</li>
+</ul>
+<p>
+  Backing up or moving your favorites to the desktop app uses .lbrx files. That file gets created
+  and read locally, wherever you choose to save it — your device, or somewhere like Google Drive if
+  you pick that as the destination. We never see a copy.
+</p>
+
+<h2>Information Sent to Third Parties</h2>
+<p>To work, the app talks to a handful of outside services:</p>
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Purpose</th>
+    <th>What is sent</th>
+  </tr>
+  <tr>
+    <td><strong>Radio-Browser</strong><br>(radio-browser.info)</td>
+    <td>Station directory, search, and the Discover/Browse tab</td>
+    <td>Your search terms and filters, plus a "click/vote" signal when you play or vote for a station. Like any internet request, your IP address is visible to this service.</td>
+  </tr>
+  <tr>
+    <td>Internet radio stream servers</td>
+    <td>Playing the stream you picked</td>
+    <td>A connection to that station's stream URL — no different than opening the same stream in a browser.</td>
+  </tr>
+  <tr>
+    <td><strong>Apple iTunes Search API</strong></td>
+    <td>Looking up album artwork for the currently playing track</td>
+    <td>The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This request does not include an account or device identifier, though it does include a standard app User-Agent string identifying the app and its version.</td>
+  </tr>
+  <tr>
+    <td><strong>Last.fm API</strong></td>
+    <td>Fallback album artwork lookup if iTunes has no match</td>
+    <td>The artist and track name, sent using an app-level API key (not specific to you or your device).</td>
+  </tr>
+  <tr>
+    <td><strong>Station favicon &amp; artwork image hosts (various)</strong></td>
+    <td>Displaying station icons and album artwork</td>
+    <td>The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm. These images can be hosted on many different third-party servers depending on the station or track, not a single fixed service.</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>You can turn this off.</strong> The "Show Album Art" setting actually does what it
+  says: switch it off and the app stops contacting iTunes and Last.fm entirely — no track
+  metadata gets sent. Leave it on, and lookups happen automatically as tracks change, only while
+  the app is open in the foreground.
+</div>
+
+<h2>Notifications</h2>
+<p>
+  Android's notification system shows playback controls while a station plays in the background.
+  That's all handled by the OS — no outside service involved.
+</p>
+
+<h2>Permissions</h2>
+<table>
+  <tr><th>Permission</th><th>Why it's needed</th></tr>
+  <tr><td>Internet</td><td>Streaming, searching stations, fetching metadata/artwork</td></tr>
+  <tr><td>Notifications</td><td>Playback control notification (Android 13+)</td></tr>
+  <tr><td>Wake Lock</td><td>Keeps audio playing when the screen turns off</td></tr>
+  <tr><td>Foreground Service / Media Playback</td><td>Android requires this for background audio apps</td></tr>
+</table>
+
+<h2>Security Note</h2>
+<p>
+  Some radio stations still broadcast over plain <code>http://</code> instead of
+  <code>https://</code>. That's a limitation of those individual stations, not something we can
+  fix on our end — it's common across radio apps generally. In practice it means your network
+  provider could potentially see which station you're streaming, same as with any unencrypted
+  connection.
+</p>
+
+<h2>Data Retention &amp; Deletion</h2>
+<p>
+  We don't run servers that store your favorites, settings, or listening history — there's
+  nothing on our end to retain in the first place. That data lives in Android DataStore on your
+  device and stays there until you delete it yourself, either inside the app or by clearing the
+  app's data/storage in Android settings. Uninstalling the app removes it too.
+</p>
+<p>
+  Because we never receive this data, we have no way to retain or delete it on your behalf — your
+  device is the only copy. The one exception is anything you choose to export yourself (like an
+  .lbrx backup file); once it's saved somewhere, deleting it is up to you, the same as any file.
+</p>
+
+<h2>Children's Privacy</h2>
+<p>
+  The app isn't directed at children and doesn't knowingly collect personal information from
+  anyone. We don't gate any content by age beyond whatever individual radio stations broadcast.
+</p>
+
+<h2>Changes to This Policy</h2>
+<p>
+  If anything here changes, we'll update the "Last updated" date above. Using the app after a
+  change goes live means you accept the updated version.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions about this policy or the app's data practices can be sent to:<br>
+  <strong>Live Beats WebRadio</strong><br>
+  Developer: Christian Flach<br>
+  Email: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a>
+</p>
+
+<footer>
+  Live Beats WebRadio &middot; <a href="https://lbwebradio.github.io/">lbwebradio.github.io</a>
+</footer>
+
+</body>
+</html>
