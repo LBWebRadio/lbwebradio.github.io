@@ -50,6 +50,39 @@
   th {
     background: #f7f7f7;
   }
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    thead {
+      display: none;
+    }
+    table {
+      border: none;
+      margin: 1.4em 0;
+    }
+    tr {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+    }
+    td {
+      border-bottom: none;
+      padding: 6px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    td::before {
+      content: attr(data-label);
+      font-size: 0.78em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #888;
+      margin-bottom: 2px;
+    }
+  }
   a {
     color: #0066cc;
   }
@@ -70,7 +103,7 @@
 <body>
 
 <h1>Privacy Policy</h1>
-<p class="updated">Live Beats WebRadio · Last updated: June 20, 2026</p>
+<p class="updated">Live Beats WebRadio · Last updated: June 21, 2026</p>
 
 <p>
   Live Beats WebRadio ("the app") is an internet radio player. Here's what the app accesses, what
@@ -111,29 +144,29 @@
     <th>What is sent</th>
   </tr>
   <tr>
-    <td><strong>Radio-Browser</strong><br>(radio-browser.info)</td>
-    <td>Station directory, search, and the Discover/Browse tab</td>
-    <td>Your search terms and filters, plus a "click/vote" signal when you play or vote for a station. Like any internet request, your IP address is visible to this service.</td>
+    <td data-label="Service"><strong>Radio-Browser</strong><br>(radio-browser.info)</td>
+    <td data-label="Purpose">Station directory, search, and the Discover/Browse tab</td>
+    <td data-label="What is sent">Your search terms and filters. Playing a station automatically sends a "play count" signal to Radio-Browser, the same way any app using their directory does. Separately, if you tap the thumbs-up icon on a station, that sends a one-time vote — this never happens automatically, only on that explicit tap. Like any internet request, your IP address is visible to this service.</td>
   </tr>
   <tr>
-    <td>Internet radio stream servers</td>
-    <td>Playing the stream you picked</td>
-    <td>A connection to that station's stream URL — no different than opening the same stream in a browser.</td>
+    <td data-label="Service">Internet radio stream servers</td>
+    <td data-label="Purpose">Playing the stream you picked</td>
+    <td data-label="What is sent">A connection to that station's stream URL — no different than opening the same stream in a browser.</td>
   </tr>
   <tr>
-    <td><strong>Apple iTunes Search API</strong></td>
-    <td>Looking up album artwork for the currently playing track</td>
-    <td>The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This request does not include an account or device identifier, though it does include a standard app User-Agent string identifying the app and its version.</td>
+    <td data-label="Service"><strong>Apple iTunes Search API</strong></td>
+    <td data-label="Purpose">Looking up album artwork for the currently playing track</td>
+    <td data-label="What is sent">The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This request does not include an account or device identifier, though it does include a standard app User-Agent string identifying the app and its version.</td>
   </tr>
   <tr>
-    <td><strong>Last.fm API</strong></td>
-    <td>Fallback album artwork lookup if iTunes has no match</td>
-    <td>The artist and track name, sent using an app-level API key (not specific to you or your device).</td>
+    <td data-label="Service"><strong>Last.fm API</strong></td>
+    <td data-label="Purpose">Fallback album artwork lookup if iTunes has no match</td>
+    <td data-label="What is sent">The artist and track name, sent using an app-level API key (not specific to you or your device).</td>
   </tr>
   <tr>
-    <td><strong>Station favicon &amp; artwork image hosts (various)</strong></td>
-    <td>Displaying station icons and album artwork</td>
-    <td>The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm. These images can be hosted on many different third-party servers depending on the station or track, not a single fixed service.</td>
+    <td data-label="Service"><strong>Station favicon &amp; artwork image hosts (various)</strong></td>
+    <td data-label="Purpose">Displaying station icons and album artwork</td>
+    <td data-label="What is sent">The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm. These images can be hosted on many different third-party servers depending on the station or track, not a single fixed service.</td>
   </tr>
 </table>
 
@@ -153,10 +186,10 @@
 <h2>Permissions</h2>
 <table>
   <tr><th>Permission</th><th>Why it's needed</th></tr>
-  <tr><td>Internet</td><td>Streaming, searching stations, fetching metadata/artwork</td></tr>
-  <tr><td>Notifications</td><td>Playback control notification (Android 13+)</td></tr>
-  <tr><td>Wake Lock</td><td>Keeps audio playing when the screen turns off</td></tr>
-  <tr><td>Foreground Service / Media Playback</td><td>Android requires this for background audio apps</td></tr>
+  <tr><td data-label="Permission">Internet</td><td data-label="Why it's needed">Streaming, searching stations, fetching metadata/artwork</td></tr>
+  <tr><td data-label="Permission">Notifications</td><td data-label="Why it's needed">Playback control notification (Android 13+)</td></tr>
+  <tr><td data-label="Permission">Wake Lock</td><td data-label="Why it's needed">Keeps audio playing when the screen turns off</td></tr>
+  <tr><td data-label="Permission">Foreground Service / Media Playback</td><td data-label="Why it's needed">Android requires this for background audio apps</td></tr>
 </table>
 
 <h2>Security Note</h2>
