@@ -103,7 +103,7 @@
 <body>
 
 <h1>Privacy Policy</h1>
-<p class="updated">Live Beats WebRadio · Last updated: June 21, 2026</p>
+<p class="updated">Live Beats WebRadio · Last updated: June 28, 2026</p>
 
 <p>
   Live Beats WebRadio ("the app") is an internet radio player. Here's what the app accesses, what
@@ -127,6 +127,7 @@
   <li>Listening session history (previous/next station navigation)</li>
   <li>Estimated data usage statistics, if you enable that feature</li>
   <li>Saved songs, if you use that feature</li>
+  <li>Cached server location data (country and flag) for your favorite stations</li>
 </ul>
 <p>
   Backing up or moving your favorites to the desktop app uses .lbrx files. That file gets created
@@ -164,6 +165,11 @@
     <td data-label="What is sent">The artist and track name, sent using an app-level API key (not specific to you or your device).</td>
   </tr>
   <tr>
+    <td data-label="Service"><strong>ipwho.is API</strong></td>
+    <td data-label="Purpose">Identifying the server location (country/flag) of the radio station</td>
+    <td data-label="What is sent">The IP address of the radio station's server. Your own IP address is visible to this service during the request, as with any internet connection, but no personal or device identifiers are sent.</td>
+  </tr>
+  <tr>
     <td data-label="Service"><strong>Station favicon &amp; artwork image hosts (various)</strong></td>
     <td data-label="Purpose">Displaying station icons and album artwork</td>
     <td data-label="What is sent">The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm. These images can be hosted on many different third-party servers depending on the station or track, not a single fixed service.</td>
@@ -171,10 +177,9 @@
 </table>
 
 <div class="note">
-  <strong>You can turn this off.</strong> The "Show Album Art" setting actually does what it
-  says: switch it off and the app stops contacting iTunes and Last.fm entirely — no track
-  metadata gets sent. Leave it on, and lookups happen automatically as tracks change, only while
-  the app is open in the foreground.
+  <strong>You can turn these off.</strong> The "Show Album Art" and "Show Server Location"
+  settings actually do what they say: switch them off and the app stops contacting
+  iTunes, Last.fm, and ipwho.is entirely — no metadata or server info gets sent.
 </div>
 
 <h2>Notifications</h2>
