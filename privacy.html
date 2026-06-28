@@ -116,7 +116,7 @@
   <li>No account needed. We don't collect your name, email, or any other personal identifier.</li>
   <li>No analytics, no ads, no crash-reporting SDKs. None of that is in the app.</li>
   <li>Your favorites, settings, and preferences live in Android DataStore, on your device. We never see them.</li>
-  <li>A few things do go to outside services — finding stations, pulling up album art — and they're listed below.</li>
+  <li>A few things do go to outside services — finding stations, server locations, and pulling up album art — and they're listed below.</li>
 </ul>
 
 <h2>Information Stored On Your Device</h2>
@@ -155,6 +155,11 @@
     <td data-label="What is sent">A connection to that station's stream URL — no different than opening the same stream in a browser.</td>
   </tr>
   <tr>
+    <td data-label="Service"><strong>ipwho.is API</strong></td>
+    <td data-label="Purpose">Identifying the server location (country and flag) of the radio station</td>
+    <td data-label="What is sent">The IP address of the radio station's server. Your own IP address is visible to this service during the request (as with any internet request), but the app does not send any account, device, or personal identifiers.</td>
+  </tr>
+  <tr>
     <td data-label="Service"><strong>Apple iTunes Search API</strong></td>
     <td data-label="Purpose">Looking up album artwork for the currently playing track</td>
     <td data-label="What is sent">The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This request does not include an account or device identifier, though it does include a standard app User-Agent string identifying the app and its version.</td>
@@ -163,11 +168,6 @@
     <td data-label="Service"><strong>Last.fm API</strong></td>
     <td data-label="Purpose">Fallback album artwork lookup if iTunes has no match</td>
     <td data-label="What is sent">The artist and track name, sent using an app-level API key (not specific to you or your device).</td>
-  </tr>
-  <tr>
-    <td data-label="Service"><strong>ipwho.is API</strong></td>
-    <td data-label="Purpose">Identifying the server location (country/flag) of the radio station</td>
-    <td data-label="What is sent">The IP address of the radio station's server. Your own IP address is visible to this service during the request, as with any internet connection, but no personal or device identifiers are sent.</td>
   </tr>
   <tr>
     <td data-label="Service"><strong>Station favicon &amp; artwork image hosts (various)</strong></td>
@@ -179,7 +179,8 @@
 <div class="note">
   <strong>You can turn these off.</strong> The "Show Album Art" and "Show Server Location"
   settings actually do what they say: switch them off and the app stops contacting
-  iTunes, Last.fm, and ipwho.is entirely — no metadata or server info gets sent.
+  third-party APIs (iTunes, Last.fm, and ipwho.is) entirely — no metadata or server
+  info gets sent.
 </div>
 
 <h2>Notifications</h2>
