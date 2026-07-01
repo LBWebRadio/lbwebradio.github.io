@@ -1,684 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discover — Live Beats WebRadio (mockup)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-/* ==========================================================================
-   Discover Screen mockup — colors pulled from ui/theme/Color.kt so this
-   matches the app 1:1. This file is self-contained on purpose: copy/paste
-   it, edit whatever's inside, no other files needed.
+    <!-- Primary Meta Tags -->
+    <title>Live Beats WebRadio | Internet Radio for Android</title>
+    <meta name="title" content="Live Beats WebRadio | Internet Radio for Android">
+    <meta name="description" content="A privacy-first internet radio player for Android. 58,000+ stations, 26 accent themes, Android Auto, home screen widgets, and a Quick Settings tile. Currently in beta.">
+    <meta name="keywords" content="android radio app, internet radio player, web radio android, live beats webradio, radio streaming app">
+    <meta name="author" content="Live Beats WebRadio">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lbwebradio.github.io/index.html">
 
-   Structure mirrors DiscoverScreen.kt + DiscoverStationCard.kt:
-     .ds-topbar        -> TopAppBar (title, subtitle, stats icon)
-     .ds-searchbar      -> TextField + Tune button
-     .ds-splitbuttons   -> Top Stations / Random Station row
-     .ds-advanced       -> Collapsible advanced filter panel (6 pickers + clear)
-     .ds-list           -> LazyColumn of StationCard
-     .ds-card           -> StationCard.kt
-     .ds-pagination     -> bottom pager row
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lbwebradio.github.io/">
+    <meta property="og:title" content="Live Beats WebRadio | Internet Radio for Android">
+    <meta property="og:description" content="A privacy-first internet radio player for Android, currently in beta. 58,000+ stations, 26 accent themes, Android Auto support.">
+    <meta property="og:image" content="https://lbwebradio.github.io/img/icon.png">
+    <meta property="og:site_name" content="Live Beats WebRadio">
 
-   Everything with data-action="..." is a hook for wiring up real behavior
-   later — just add a click listener, nothing structural needs to change.
-   ========================================================================== */
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://lbwebradio.github.io/">
+    <meta name="twitter:title" content="Live Beats WebRadio | Internet Radio for Android">
+    <meta name="twitter:description" content="A privacy-first internet radio player for Android, currently in beta.">
+    <meta name="twitter:image" content="https://lbwebradio.github.io/img/icon.png">
 
-:root {
-    --ds-bg: #000000;            /* Black */
-    --ds-surface: #141414;       /* SurfaceDark */
-    --ds-surface-alt: #1E1E1E;   /* SurfaceVariant */
-    --ds-text: #FFFFFF;          /* White */
-    --ds-text-secondary: #AAAAAA;/* GreyLight */
-    --ds-text-muted: #666666;    /* GreyMuted */
+    <!-- Stylesheets and Fonts -->
+    <link rel="stylesheet" href="css/android-home.css">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 
-    --ds-accent: #90CAF9;        /* Steel Blue (default) */
-    --ds-accent-dim: #5B9BD5;
+    <!-- Fidelity fix: Navigation.kt sets indicatorColor = Color.Transparent, so the
+         real active tab shows NO highlight pill behind the icon — only Accent color
+         + the small dot underneath. Overriding the base stylesheet rule here so this
+         file stays self-contained; feel free to fold this into android-home.css instead. -->
+    <style>
+        .ah-nav-item.ah-nav-active .ah-nav-item-inner {
+            background: transparent;
+        }
 
-    --ds-radius-card: 10px;
-    --ds-radius-pill: 999px;
-}
+        /* Real flag (flag-icons) sized to sit inside the 28px round ah-icon-badge,
+           replacing the emoji flag which renders inconsistently across platforms. */
+        .ah-icon-badge.ah-flag .fi {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
 
-* { box-sizing: border-box; }
+        /* Phone chassis, sized to a real device ratio rather than guessed.
+           Reference: iPhone 15 body is 71.6mm × 147.6mm ≈ 1 : 2.06 (Apple's
+           published specs; Android flagships land in the same neighborhood).
+           Locking .ah-phone to that ratio and letting the .ah-phone-screen
+           flex column absorb the difference is what the real Compose layout
+           does too (PlayerWatermark sits in a weight(1f) box that shrinks/grows
+           to fill whatever space is left) — so this mirrors that instead of
+           fighting margins by hand. */
+        .ah-phone {
+            position: relative;
+            width: 320px;
+            aspect-ratio: 71.6 / 147.6;
+            padding: 12px;
+            background: linear-gradient(155deg, #333 0%, #0c0c0c 10%, #050505 50%, #0c0c0c 90%, #333 100%);
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(255,255,255,0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
 
-body {
-    margin: 0;
-    background: var(--ds-bg);
-    color: var(--ds-text);
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 24px 12px;
-}
+        .ah-phone-screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-top: 22px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
 
-/* Phone-width frame so proportions match the real app. Change max-width
-   if you want to preview this wider while editing. */
-.ds-frame {
-    width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    min-height: 90vh;
-    background: var(--ds-bg);
-}
+        /* No manual height math needed here — .ah-station-art already ships with
+           aspect-ratio: 1/1, flex-shrink: 1, min-height: 0 in the base stylesheet,
+           so once the screen's total height is fixed by the chassis ratio above,
+           the flex column shrinks the art square automatically to whatever space
+           is actually left after the other rows take what they need. */
 
-/* ---------- Top App Bar ---------- */
-.ds-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 16px 10px;
-}
+        /* ...but every flex child defaults to flex-shrink:1, not just the art
+           square — so without this, ALL rows were shrinking a little instead of
+           the art square absorbing 100% of the difference, which is what was
+           squeezing text and icons into each other. Pinning everything but the
+           art to flex-shrink:0 makes the art square the sole pressure valve. */
+        .ah-status-row,
+        .ah-station-name,
+        .ah-song-title,
+        .ah-meta-pills,
+        .ah-watermark,
+        .ah-volume-row,
+        .ah-volume-label,
+        .ah-player-controls,
+        .ah-action-icons,
+        .ah-bottom-nav {
+            flex-shrink: 0;
+        }
 
-.ds-topbar-titles {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
+        /* Fidelity fix: PlayerWatermark.kt / LandscapeBranding.kt wrap the album
+           art in a drawBehind{} radial gradient glow using LocalAccent, sized
+           larger than the art and bleeding outward. Recreated here with a
+           color-mix() box-shadow so it follows --ah-accent live across theme
+           swaps, the same way the real glow follows LocalAccent. */
+        .ah-station-art {
+            box-shadow: 0 0 16px 2px color-mix(in srgb, var(--ah-accent) 35%, transparent);
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
 
-.ds-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--ds-text);
-    margin: 0;
-}
+        .ah-phone-camera {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #1a2a33, #000 70%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+            z-index: 5;
+        }
 
-.ds-subtitle {
-    font-size: 0.75rem;
-    color: var(--ds-text-muted);
-    margin: 0;
-}
+        /* Side buttons: previously a light gradient pill floating just outside
+           the frame edge, which — being thin, rounded, and high-contrast against
+           black — read as a browser scrollbar thumb rather than hardware. Now
+           flush with the edge, darker/flatter to match the chassis material, and
+           squared off so it reads as a button, not a draggable thumb. */
+        .ah-phone-btn {
+            position: absolute;
+            right: 0;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            border-radius: 2px 0 0 2px;
+            box-shadow: inset 1px 0 0 rgba(255,255,255,0.06);
+            z-index: 1;
+        }
 
-.ds-stats-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-.ds-stats-btn svg { width: 20px; height: 20px; stroke: var(--ds-accent); fill: none; stroke-width: 2; }
-.ds-stats-btn:hover { background: rgba(255,255,255,0.06); }
+        .ah-phone-btn.ah-power {
+            top: 28%;
+            width: 3px;
+            height: 9%;
+        }
 
-/* ---------- Search bar ---------- */
-.ds-searchbar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-}
+        .ah-phone-btn.ah-vol-up,
+        .ah-phone-btn.ah-vol-down {
+            left: 0;
+            right: auto;
+            border-radius: 0 2px 2px 0;
+            box-shadow: inset -1px 0 0 rgba(255,255,255,0.06);
+        }
 
-.ds-searchfield {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ds-surface);
-    border-radius: var(--ds-radius-pill);
-    padding: 0 8px 0 16px;
-    height: 52px;
-}
+        .ah-phone-btn.ah-vol-up {
+            top: 20%;
+            width: 3px;
+            height: 6%;
+        }
 
-.ds-searchfield svg.ds-search-icon { width: 18px; height: 18px; stroke: var(--ds-text-muted); fill: none; stroke-width: 2; flex-shrink: 0; }
+        .ah-phone-btn.ah-vol-down {
+            top: 28%;
+            width: 3px;
+            height: 6%;
+        }
 
-.ds-searchfield input {
-    flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: var(--ds-text);
-    font-size: 0.92rem;
-    font-family: inherit;
-    min-width: 0;
-}
-.ds-searchfield input::placeholder { color: var(--ds-text-muted); }
-
-.ds-icon-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    flex-shrink: 0;
-    position: relative;
-}
-.ds-icon-btn:hover { background: rgba(255,255,255,0.06); }
-.ds-icon-btn svg { width: 19px; height: 19px; stroke: var(--ds-text-muted); fill: none; stroke-width: 2; }
-.ds-icon-btn.ds-tune-active svg { stroke: var(--ds-accent); }
-
-.ds-tune-badge {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    min-width: 15px;
-    height: 15px;
-    padding: 0 3px;
-    border-radius: 50%;
-    background: var(--ds-accent);
-    color: #000;
-    font-size: 0.6rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ds-search-submit {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--ds-accent);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.15s ease;
-}
-.ds-search-submit:hover { background: var(--ds-accent-dim); }
-.ds-search-submit svg { width: 20px; height: 20px; stroke: #000; fill: none; stroke-width: 2.4; }
-
-/* ---------- Split Top / Random buttons ---------- */
-.ds-splitbuttons {
-    display: flex;
-    gap: 8px;
-    padding: 4px 16px 12px;
-}
-
-.ds-split-btn {
-    flex: 1;
-    height: 48px;
-    border-radius: var(--ds-radius-pill);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 0.7rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    cursor: pointer;
-    background: var(--ds-accent);
-    color: #000;
-    transition: transform 0.1s ease, background 0.15s ease;
-}
-.ds-split-btn:active { transform: scale(0.96); }
-.ds-split-btn:hover { background: var(--ds-accent-dim); }
-.ds-split-btn svg { width: 18px; height: 18px; stroke: #000; fill: none; stroke-width: 2; }
-
-.ds-split-btn.ds-disabled {
-    background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.25);
-    cursor: not-allowed;
-}
-.ds-split-btn.ds-disabled svg { stroke: rgba(255,255,255,0.25); }
-
-/* ---------- Advanced filter panel ---------- */
-.ds-advanced {
-    margin: 0 16px 12px;
-    background: var(--ds-surface);
-    border: 1px solid rgba(144,202,249,0.2);
-    border-radius: 12px;
-    padding: 12px;
-    display: none;      /* toggled to flex via JS / .ds-open */
-    flex-direction: column;
-    gap: 8px;
-}
-.ds-advanced.ds-open { display: flex; }
-
-.ds-picker-row {
-    display: flex;
-    gap: 8px;
-}
-
-.ds-picker-btn {
-    flex: 1;
-    height: 44px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: transparent;
-    color: var(--ds-text-secondary);
-    font-size: 0.82rem;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 12px;
-    cursor: pointer;
-}
-.ds-picker-btn:hover { border-color: rgba(255,255,255,0.25); }
-.ds-picker-btn svg { width: 14px; height: 14px; stroke: var(--ds-text-muted); fill: none; stroke-width: 2; flex-shrink: 0; }
-
-.ds-picker-btn.ds-picker-selected {
-    color: var(--ds-accent);
-    border-color: rgba(144,202,249,0.4);
-    background: rgba(144,202,249,0.08);
-}
-.ds-picker-btn.ds-picker-selected svg { stroke: var(--ds-accent); }
-
-.ds-clear-btn {
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: transparent;
-    color: var(--ds-text-secondary);
-    font-size: 0.82rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-}
-.ds-clear-btn:hover { border-color: var(--ds-accent); color: var(--ds-accent); }
-
-/* ---------- Station list ---------- */
-.ds-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 16px 8px;
-    overflow-y: auto;
-}
-
-.ds-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px;
-    border-radius: var(--ds-radius-card);
-    background: var(--ds-surface);
-    cursor: pointer;
-    border: 1px solid transparent;
-}
-.ds-card:hover { border-color: rgba(255,255,255,0.08); }
-
-.ds-card.ds-card-playing {
-    background: color-mix(in srgb, var(--ds-accent) 8%, var(--ds-surface));
-    border-color: color-mix(in srgb, var(--ds-accent) 30%, transparent);
-}
-
-.ds-card-logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 10px;
-    flex-shrink: 0;
-    background: #000;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-.ds-card-logo svg { width: 26px; height: 26px; stroke: var(--ds-text-muted); fill: none; stroke-width: 1.8; }
-.ds-card-logo.ds-has-art { background-image: linear-gradient(135deg, var(--ds-accent), var(--ds-accent-dim)); }
-.ds-card-logo.ds-has-art svg { display: none; }
-
-.ds-card-body { flex: 1; min-width: 0; }
-
-.ds-card-toprow {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.ds-card-name-block { flex: 1; min-width: 0; }
-
-.ds-card-name {
-    font-size: 0.98rem;
-    font-weight: 600;
-    color: var(--ds-text);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.ds-card-playing .ds-card-name { color: var(--ds-accent); }
-
-.ds-card-country {
-    font-size: 0.72rem;
-    color: var(--ds-text-muted);
-    margin: 2px 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.ds-card-actions {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-}
-
-.ds-vote-btn, .ds-play-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.ds-vote-btn:hover, .ds-play-btn:hover { background: rgba(255,255,255,0.06); }
-.ds-vote-btn svg { width: 18px; height: 18px; stroke: none; fill: color-mix(in srgb, var(--ds-accent) 60%, transparent); }
-.ds-vote-btn.ds-voted svg { fill: #4CAF50; }
-.ds-play-btn svg { width: 20px; height: 20px; stroke: none; fill: var(--ds-accent); }
-
-.ds-card-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-}
-
-.ds-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 7px;
-    border-radius: var(--ds-radius-pill);
-    font-size: 0.62rem;
-    font-weight: 600;
-    background: rgba(144,202,249,0.18);
-    color: var(--ds-accent);
-}
-.ds-badge.ds-badge-dim {
-    background: rgba(91,155,213,0.18);
-    color: var(--ds-accent-dim);
-}
-.ds-badge svg { width: 10px; height: 10px; stroke: none; fill: currentColor; }
-
-/* ---------- Empty / loading / error states (not shown by default) ---------- */
-.ds-state {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 48px 24px;
-    text-align: center;
-    color: var(--ds-text-muted);
-}
-.ds-state.ds-state-visible { display: flex; }
-.ds-state svg { width: 44px; height: 44px; stroke: var(--ds-text-muted); fill: none; stroke-width: 1.6; }
-
-/* ---------- Pagination ---------- */
-.ds-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 8px 16px 4px;
-}
-
-.ds-page-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.ds-page-btn:hover { background: rgba(255,255,255,0.06); }
-.ds-page-btn svg { width: 20px; height: 20px; stroke: var(--ds-accent); fill: none; stroke-width: 2.2; }
-.ds-page-btn.ds-disabled { cursor: not-allowed; }
-.ds-page-btn.ds-disabled svg { stroke: var(--ds-text-muted); }
-
-.ds-page-label {
-    font-size: 0.85rem;
-    color: var(--ds-text);
-}
-</style>
+        /* width:100% + max-width keeps the same real-device ratio at every
+           screen size — aspect-ratio recomputes height automatically. */
+        .ah-phone {
+            max-width: 320px;
+        }
+    </style>
 </head>
-<body>
+<body class="ah">
 
-<div class="ds-frame">
-
-    <!-- ============ Top App Bar ============ -->
-    <div class="ds-topbar">
-        <div class="ds-topbar-titles">
-            <p class="ds-title">Discover Stations</p>
-            <!-- Subtitle shows active filter summary — hidden when no filters set -->
-            <p class="ds-subtitle" id="dsSubtitle" style="display:none;"></p>
-        </div>
-        <button class="ds-stats-btn" data-action="open-server-stats" aria-label="Server stats">
-            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
-        </button>
-    </div>
-
-    <!-- ============ Search bar ============ -->
-    <div class="ds-searchbar">
-        <div class="ds-searchfield">
-            <svg class="ds-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="dsQueryInput" placeholder="Search stations..." data-action="query-input">
-            <button class="ds-icon-btn" id="dsTuneBtn" data-action="toggle-advanced" aria-label="Filters">
-                <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg>
-                <span class="ds-tune-badge" id="dsFilterCount" style="display:none;">0</span>
-            </button>
-        </div>
-        <button class="ds-search-submit" data-action="perform-search" aria-label="Search">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-    </div>
-
-    <!-- ============ Top Stations / Random Station ============ -->
-    <div class="ds-splitbuttons">
-        <button class="ds-split-btn" data-action="top-stations">
-            <svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>
-            Top Stations
-        </button>
-        <button class="ds-split-btn" data-action="random-station">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.4"/><circle cx="16" cy="16" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg>
-            Random Station
-        </button>
-    </div>
-
-    <!-- ============ Advanced filter panel (collapsed by default) ============ -->
-    <div class="ds-advanced" id="dsAdvancedPanel">
-        <div class="ds-picker-row">
-            <button class="ds-picker-btn" data-action="pick-country">
-                <span>Country</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <button class="ds-picker-btn" data-action="pick-language">
-                <span>Language</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-        </div>
-        <div class="ds-picker-row">
-            <button class="ds-picker-btn" data-action="pick-genre">
-                <span>Genre</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <button class="ds-picker-btn" data-action="pick-codec">
-                <span>Codec</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-        </div>
-        <div class="ds-picker-row">
-            <button class="ds-picker-btn" data-action="pick-min-bitrate">
-                <span>Min kbps</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <button class="ds-picker-btn" data-action="pick-max-bitrate">
-                <span>Max kbps</span>
-                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-        </div>
-        <button class="ds-clear-btn" data-action="clear-filters">Clear filters</button>
-    </div>
-
-    <!-- ============ Station list ============ -->
-    <div class="ds-list" id="dsList">
-
-        <div class="ds-card ds-card-playing" data-action="open-detail" data-uuid="1">
-            <div class="ds-card-logo ds-has-art"></div>
-            <div class="ds-card-body">
-                <div class="ds-card-toprow">
-                    <div class="ds-card-name-block">
-                        <p class="ds-card-name">KEXP Synthwave</p>
-                        <p class="ds-card-country">United States</p>
-                    </div>
-                    <div class="ds-card-actions">
-                        <button class="ds-vote-btn" data-action="vote"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 7.59 6.59C7.22 6.95 7 7.45 7 8v11c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
-                        <button class="ds-play-btn" data-action="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                    </div>
-                </div>
-                <div class="ds-card-badges">
-                    <span class="ds-badge">AAC</span>
-                    <span class="ds-badge">128 kbps</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/></svg>1.3k</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12z"/></svg>842</span>
+    <header class="ah-header">
+        <div class="ah-container">
+            <div class="ah-logo">
+                <img src="img/icon.png" alt="Live Beats WebRadio logo">
+                <div>
+                    <h1>Live Beats WebRadio</h1>
+                    <span class="ah-logo-sub">For Android</span>
                 </div>
             </div>
+            <nav class="ah-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="ds-card" data-action="open-detail" data-uuid="2">
-            <div class="ds-card-logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 15V9l7 3-7 3z"/></svg></div>
-            <div class="ds-card-body">
-                <div class="ds-card-toprow">
-                    <div class="ds-card-name-block">
-                        <p class="ds-card-name">France Info</p>
-                        <p class="ds-card-country">France</p>
+    <main>
+        <!-- ================= HERO ================= -->
+        <section class="ah-hero">
+            <div class="ah-container">
+                <div class="ah-hero-text">
+                    <span class="ah-eyebrow">Android &middot; Open Beta</span>
+                    <h2>Your radio.<br>Live, and <span class="ah-accent-word">yours</span> to color.</h2>
+                    <p>A privacy-first internet radio player for Android. 58,000+ stations, real-time bitrate and codec info, and 26 accent themes that reshape the whole app &mdash; try one below.</p>
+
+                    <div class="ah-hero-swatches">
+                        <div class="ah-swatch-grid ah-swatch-grid-hero" id="ahSwatchGrid"></div>
+                        <p class="ah-theme-label ah-theme-label-hero">Currently previewing: <strong id="ahThemeName">Steel Blue</strong></p>
                     </div>
-                    <div class="ds-card-actions">
-                        <button class="ds-vote-btn ds-voted" data-action="vote"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></button>
-                        <button class="ds-play-btn" data-action="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+
+                    <div class="ah-cta-row">
+                        <a href="contact.html" class="ah-btn ah-btn-primary">Join the beta</a>
+                        <a href="#features" class="ah-btn ah-btn-ghost">See features</a>
                     </div>
                 </div>
-                <div class="ds-card-badges">
-                    <span class="ds-badge">MP3</span>
-                    <span class="ds-badge">128 kbps</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/></svg>88k</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12z"/></svg>5.2k</span>
+
+                <div class="ah-hero-visual">
+                    <div class="ah-phone">
+                        <div class="ah-phone-btn ah-power"></div>
+                        <div class="ah-phone-btn ah-vol-up"></div>
+                        <div class="ah-phone-btn ah-vol-down"></div>
+                        <div class="ah-phone-screen">
+                            <div class="ah-phone-camera"></div>
+
+                            <div class="ah-phone-pages">
+                                <!-- ============ PAGE: PLAYER ============ -->
+                                <div class="ah-page ah-page-player">
+                                    <!-- Status row: mirrors MetadataCard.kt Box(contentAlignment = Center)
+                                         with CenterStart (lock + flag) and CenterEnd (website) clusters
+                                         absolutely positioned so the Live pill stays truly centered. -->
+                                    <div class="ah-status-row">
+                                        <div class="ah-status-cluster-left">
+                                            <div class="ah-icon-badge ah-lock">
+                                                <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                                            </div>
+                                            <div class="ah-icon-badge ah-flag" aria-label="Server location: United States"><span class="fi fi-us fis"></span></div>
+                                        </div>
+
+                                        <div class="ah-status-pill">
+                                            <span class="ah-status-dot"></span> Live
+                                        </div>
+
+                                        <div class="ah-status-cluster-right">
+                                            <div class="ah-icon-badge ah-website">
+                                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="ah-station-name">KEXP Synthwave</p>
+                                    <p class="ah-song-title">Midnight Drive &mdash; Neon Skyline</p>
+
+                                    <div class="ah-meta-pills">
+                                        <span class="ah-meta-pill">AAC</span>
+                                        <span class="ah-meta-pill">128 kbps</span>
+                                        <span class="ah-meta-pill">00:14:22</span>
+                                        <span class="ah-meta-pill">41.2 MB</span>
+                                    </div>
+
+                                    <div class="ah-watermark">
+                                        <svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg>
+                                        LIVE BEATS WEBRADIO
+                                    </div>
+
+                                    <div class="ah-station-art">
+                                        <svg viewBox="0 0 24 24" fill="#000"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                                    </div>
+
+                                    <div class="ah-volume-row">
+                                        <div class="ah-volume-track"><span class="ah-volume-thumb"></span></div>
+                                        <p class="ah-volume-label">Volume: 47%</p>
+                                    </div>
+
+                                    <div class="ah-player-controls">
+                                        <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M19 20 9 12l10-8v16zM5 4v16"/></svg></span>
+                                        <div class="ah-play-btn">
+                                            <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                                        </div>
+                                        <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zM19 4v16"/></svg></span>
+                                    </div>
+
+                                    <!-- Action icons row: star, link (Connect), sleep timer (hourglass — fixed,
+                                         was a clock face), random (dice/Casino), share, save song (music note).
+                                         Mirrors PlayerControlRows.kt's PillButton row. -->
+                                    <div class="ah-action-icons">
+                                        <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M6 2h12M6 22h12M6 2c0 5 4 6 6 8 2-2 6-3 6-8M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg>
+                                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><circle cx="16" cy="16" r="1"/></svg>
+                                        <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                                    </div>
+                                </div>
+
+                                <!-- ============ PAGE: FAVORITES ============
+                                     Mirrors FavoritesScreen.kt: mode-icon row (Favorites/TopTen/History/
+                                     SavedSongs + Backup), SearchBar, genre FilterChips, StationRow list
+                                     (play/equalizer icon, name, super-favorite star, genre subtitle, more). -->
+                                <div class="ah-page ah-page-favorites">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Favorites</span>
+                                        <span class="ah-page-count">12</span>
+                                    </div>
+
+                                    <div class="ah-mode-row">
+                                        <span class="ah-mode-icon ah-mode-active"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v4a7 7 0 0 1-14 0V4z"/><path d="M5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4M12 7v5l4 2"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg></span>
+                                    </div>
+
+                                    <div class="ah-mini-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search favorites</span></div>
+
+                                    <div class="ah-chip-row">
+                                        <span class="ah-chip ah-chip-active">Any</span>
+                                        <span class="ah-chip">Synthwave</span>
+                                        <span class="ah-chip">Jazz</span>
+                                        <span class="ah-chip">News</span>
+                                    </div>
+
+                                    <div class="ah-fav-list">
+                                        <div class="ah-fav-row ah-fav-row-active">
+                                            <span class="ah-fav-icon"><span class="ah-eq-bar"></span><span class="ah-eq-bar"></span><span class="ah-eq-bar"></span></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">KEXP Synthwave</p>
+                                                <p class="ah-fav-sub ah-fav-sub-live">Midnight Drive &mdash; Neon Skyline</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name ah-fav-name-super"><svg class="ah-star-mini" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>Classic Vinyl HD</p>
+                                                <p class="ah-fav-sub">Oldies &middot; Rock</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">France Info</p>
+                                                <p class="ah-fav-sub">News &middot; Talk</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">Deep House Radio</p>
+                                                <p class="ah-fav-sub">Electronic &middot; Dance</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ============ PAGE: BROWSE / DISCOVER ============
+                                     Mirrors DiscoverScreen.kt: search bar, advanced filter pickers,
+                                     StationCard rows with logo, country, codec/bitrate/vote tags. -->
+                                <div class="ah-page ah-page-discover">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Browse</span>
+                                        <span class="ah-page-count">58,412</span>
+                                    </div>
+
+                                    <div class="ah-mini-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search 58,000+ stations</span></div>
+
+                                    <div class="ah-chip-row">
+                                        <span class="ah-chip ah-chip-active"><span class="fi fi-fr fis" style="border-radius:50%;width:12px;height:12px;margin-right:4px;"></span>France</span>
+                                        <span class="ah-chip">Any Language</span>
+                                        <span class="ah-chip">Any Codec</span>
+                                    </div>
+
+                                    <div class="ah-fav-list">
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">RTL</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">AAC</span><span class="ah-mini-tag">64 kbps</span><span class="ah-mini-tag">1.3k</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">France Info</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">MP3</span><span class="ah-mini-tag">128 kbps</span><span class="ah-mini-tag">88k</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">Nova FM</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">AAC</span><span class="ah-mini-tag">192 kbps</span><span class="ah-mini-tag">42k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ============ PAGE: SETTINGS ============
+                                     Mirrors SettingsScreen.kt / ThemeViewModel.kt: theme picker entry,
+                                     data tracking, lock portrait, keep screen on. -->
+                                <div class="ah-page ah-page-settings">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Settings</span>
+                                    </div>
+
+                                    <div class="ah-settings-list">
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 3 3 0 0 0 0-6h-1a2 2 0 0 1 0-4h4a2 2 0 0 0 2-2"/></svg></span>
+                                            <span class="ah-settings-label">Accent Theme</span>
+                                            <span class="ah-settings-value">Steel Blue &rsaquo;</span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>
+                                            <span class="ah-settings-label">Data Guard</span>
+                                            <span class="ah-toggle ah-toggle-on"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+                                            <span class="ah-settings-label">Lock Portrait</span>
+                                            <span class="ah-toggle"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
+                                            <span class="ah-settings-label">Keep Screen On</span>
+                                            <span class="ah-toggle ah-toggle-on"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+                                            <span class="ah-settings-label">Language</span>
+                                            <span class="ah-settings-value">English &rsaquo;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom nav: mirrors Navigation.kt BottomNavBar. Player icon fixed to
+                                 Icons.Filled.Radio (was headphones, which the app reserves for the
+                                 watermark/branding). Active state = Accent color + dot only, since
+                                 the real component sets indicatorColor = Color.Transparent (no pill).
+                                 Tapping a tab jumps straight there and stops the auto-cycle below. -->
+                            <nav class="ah-bottom-nav" aria-label="App navigation preview">
+                                <div class="ah-nav-item" data-page="player">
+                                    <div class="ah-nav-item-inner">
+                                        <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="2"/><circle cx="7.5" cy="14" r="2.2"/><circle cx="16.5" cy="14" r="1"/><path d="M8 8L16 3"/><circle cx="16" cy="3" r="1"/></svg>
+                                        <span class="ah-nav-dot"></span>
+                                        <span class="ah-nav-label">Player</span>
+                                    </div>
+                                </div>
+                                <div class="ah-nav-item" data-page="favorites">
+                                    <div class="ah-nav-item-inner">
+                                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                        <span class="ah-nav-dot"></span>
+                                        <span class="ah-nav-label">Favorites</span>
+                                    </div>
+                                </div>
+                                <div class="ah-nav-item" data-page="discover">
+                                    <div class="ah-nav-item-inner">
+                                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                        <span class="ah-nav-dot"></span>
+                                        <span class="ah-nav-label">Browse</span>
+                                    </div>
+                                </div>
+                                <div class="ah-nav-item" data-page="settings">
+                                    <div class="ah-nav-item-inner">
+                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                        <span class="ah-nav-dot"></span>
+                                        <span class="ah-nav-label">Settings</span>
+                                    </div>
+                                </div>
+                            </nav>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="ds-card" data-action="open-detail" data-uuid="3">
-            <div class="ds-card-logo ds-has-art"></div>
-            <div class="ds-card-body">
-                <div class="ds-card-toprow">
-                    <div class="ds-card-name-block">
-                        <p class="ds-card-name">Nova FM</p>
-                        <p class="ds-card-country">France</p>
-                    </div>
-                    <div class="ds-card-actions">
-                        <button class="ds-vote-btn" data-action="vote"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 7.59 6.59C7.22 6.95 7 7.45 7 8v11c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
-                        <button class="ds-play-btn" data-action="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                    </div>
+        <!-- ================= FEATURES ================= -->
+        <section class="ah-features" id="features">
+            <div class="ah-container">
+                <div class="ah-section-head">
+                    <span class="ah-eyebrow">Built for Android</span>
+                    <h3>Not a port. An Android app.</h3>
+                    <p>Every feature below only makes sense because it's running on your phone, not a desktop.</p>
                 </div>
-                <div class="ds-card-badges">
-                    <span class="ds-badge">AAC</span>
-                    <span class="ds-badge">192 kbps</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/></svg>42k</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12z"/></svg>1.9k</span>
+
+                <div class="ah-features-grid">
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg></div>
+                        <h4>Background playback</h4>
+                        <p>Music keeps streaming through a foreground service &mdash; lock the screen, switch apps, it doesn't stop.</p>
+                    </div>
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+                        <h4>Quick Settings tile</h4>
+                        <p>Play or stop your last station straight from the notification shade, without opening the app.</p>
+                    </div>
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+                        <h4>Android Auto</h4>
+                        <p>A proper media library service, so your stations show up safely on the car display.</p>
+                    </div>
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+                        <h4>Data Guard</h4>
+                        <p>Real-time byte tracking with daily, monthly, and yearly usage &mdash; set a threshold and get warned before you blow through it.</p>
+                    </div>
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/></svg></div>
+                        <h4>Adaptive icon</h4>
+                        <p>Full support for round, square, and monochrome icon shapes &mdash; it looks native on your launcher, whatever skin you're on.</p>
+                    </div>
+                    <div class="ah-feature-card">
+                        <div class="ah-feature-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+                        <h4>Edge-to-edge</h4>
+                        <p>The UI draws behind the status and navigation bars for an immersive, modern layout on every screen.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="ds-card" data-action="open-detail" data-uuid="4">
-            <div class="ds-card-logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 15V9l7 3-7 3z"/></svg></div>
-            <div class="ds-card-body">
-                <div class="ds-card-toprow">
-                    <div class="ds-card-name-block">
-                        <p class="ds-card-name">Deep House Radio</p>
-                        <p class="ds-card-country">Netherlands</p>
-                    </div>
-                    <div class="ds-card-actions">
-                        <button class="ds-vote-btn" data-action="vote"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 7.59 6.59C7.22 6.95 7 7.45 7 8v11c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
-                        <button class="ds-play-btn" data-action="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                    </div>
+        <!-- ================= DISCOVER SHOWCASE ================= -->
+        <section class="ah-discover">
+            <div class="ah-container">
+                <div class="ah-discover-text">
+                    <span class="ah-eyebrow">58,000+ stations</span>
+                    <h3>Find something new</h3>
+                    <p>Search and filter by country, language, genre, codec, and bitrate &mdash; powered by the Radio-Browser directory. See listener counts and votes on every card, or just hit Random Station.</p>
                 </div>
-                <div class="ds-card-badges">
-                    <span class="ds-badge">MP3</span>
-                    <span class="ds-badge">320 kbps</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/></svg>19k</span>
-                    <span class="ds-badge ds-badge-dim"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12z"/></svg>1.1k</span>
+
+                <div class="ah-station-cards">
+                    <div class="ah-station-row">
+                        <div class="ah-station-logo"></div>
+                        <div class="ah-station-info">
+                            <p class="ah-s-name">RTL</p>
+                            <p class="ah-s-country">France</p>
+                            <div class="ah-station-tags">
+                                <span class="ah-tag">AAC</span>
+                                <span class="ah-tag">64 kbps</span>
+                                <span class="ah-tag">1.3k votes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ah-station-row">
+                        <div class="ah-station-logo"></div>
+                        <div class="ah-station-info">
+                            <p class="ah-s-name">Classic Vinyl HD</p>
+                            <p class="ah-s-country">United States</p>
+                            <div class="ah-station-tags">
+                                <span class="ah-tag">MP3</span>
+                                <span class="ah-tag">320 kbps</span>
+                                <span class="ah-tag">285k votes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ah-station-row">
+                        <div class="ah-station-logo"></div>
+                        <div class="ah-station-info">
+                            <p class="ah-s-name">France Info</p>
+                            <p class="ah-s-country">France</p>
+                            <div class="ah-station-tags">
+                                <span class="ah-tag">MP3</span>
+                                <span class="ah-tag">128 kbps</span>
+                                <span class="ah-tag">88k votes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- ================= BETA CTA ================= -->
+        <section class="ah-beta">
+            <div class="ah-container">
+                <span class="ah-eyebrow">Not on Google Play yet</span>
+                <h3>Get in before launch</h3>
+                <p>Live Beats WebRadio is currently in testing. Email us to join the beta and help shape the app before it goes public.</p>
+                <a href="mailto:livebeatswrp@gmail.com?subject=Live%20Beats%20WebRadio%20Beta" class="ah-btn ah-btn-primary">Request beta access</a>
+                <br>
+                <span class="ah-store-badge">Coming soon to Google Play</span>
+            </div>
+        </section>
+
+        <p class="ah-windows-note">Prefer desktop? A <a href="download.html">Windows version</a> is also available.</p>
+    </main>
+
+    <footer class="ah-footer">
+        <div class="ah-container">
+            <div class="ah-footer-content">
+                <div class="ah-footer-logo">
+                    <img src="img/icon.png" alt="Live Beats WebRadio logo">
+                    <h4>Live Beats WebRadio</h4>
+                </div>
+                <div class="ah-footer-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="ah-footer-contact">
+                    <p>Email: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="ah-copyright">
+                <p>&copy; <span id="ahYear">2026</span> Live Beats WebRadio. All rights reserved.</p>
+            </div>
         </div>
+    </footer>
 
-    </div>
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('ahYear').textContent = new Date().getFullYear();
 
-    <!-- ---------- Empty / Loading / Error states (toggle ds-state-visible to preview) ---------- -->
-    <div class="ds-state" id="dsLoadingState">
-        <p>Loading…</p>
-    </div>
-    <div class="ds-state" id="dsErrorState">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>
-        <p>Couldn't load stations</p>
-        <p style="font-size:0.72rem; color:var(--ds-text-muted); opacity:0.7;">Check your connection and retry</p>
-    </div>
-    <div class="ds-state" id="dsEmptyState">
-        <p>No stations found</p>
-    </div>
+        // Phone mockup screen cycling: auto-advances Player -> Favorites -> Browse ->
+        // Settings every few seconds. If the person taps a nav icon directly, that
+        // means they've "figured it out" — stop auto-cycling and just stay put,
+        // same as a real app would once someone starts driving it themselves.
+        (function () {
+            const pageOrder = ['player', 'favorites', 'discover', 'settings'];
+            const pageEls = {
+                player: document.querySelector('.ah-page-player'),
+                favorites: document.querySelector('.ah-page-favorites'),
+                discover: document.querySelector('.ah-page-discover'),
+                settings: document.querySelector('.ah-page-settings')
+            };
+            const navItems = Array.from(document.querySelectorAll('.ah-bottom-nav .ah-nav-item'));
+            if (!navItems.length || Object.values(pageEls).some(el => !el)) return;
 
-    <!-- ============ Pagination ============ -->
-    <div class="ds-pagination">
-        <button class="ds-page-btn ds-disabled" data-action="prev-page">
-            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <span class="ds-page-label" id="dsPageLabel">Page 1</span>
-        <button class="ds-page-btn" data-action="next-page">
-            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-    </div>
+            let currentIndex = 0;
+            let autoTimer = null;
+            const CYCLE_MS = 4200;
 
-</div>
+            function showPage(index) {
+                const key = pageOrder[index];
+                Object.values(pageEls).forEach(el => el.classList.remove('ah-page-active'));
+                pageEls[key].classList.add('ah-page-active');
+                navItems.forEach((item, i) => item.classList.toggle('ah-nav-active', i === index));
+                currentIndex = index;
+            }
 
-<script>
-/* ==========================================================================
-   Basic wiring so the panel and filter badge already work when you paste
-   this in. Everything else (search, vote, play, pickers, pagination) is
-   left as no-op console logs tagged with the same data-action names used
-   in DiscoverScreen.kt / DiscoverViewModel.kt, ready to hook up next.
-   ========================================================================== */
-(function () {
-    const tuneBtn = document.getElementById('dsTuneBtn');
-    const panel = document.getElementById('dsAdvancedPanel');
+            function startAutoCycle() {
+                stopAutoCycle();
+                autoTimer = setInterval(() => {
+                    showPage((currentIndex + 1) % pageOrder.length);
+                }, CYCLE_MS);
+            }
 
-    tuneBtn.addEventListener('click', () => {
-        panel.classList.toggle('ds-open');
-        tuneBtn.classList.toggle('ds-tune-active', panel.classList.contains('ds-open'));
-    });
+            function stopAutoCycle() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
 
-    // Example: wire up a picker to show it's "selected" (fill in real values later)
-    document.querySelectorAll('.ds-picker-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log('picker tapped:', btn.dataset.action);
-            // btn.classList.toggle('ds-picker-selected');
-            // btn.querySelector('span').textContent = 'Your selected value';
+            navItems.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    stopAutoCycle();
+                    showPage(i);
+                });
+            });
+
+            showPage(0);
+            startAutoCycle();
+        })();
+
+        // Mobile menu (mirrors main.js pattern, scoped to the new nav classes)
+        (function () {
+            const header = document.querySelector('.ah-header');
+            const nav = document.querySelector('.ah-nav');
+            if (!header || !nav) return;
+
+            const btn = document.createElement('button');
+            btn.className = 'ah-mobile-menu-btn';
+            btn.innerHTML = '☰';
+            btn.setAttribute('aria-label', 'Toggle navigation menu');
+            btn.addEventListener('click', () => nav.classList.toggle('active'));
+            header.querySelector('.ah-container').appendChild(btn);
+
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => nav.classList.remove('active'));
+            });
+        })();
+
+        // Real 26 accent themes, pulled directly from ui/theme/Color.kt
+        const AH_THEMES = [
+            { name: "Cyan", accent: "#00BCD4", dim: "#0097A7" },
+            { name: "Soft White", accent: "#ECEFF1", dim: "#B0BEC5" },
+            { name: "Pink", accent: "#E91E8C", dim: "#C2185B" },
+            { name: "Purple", accent: "#9C27B0", dim: "#7B1FA2" },
+            { name: "Lime", accent: "#76FF03", dim: "#64DD17" },
+            { name: "Amber", accent: "#FFB300", dim: "#FF8F00" },
+            { name: "Orange", accent: "#FF5722", dim: "#E64A19" },
+            { name: "Indigo", accent: "#3F51B5", dim: "#303F9F" },
+            { name: "Red", accent: "#F44336", dim: "#D32F2F" },
+            { name: "Teal", accent: "#1DE9B6", dim: "#00BFA5" },
+            { name: "Yellow", accent: "#FFEA00", dim: "#FDD835" },
+            { name: "Steel Blue", accent: "#90CAF9", dim: "#5B9BD5" },
+            { name: "Coral", accent: "#FF6E40", dim: "#FF3D00" },
+            { name: "Mint", accent: "#69F0AE", dim: "#00E676" },
+            { name: "Rose Gold", accent: "#FF80AB", dim: "#FF4081" },
+            { name: "Electric Blue", accent: "#00B0FF", dim: "#0081CB" },
+            { name: "Neon Green", accent: "#CCFF00", dim: "#AEEA00" },
+            { name: "Lavender", accent: "#B388FF", dim: "#7C4DFF" },
+            { name: "Crimson", accent: "#FF1744", dim: "#D50000" },
+            { name: "Peach", accent: "#FFAB76", dim: "#FF6D00" },
+            { name: "Sky Blue", accent: "#40C4FF", dim: "#0091EA" },
+            { name: "Magenta", accent: "#E040FB", dim: "#AA00FF" },
+            { name: "Gold", accent: "#FFD740", dim: "#FFAB00" },
+            { name: "Emerald", accent: "#00E676", dim: "#00C853" },
+            { name: "Forest Green", accent: "#2E7D32", dim: "#1B5E20" },
+            { name: "Midnight", accent: "#2C3E50", dim: "#1A252F" }
+        ];
+
+        const grid = document.getElementById('ahSwatchGrid');
+        const label = document.getElementById('ahThemeName');
+        const root = document.documentElement;
+
+        AH_THEMES.forEach((theme, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'ah-swatch' + (theme.name === 'Steel Blue' ? ' ah-active' : '');
+            btn.style.background = theme.accent;
+            btn.setAttribute('aria-label', theme.name);
+            btn.title = theme.name;
+            btn.addEventListener('click', () => {
+                root.style.setProperty('--ah-accent', theme.accent);
+                root.style.setProperty('--ah-accent-dim', theme.dim);
+                label.textContent = theme.name;
+                document.querySelectorAll('.ah-swatch').forEach(s => s.classList.remove('ah-active'));
+                btn.classList.add('ah-active');
+            });
+            grid.appendChild(btn);
         });
-    });
-
-    document.getElementById('dsClearBtnFallback'); // no-op guard, safe to remove
-
-    document.querySelectorAll('[data-action]').forEach(el => {
-        if (el.dataset.action.startsWith('pick-') || el.dataset.action === 'toggle-advanced') return;
-        el.addEventListener('click', (e) => {
-            console.log('action:', el.dataset.action, el.dataset.uuid ? `(uuid: ${el.dataset.uuid})` : '');
-        });
-    });
-})();
-</script>
-
+    </script>
 </body>
 </html>
