@@ -54,6 +54,67 @@
             background-size: cover;
             background-position: center;
         }
+
+        /* Phone chassis: the mockup was reading as a flat black rectangle, so this
+           adds an actual device frame — metallic edge gradient, a punch-hole camera,
+           and physical power/volume buttons on the sides. */
+        .ah-phone {
+            position: relative;
+            background: linear-gradient(155deg, #333 0%, #0c0c0c 10%, #050505 50%, #0c0c0c 90%, #333 100%);
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(255,255,255,0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        .ah-phone-screen {
+            position: relative;
+            padding-top: 28px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
+
+        .ah-phone-camera {
+            position: absolute;
+            top: 11px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #1a2a33, #000 70%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+            z-index: 5;
+        }
+
+        .ah-phone-btn {
+            position: absolute;
+            background: linear-gradient(180deg, #444, #111);
+            border-radius: 3px;
+            z-index: 1;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+        }
+
+        .ah-phone-btn.ah-power {
+            right: -3px;
+            top: 132px;
+            width: 3px;
+            height: 58px;
+        }
+
+        .ah-phone-btn.ah-vol-up {
+            left: -3px;
+            top: 108px;
+            width: 3px;
+            height: 34px;
+        }
+
+        .ah-phone-btn.ah-vol-down {
+            left: -3px;
+            top: 150px;
+            width: 3px;
+            height: 34px;
+        }
     </style>
 </head>
 <body class="ah">
@@ -96,7 +157,11 @@
 
                 <div class="ah-hero-visual">
                     <div class="ah-phone">
+                        <div class="ah-phone-btn ah-power"></div>
+                        <div class="ah-phone-btn ah-vol-up"></div>
+                        <div class="ah-phone-btn ah-vol-down"></div>
                         <div class="ah-phone-screen">
+                            <div class="ah-phone-camera"></div>
 
                             <!-- Status row: mirrors MetadataCard.kt Box(contentAlignment = Center)
                                  with CenterStart (lock + flag) and CenterEnd (website) clusters
