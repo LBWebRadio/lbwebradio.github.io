@@ -90,6 +90,24 @@
            the flex column shrinks the art square automatically to whatever space
            is actually left after the other rows take what they need. */
 
+        /* ...but every flex child defaults to flex-shrink:1, not just the art
+           square — so without this, ALL rows were shrinking a little instead of
+           the art square absorbing 100% of the difference, which is what was
+           squeezing text and icons into each other. Pinning everything but the
+           art to flex-shrink:0 makes the art square the sole pressure valve. */
+        .ah-status-row,
+        .ah-station-name,
+        .ah-song-title,
+        .ah-meta-pills,
+        .ah-watermark,
+        .ah-volume-row,
+        .ah-volume-label,
+        .ah-player-controls,
+        .ah-action-icons,
+        .ah-bottom-nav {
+            flex-shrink: 0;
+        }
+
         .ah-phone-camera {
             position: absolute;
             top: 12px;
@@ -103,33 +121,44 @@
             z-index: 5;
         }
 
+        /* Side buttons: previously a light gradient pill floating just outside
+           the frame edge, which — being thin, rounded, and high-contrast against
+           black — read as a browser scrollbar thumb rather than hardware. Now
+           flush with the edge, darker/flatter to match the chassis material, and
+           squared off so it reads as a button, not a draggable thumb. */
         .ah-phone-btn {
             position: absolute;
-            background: linear-gradient(180deg, #444, #111);
-            border-radius: 3px;
+            right: 0;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            border-radius: 2px 0 0 2px;
+            box-shadow: inset 1px 0 0 rgba(255,255,255,0.06);
             z-index: 1;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
         }
 
         .ah-phone-btn.ah-power {
-            right: -3px;
             top: 28%;
             width: 3px;
-            height: 12%;
+            height: 9%;
+        }
+
+        .ah-phone-btn.ah-vol-up,
+        .ah-phone-btn.ah-vol-down {
+            left: 0;
+            right: auto;
+            border-radius: 0 2px 2px 0;
+            box-shadow: inset -1px 0 0 rgba(255,255,255,0.06);
         }
 
         .ah-phone-btn.ah-vol-up {
-            left: -3px;
-            top: 22%;
+            top: 20%;
             width: 3px;
-            height: 8%;
+            height: 6%;
         }
 
         .ah-phone-btn.ah-vol-down {
-            left: -3px;
-            top: 32%;
+            top: 28%;
             width: 3px;
-            height: 8%;
+            height: 6%;
         }
 
         /* width:100% + max-width keeps the same real-device ratio at every
