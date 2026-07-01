@@ -7,7 +7,7 @@
     <!-- Primary Meta Tags -->
     <title>Live Beats WebRadio | Internet Radio for Android</title>
     <meta name="title" content="Live Beats WebRadio | Internet Radio for Android">
-    <meta name="description" content="A privacy-first internet radio player for Android. 58,000+ stations, 26 accent themes, Android Auto, home screen widgets and a Quick Settings tile. Currently in beta.">
+    <meta name="description" content="A privacy-first internet radio player for Android. 58,000+ stations, 26 accent themes, Android Auto, home screen widgets, and a Quick Settings tile. Currently in beta.">
     <meta name="keywords" content="android radio app, internet radio player, web radio android, live beats webradio, radio streaming app">
     <meta name="author" content="Live Beats WebRadio">
     <meta name="robots" content="index, follow">
@@ -209,7 +209,7 @@
                 <div class="ah-hero-text">
                     <span class="ah-eyebrow">Android &middot; Open Beta</span>
                     <h2>Your radio.<br>Live, and <span class="ah-accent-word">yours</span> to color.</h2>
-                    <p>A privacy-first internet radio player for Android. 58,000+ stations, real-time bitrate and codec info and 26 accent themes that reshape the whole app &mdash; try one below.</p>
+                    <p>A privacy-first internet radio player for Android. 58,000+ stations, real-time bitrate and codec info, and 26 accent themes that reshape the whole app &mdash; try one below.</p>
 
                     <div class="ah-hero-swatches">
                         <div class="ah-swatch-grid ah-swatch-grid-hero" id="ahSwatchGrid"></div>
@@ -230,99 +230,250 @@
                         <div class="ah-phone-screen">
                             <div class="ah-phone-camera"></div>
 
-                            <!-- Status row: mirrors MetadataCard.kt Box(contentAlignment = Center)
-                                 with CenterStart (lock + flag) and CenterEnd (website) clusters
-                                 absolutely positioned so the Live pill stays truly centered. -->
-                            <div class="ah-status-row">
-                                <div class="ah-status-cluster-left">
-                                    <div class="ah-icon-badge ah-lock">
-                                        <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                            <div class="ah-phone-pages">
+                                <!-- ============ PAGE: PLAYER ============ -->
+                                <div class="ah-page ah-page-player">
+                                    <!-- Status row: mirrors MetadataCard.kt Box(contentAlignment = Center)
+                                         with CenterStart (lock + flag) and CenterEnd (website) clusters
+                                         absolutely positioned so the Live pill stays truly centered. -->
+                                    <div class="ah-status-row">
+                                        <div class="ah-status-cluster-left">
+                                            <div class="ah-icon-badge ah-lock">
+                                                <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                                            </div>
+                                            <div class="ah-icon-badge ah-flag" aria-label="Server location: United States"><span class="fi fi-us fis"></span></div>
+                                        </div>
+
+                                        <div class="ah-status-pill">
+                                            <span class="ah-status-dot"></span> Live
+                                        </div>
+
+                                        <div class="ah-status-cluster-right">
+                                            <div class="ah-icon-badge ah-website">
+                                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="ah-icon-badge ah-flag" aria-label="Server location: United States"><span class="fi fi-us fis"></span></div>
-                                </div>
 
-                                <div class="ah-status-pill">
-                                    <span class="ah-status-dot"></span> Live
-                                </div>
+                                    <p class="ah-station-name">KEXP Synthwave</p>
+                                    <p class="ah-song-title">Midnight Drive &mdash; Neon Skyline</p>
 
-                                <div class="ah-status-cluster-right">
-                                    <div class="ah-icon-badge ah-website">
-                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+                                    <div class="ah-meta-pills">
+                                        <span class="ah-meta-pill">AAC</span>
+                                        <span class="ah-meta-pill">128 kbps</span>
+                                        <span class="ah-meta-pill">00:14:22</span>
+                                        <span class="ah-meta-pill">41.2 MB</span>
+                                    </div>
+
+                                    <div class="ah-watermark">
+                                        <svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg>
+                                        LIVE BEATS WEBRADIO
+                                    </div>
+
+                                    <div class="ah-station-art">
+                                        <svg viewBox="0 0 24 24" fill="#000"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                                    </div>
+
+                                    <div class="ah-volume-row">
+                                        <div class="ah-volume-track"><span class="ah-volume-thumb"></span></div>
+                                        <p class="ah-volume-label">Volume: 47%</p>
+                                    </div>
+
+                                    <div class="ah-player-controls">
+                                        <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M19 20 9 12l10-8v16zM5 4v16"/></svg></span>
+                                        <div class="ah-play-btn">
+                                            <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                                        </div>
+                                        <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zM19 4v16"/></svg></span>
+                                    </div>
+
+                                    <!-- Action icons row: star, link (Connect), sleep timer (hourglass — fixed,
+                                         was a clock face), random (dice/Casino), share, save song (music note).
+                                         Mirrors PlayerControlRows.kt's PillButton row. -->
+                                    <div class="ah-action-icons">
+                                        <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M6 2h12M6 22h12M6 2c0 5 4 6 6 8 2-2 6-3 6-8M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg>
+                                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><circle cx="16" cy="16" r="1"/></svg>
+                                        <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/></svg>
+                                        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                                     </div>
                                 </div>
-                            </div>
 
-                            <p class="ah-station-name">KEXP Synthwave</p>
-                            <p class="ah-song-title">Midnight Drive &mdash; Neon Skyline</p>
+                                <!-- ============ PAGE: FAVORITES ============
+                                     Mirrors FavoritesScreen.kt: mode-icon row (Favorites/TopTen/History/
+                                     SavedSongs + Backup), SearchBar, genre FilterChips, StationRow list
+                                     (play/equalizer icon, name, super-favorite star, genre subtitle, more). -->
+                                <div class="ah-page ah-page-favorites">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Favorites</span>
+                                        <span class="ah-page-count">12</span>
+                                    </div>
 
-                            <div class="ah-meta-pills">
-                                <span class="ah-meta-pill">AAC</span>
-                                <span class="ah-meta-pill">128 kbps</span>
-                                <span class="ah-meta-pill">00:14:22</span>
-                                <span class="ah-meta-pill">41.2 MB</span>
-                            </div>
+                                    <div class="ah-mode-row">
+                                        <span class="ah-mode-icon ah-mode-active"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v4a7 7 0 0 1-14 0V4z"/><path d="M5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4M12 7v5l4 2"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+                                        <span class="ah-mode-icon"><svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg></span>
+                                    </div>
 
-                            <div class="ah-watermark">
-                                <svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="15" width="5" height="6" rx="2"/><rect x="17" y="15" width="5" height="6" rx="2"/></svg>
-                                LIVE BEATS WEBRADIO
-                            </div>
+                                    <div class="ah-mini-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search favorites</span></div>
 
-                            <div class="ah-station-art">
-                                <svg viewBox="0 0 24 24" fill="#000"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                            </div>
+                                    <div class="ah-chip-row">
+                                        <span class="ah-chip ah-chip-active">Any</span>
+                                        <span class="ah-chip">Synthwave</span>
+                                        <span class="ah-chip">Jazz</span>
+                                        <span class="ah-chip">News</span>
+                                    </div>
 
-                            <div class="ah-volume-row">
-                                <div class="ah-volume-track"><span class="ah-volume-thumb"></span></div>
-                                <p class="ah-volume-label">Volume: 47%</p>
-                            </div>
-
-                            <div class="ah-player-controls">
-                                <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M19 20 9 12l10-8v16zM5 4v16"/></svg></span>
-                                <div class="ah-play-btn">
-                                    <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                                    <div class="ah-fav-list">
+                                        <div class="ah-fav-row ah-fav-row-active">
+                                            <span class="ah-fav-icon"><span class="ah-eq-bar"></span><span class="ah-eq-bar"></span><span class="ah-eq-bar"></span></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">KEXP Synthwave</p>
+                                                <p class="ah-fav-sub ah-fav-sub-live">Midnight Drive &mdash; Neon Skyline</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name ah-fav-name-super"><svg class="ah-star-mini" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>Classic Vinyl HD</p>
+                                                <p class="ah-fav-sub">Oldies &middot; Rock</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">France Info</p>
+                                                <p class="ah-fav-sub">News &middot; Talk</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                        <div class="ah-fav-row">
+                                            <span class="ah-fav-icon ah-fav-icon-idle"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">Deep House Radio</p>
+                                                <p class="ah-fav-sub">Electronic &middot; Dance</p>
+                                            </div>
+                                            <svg class="ah-fav-dots" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+                                        </div>
+                                    </div>
                                 </div>
-                                <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zM19 4v16"/></svg></span>
-                            </div>
 
-                            <!-- Action icons row: star, link (Connect), sleep timer (hourglass — fixed,
-                                 was a clock face), random (dice/Casino), share, save song (music note).
-                                 Mirrors PlayerControlRows.kt's PillButton row. -->
-                            <div class="ah-action-icons">
-                                <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
-                                <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
-                                <svg viewBox="0 0 24 24"><path d="M6 2h12M6 22h12M6 2c0 5 4 6 6 8 2-2 6-3 6-8M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg>
-                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><circle cx="16" cy="16" r="1"/></svg>
-                                <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/></svg>
-                                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                                <!-- ============ PAGE: BROWSE / DISCOVER ============
+                                     Mirrors DiscoverScreen.kt: search bar, advanced filter pickers,
+                                     StationCard rows with logo, country, codec/bitrate/vote tags. -->
+                                <div class="ah-page ah-page-discover">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Browse</span>
+                                        <span class="ah-page-count">58,412</span>
+                                    </div>
+
+                                    <div class="ah-mini-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search 58,000+ stations</span></div>
+
+                                    <div class="ah-chip-row">
+                                        <span class="ah-chip ah-chip-active"><span class="fi fi-fr fis" style="border-radius:50%;width:12px;height:12px;margin-right:4px;"></span>France</span>
+                                        <span class="ah-chip">Any Language</span>
+                                        <span class="ah-chip">Any Codec</span>
+                                    </div>
+
+                                    <div class="ah-fav-list">
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">RTL</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">AAC</span><span class="ah-mini-tag">64 kbps</span><span class="ah-mini-tag">1.3k</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">France Info</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">MP3</span><span class="ah-mini-tag">128 kbps</span><span class="ah-mini-tag">88k</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="ah-disc-card">
+                                            <div class="ah-disc-logo"></div>
+                                            <div class="ah-fav-info">
+                                                <p class="ah-fav-name">Nova FM</p>
+                                                <p class="ah-fav-sub">France</p>
+                                                <div class="ah-disc-tags"><span class="ah-mini-tag">AAC</span><span class="ah-mini-tag">192 kbps</span><span class="ah-mini-tag">42k</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ============ PAGE: SETTINGS ============
+                                     Mirrors SettingsScreen.kt / ThemeViewModel.kt: theme picker entry,
+                                     data tracking, lock portrait, keep screen on. -->
+                                <div class="ah-page ah-page-settings">
+                                    <div class="ah-page-header">
+                                        <span class="ah-page-title">Settings</span>
+                                    </div>
+
+                                    <div class="ah-settings-list">
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 3 3 0 0 0 0-6h-1a2 2 0 0 1 0-4h4a2 2 0 0 0 2-2"/></svg></span>
+                                            <span class="ah-settings-label">Accent Theme</span>
+                                            <span class="ah-settings-value">Steel Blue &rsaquo;</span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>
+                                            <span class="ah-settings-label">Data Guard</span>
+                                            <span class="ah-toggle ah-toggle-on"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+                                            <span class="ah-settings-label">Lock Portrait</span>
+                                            <span class="ah-toggle"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
+                                            <span class="ah-settings-label">Keep Screen On</span>
+                                            <span class="ah-toggle ah-toggle-on"><span class="ah-toggle-knob"></span></span>
+                                        </div>
+                                        <div class="ah-settings-row">
+                                            <span class="ah-settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+                                            <span class="ah-settings-label">Language</span>
+                                            <span class="ah-settings-value">English &rsaquo;</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Bottom nav: mirrors Navigation.kt BottomNavBar. Player icon fixed to
                                  Icons.Filled.Radio (was headphones, which the app reserves for the
                                  watermark/branding). Active state = Accent color + dot only, since
-                                 the real component sets indicatorColor = Color.Transparent (no pill). -->
+                                 the real component sets indicatorColor = Color.Transparent (no pill).
+                                 Tapping a tab jumps straight there and stops the auto-cycle below. -->
                             <nav class="ah-bottom-nav" aria-label="App navigation preview">
-                                <div class="ah-nav-item ah-nav-active">
+                                <div class="ah-nav-item" data-page="player">
                                     <div class="ah-nav-item-inner">
                                         <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="2"/><circle cx="7.5" cy="14" r="2.2"/><circle cx="16.5" cy="14" r="1"/><path d="M8 8L16 3"/><circle cx="16" cy="3" r="1"/></svg>
                                         <span class="ah-nav-dot"></span>
                                         <span class="ah-nav-label">Player</span>
                                     </div>
                                 </div>
-                                <div class="ah-nav-item">
+                                <div class="ah-nav-item" data-page="favorites">
                                     <div class="ah-nav-item-inner">
                                         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                         <span class="ah-nav-dot"></span>
                                         <span class="ah-nav-label">Favorites</span>
                                     </div>
                                 </div>
-                                <div class="ah-nav-item">
+                                <div class="ah-nav-item" data-page="discover">
                                     <div class="ah-nav-item-inner">
                                         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                                         <span class="ah-nav-dot"></span>
                                         <span class="ah-nav-label">Browse</span>
                                     </div>
                                 </div>
-                                <div class="ah-nav-item">
+                                <div class="ah-nav-item" data-page="settings">
                                     <div class="ah-nav-item-inner">
                                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                                         <span class="ah-nav-dot"></span>
@@ -476,6 +627,58 @@
     <script src="js/main.js"></script>
     <script>
         document.getElementById('ahYear').textContent = new Date().getFullYear();
+
+        // Phone mockup screen cycling: auto-advances Player -> Favorites -> Browse ->
+        // Settings every few seconds. If the person taps a nav icon directly, that
+        // means they've "figured it out" — stop auto-cycling and just stay put,
+        // same as a real app would once someone starts driving it themselves.
+        (function () {
+            const pageOrder = ['player', 'favorites', 'discover', 'settings'];
+            const pageEls = {
+                player: document.querySelector('.ah-page-player'),
+                favorites: document.querySelector('.ah-page-favorites'),
+                discover: document.querySelector('.ah-page-discover'),
+                settings: document.querySelector('.ah-page-settings')
+            };
+            const navItems = Array.from(document.querySelectorAll('.ah-bottom-nav .ah-nav-item'));
+            if (!navItems.length || Object.values(pageEls).some(el => !el)) return;
+
+            let currentIndex = 0;
+            let autoTimer = null;
+            const CYCLE_MS = 4200;
+
+            function showPage(index) {
+                const key = pageOrder[index];
+                Object.values(pageEls).forEach(el => el.classList.remove('ah-page-active'));
+                pageEls[key].classList.add('ah-page-active');
+                navItems.forEach((item, i) => item.classList.toggle('ah-nav-active', i === index));
+                currentIndex = index;
+            }
+
+            function startAutoCycle() {
+                stopAutoCycle();
+                autoTimer = setInterval(() => {
+                    showPage((currentIndex + 1) % pageOrder.length);
+                }, CYCLE_MS);
+            }
+
+            function stopAutoCycle() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            navItems.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    stopAutoCycle();
+                    showPage(i);
+                });
+            });
+
+            showPage(0);
+            startAutoCycle();
+        })();
 
         // Mobile menu (mirrors main.js pattern, scoped to the new nav classes)
         (function () {
