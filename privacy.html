@@ -8,168 +8,213 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" type="image/png" href="img/icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: Roboto, Arial, sans-serif;
+    background: #f6f7fb;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 36px;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.page-header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.page-header p {
+    color: #666;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 0;
+    border-left: 4px solid #4a6cf7;
+    padding-left: 10px;
+}
+
+ul {
+    padding-left: 18px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+th {
+    background: #fafafa;
+}
+
+.small-note {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    color: #777;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="container">
-        <div class="logo">
-            <img src="img/icon.png" alt="Live Beats WebRadio">
-            <h1>Live Beats WebRadio</h1>
-        </div>
-
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="download.html">Download</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="privacy.html" class="active">Privacy Policy</a></li>
-            </ul>
-        </nav>
+<div class="container">
+    <div class="logo">
+        <img src="img/icon.png" alt="logo">
+        <h1>Live Beats WebRadio</h1>
     </div>
+</div>
 </header>
 
-<section class="page-header">
-    <div class="container">
-        <h1>Privacy Policy</h1>
-        <p>Live Beats WebRadio · Last updated: July 1, 2026</p>
-    </div>
-</section>
+<div class="page-header">
+    <h1>Privacy Policy</h1>
+    <p>Live Beats WebRadio · Last updated: July 1, 2026</p>
+</div>
 
-<section class="content">
 <div class="container">
 
-<p>
-Live Beats WebRadio ("the app"), identified by the package name
-<strong>com.lbwebradio.radio</strong>, is an internet radio player developed by Christian Flach.
-This Privacy Policy explains what data is stored on your device and what limited technical data
-may be processed by third-party services required for the app to function.
-</p>
-
-<h2>Summary of Data Practices</h2>
+<div class="card">
+<h2>Summary</h2>
 <ul>
-    <li>No account required. We do not collect or transmit directly identifiable information such as name, email, or account identifiers.</li>
-    <li>No analytics, ads, or crash-reporting SDKs are used.</li>
-    <li>All user data (favorites, settings, history) is stored locally on your device using Android DataStore.</li>
-    <li>The app connects directly to third-party services for radio directory, streaming, and optional metadata (e.g. album art).</li>
+<li>No account required — no personal data collected</li>
+<li>No ads, analytics, or tracking SDKs</li>
+<li>All user data stays on your device</li>
+<li>Only essential technical requests are made for streaming</li>
 </ul>
+</div>
 
-<h2>Information Stored on Your Device</h2>
-<p>The following data remains strictly on your device and is never transmitted to us:</p>
+<div class="card">
+<h2>Data Stored on Your Device</h2>
 <ul>
-    <li>Favorite stations, including “Super Favorites” and custom genre tags</li>
-    <li>App settings (theme, language, sleep timer, interface preferences)</li>
-    <li>Listening history and usage statistics (stored locally)</li>
-    <li>Saved song titles selected by you</li>
-    <li>Optional export backups (.lbrx files stored in a user-selected location)</li>
+<li>Favorites and custom station tags</li>
+<li>App settings (theme, language, sleep timer)</li>
+<li>Listening history and usage stats</li>
+<li>Saved song titles</li>
+<li>Exported backup files (.lbrx)</li>
 </ul>
+</div>
 
-<h2>Technical Data Shared with Third Parties</h2>
-<p>
-To provide core functionality, the app communicates with external services.
-We do not intentionally send directly identifiable information (such as name or email).
-As with all internet communication, your IP address is automatically visible to receiving servers
-as part of standard network requests. Only the minimum technical data required for functionality is processed.
-</p>
+<div class="card">
+<h2>Third-Party Services</h2>
 
 <table>
 <tr>
-    <th>Service</th>
-    <th>Purpose</th>
-    <th>Data Processed</th>
+<th>Service</th>
+<th>Purpose</th>
+<th>Data</th>
 </tr>
 
 <tr>
-    <td>Radio-Browser API</td>
-    <td>Station search and directory</td>
-    <td>Search queries, filters, votes, play counts. IP address visible as part of standard requests.</td>
+<td>Radio-Browser</td>
+<td>Station search</td>
+<td>Search queries, filters, votes, play counts</td>
 </tr>
 
 <tr>
-    <td>Streaming Servers</td>
-    <td>Audio playback</td>
-    <td>Direct connection to selected station stream URL.</td>
+<td>Streaming servers</td>
+<td>Audio playback</td>
+<td>Stream URL connection</td>
 </tr>
 
 <tr>
-    <td>ipwho.is API</td>
-    <td>Server location lookup</td>
-    <td>IP address of streaming server (used for geolocation lookup).</td>
+<td>ipwho.is</td>
+<td>Server location lookup</td>
+<td>IP of radio server</td>
 </tr>
 
 <tr>
-    <td>Apple iTunes / Last.fm</td>
-    <td>Album artwork lookup</td>
-    <td>Artist and track name (used to fetch images).</td>
+<td>iTunes / Last.fm</td>
+<td>Album artwork</td>
+<td>Artist + track name</td>
 </tr>
 </table>
 
-<p>
-You may disable “Show Album Art” and “Show Server Location” in settings.
-When disabled, the app stops contacting these optional metadata services,
-and only core streaming functionality remains active.
+<p class="small-note">
+You can disable album art and server location in settings to reduce external requests.
 </p>
+</div>
 
+<div class="card">
 <h2>Legal Basis (GDPR)</h2>
 <p>
-For users in the European Economic Area (EEA), we process limited technical data under
-legitimate interest, strictly to deliver core functionality such as streaming and station
-directory services requested by the user.
+We process minimal technical data under legitimate interest to provide streaming and station directory functionality.
 </p>
+</div>
 
-<h2>Permissions</h2>
+<div class="card">
+<h2>Security & Deletion</h2>
 <ul>
-    <li><strong>Internet</strong> – Stream audio, search stations, fetch metadata</li>
-    <li><strong>Notifications</strong> – Playback controls in notification area</li>
-    <li><strong>Wake Lock / Foreground Service</strong> – Maintain playback in background</li>
+<li>HTTPS is used where available</li>
+<li>Some streams may be HTTP (radio station limitation)</li>
+<li>All data is stored locally and deleted on uninstall</li>
 </ul>
+</div>
 
-<h2>Security & Data Deletion</h2>
-<p>
-Some radio stations use unencrypted HTTP streams, which is a limitation of the station provider.
-Secure HTTPS connections are used when available.
-</p>
-
-<p>
-All locally stored data remains on your device and is deleted when you clear the app’s storage or uninstall the app.
-We do not store or retain any user data on external servers.
-</p>
-
-<h2>Children’s Privacy</h2>
-<p>
-The app is not directed at children under the age of 13 (or the applicable minimum age in your country)
-and does not knowingly collect personal information.
-</p>
-
-<h2>Changes to This Policy</h2>
-<p>
-We may update this Privacy Policy from time to time. Updates will be posted within the app or on our website.
-Continued use of the app constitutes acceptance of the updated version.
-</p>
-
+<div class="card">
 <h2>Contact</h2>
 <p>
 Christian Flach<br>
 livebeatswrp@gmail.com
 </p>
-
-<p>
-<strong>Live Beats WebRadio · lbwebradio.github.io</strong><br>
-Package: com.lbwebradio.radio
-</p>
+</div>
 
 </div>
-</section>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2026 Live Beats WebRadio</p>
-    </div>
-</footer>
+<div class="footer">
+Live Beats WebRadio · com.lbwebradio.radio
+</div>
 
 </body>
 </html>
