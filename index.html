@@ -60,8 +60,8 @@
            and physical power/volume buttons on the sides. */
         .ah-phone {
             position: relative;
-            width: 380px;
-            padding: 12px;
+            width: 456px;
+            padding: 10px;
             background: linear-gradient(155deg, #333 0%, #0c0c0c 10%, #050505 50%, #0c0c0c 90%, #333 100%);
             box-shadow:
                 0 30px 70px rgba(0,0,0,0.6),
@@ -71,28 +71,30 @@
 
         .ah-phone-screen {
             position: relative;
-            padding-top: 24px;
+            padding-top: 20px;
+            padding-bottom: 12px;
             min-height: 0;
             overflow: hidden;
             box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
         }
 
-        /* Cap the album-art square well below full width — at this wider frame,
-           a full-width 1:1 square was the single biggest source of extra height. */
+        /* Art scales with frame width since it's a 1:1 square, so pulling this
+           percentage down does double duty: keeps it from ballooning at the wider
+           frame, and is the main lever for the shorter overall height. */
         .ah-station-art {
-            width: 58%;
+            width: 40%;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Tighten vertical rhythm between sections — small margins each, but seven
-           stacked sections were compounding into a lot of unnecessary height. */
-        .ah-status-row { margin-bottom: 14px; }
-        .ah-song-title { margin-bottom: 10px; }
-        .ah-meta-pills { margin-bottom: 10px; padding-top: 8px; }
-        .ah-watermark { margin-bottom: 8px; }
-        .ah-volume-label { margin-bottom: 10px; }
-        .ah-player-controls { margin-bottom: 10px; }
+        /* Slightly tighter than before — small trims across every section, which
+           is where a fluid layout's height actually lives. */
+        .ah-status-row { margin-bottom: 11px; }
+        .ah-song-title { margin-bottom: 8px; }
+        .ah-meta-pills { margin-bottom: 8px; padding-top: 6px; }
+        .ah-watermark { margin-bottom: 6px; }
+        .ah-volume-label { margin-bottom: 8px; }
+        .ah-player-controls { margin-bottom: 8px; }
 
         .ah-phone-camera {
             position: absolute;
@@ -135,9 +137,9 @@
             width: 3px;
             height: 34px;
         }
-        /* Match the wider .ah-phone frame (380px) at the small-screen breakpoint */
+        /* Match the wider .ah-phone frame (456px) at the small-screen breakpoint */
         .ah-phone {
-            max-width: 380px;
+            max-width: 456px;
         }
     </style>
 </head>
