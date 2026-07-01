@@ -34,6 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 
     <!-- Fidelity fix: Navigation.kt sets indicatorColor = Color.Transparent, so the
          real active tab shows NO highlight pill behind the icon — only Accent color
@@ -42,6 +43,16 @@
     <style>
         .ah-nav-item.ah-nav-active .ah-nav-item-inner {
             background: transparent;
+        }
+
+        /* Real flag (flag-icons) sized to sit inside the 28px round ah-icon-badge,
+           replacing the emoji flag which renders inconsistently across platforms. */
+        .ah-icon-badge.ah-flag .fi {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
@@ -95,7 +106,7 @@
                                     <div class="ah-icon-badge ah-lock">
                                         <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
                                     </div>
-                                    <div class="ah-icon-badge ah-flag" aria-label="Server location: United States">🇺🇸</div>
+                                    <div class="ah-icon-badge ah-flag" aria-label="Server location: United States"><span class="fi fi-us fis"></span></div>
                                 </div>
 
                                 <div class="ah-status-pill">
