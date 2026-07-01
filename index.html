@@ -108,6 +108,16 @@
             flex-shrink: 0;
         }
 
+        /* Fidelity fix: PlayerWatermark.kt / LandscapeBranding.kt wrap the album
+           art in a drawBehind{} radial gradient glow using LocalAccent, sized
+           larger than the art and bleeding outward. Recreated here with a
+           color-mix() box-shadow so it follows --ah-accent live across theme
+           swaps, the same way the real glow follows LocalAccent. */
+        .ah-station-art {
+            box-shadow: 0 0 44px 10px color-mix(in srgb, var(--ah-accent) 45%, transparent);
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+
         .ah-phone-camera {
             position: absolute;
             top: 12px;
