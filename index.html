@@ -34,6 +34,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Fidelity fix: Navigation.kt sets indicatorColor = Color.Transparent, so the
+         real active tab shows NO highlight pill behind the icon — only Accent color
+         + the small dot underneath. Overriding the base stylesheet rule here so this
+         file stays self-contained; feel free to fold this into android-home.css instead. -->
+    <style>
+        .ah-nav-item.ah-nav-active .ah-nav-item-inner {
+            background: transparent;
+        }
+    </style>
 </head>
 <body class="ah">
 
@@ -131,22 +141,26 @@
                                 <span class="ah-skip"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zM19 4v16"/></svg></span>
                             </div>
 
+                            <!-- Action icons row: star, link (Connect), sleep timer (hourglass — fixed,
+                                 was a clock face), random (dice/Casino), share, save song (music note).
+                                 Mirrors PlayerControlRows.kt's PillButton row. -->
                             <div class="ah-action-icons">
                                 <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
                                 <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M6 2h12M6 22h12M6 2c0 5 4 6 6 8 2-2 6-3 6-8M6 22c0-5 4-6 6-8 2 2 6 3 6 8"/></svg>
                                 <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><circle cx="16" cy="16" r="1"/></svg>
                                 <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/></svg>
                                 <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                             </div>
 
-                            <!-- Bottom nav: mirrors Navigation.kt BottomNavBar. Player uses the same
-                                 headphones glyph as the watermark; icons are outline/stroke style;
-                                 active tab gets a tight-fitting highlight pill, not a full-column block. -->
+                            <!-- Bottom nav: mirrors Navigation.kt BottomNavBar. Player icon fixed to
+                                 Icons.Filled.Radio (was headphones, which the app reserves for the
+                                 watermark/branding). Active state = Accent color + dot only, since
+                                 the real component sets indicatorColor = Color.Transparent (no pill). -->
                             <nav class="ah-bottom-nav" aria-label="App navigation preview">
                                 <div class="ah-nav-item ah-nav-active">
                                     <div class="ah-nav-item-inner">
-                                        <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                                        <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="2"/><circle cx="7.5" cy="14" r="2.2"/><circle cx="16.5" cy="14" r="1"/><path d="M8 8L16 3"/><circle cx="16" cy="3" r="1"/></svg>
                                         <span class="ah-nav-dot"></span>
                                         <span class="ah-nav-label">Player</span>
                                     </div>
