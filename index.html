@@ -55,13 +55,19 @@
             background-position: center;
         }
 
-        /* Phone chassis: the mockup was reading as a flat black rectangle, so this
-           adds an actual device frame — metallic edge gradient, a punch-hole camera,
-           and physical power/volume buttons on the sides. */
+        /* Phone chassis, sized to a real device ratio rather than guessed.
+           Reference: iPhone 15 body is 71.6mm × 147.6mm ≈ 1 : 2.06 (Apple's
+           published specs; Android flagships land in the same neighborhood).
+           Locking .ah-phone to that ratio and letting the .ah-phone-screen
+           flex column absorb the difference is what the real Compose layout
+           does too (PlayerWatermark sits in a weight(1f) box that shrinks/grows
+           to fill whatever space is left) — so this mirrors that instead of
+           fighting margins by hand. */
         .ah-phone {
             position: relative;
-            width: 456px;
-            padding: 10px;
+            width: 320px;
+            aspect-ratio: 71.6 / 147.6;
+            padding: 12px;
             background: linear-gradient(155deg, #333 0%, #0c0c0c 10%, #050505 50%, #0c0c0c 90%, #333 100%);
             box-shadow:
                 0 30px 70px rgba(0,0,0,0.6),
@@ -71,34 +77,22 @@
 
         .ah-phone-screen {
             position: relative;
-            padding-top: 20px;
-            padding-bottom: 12px;
-            min-height: 0;
+            width: 100%;
+            height: 100%;
+            padding-top: 22px;
             overflow: hidden;
             box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
         }
 
-        /* Art scales with frame width since it's a 1:1 square, so pulling this
-           percentage down does double duty: keeps it from ballooning at the wider
-           frame, and is the main lever for the shorter overall height. */
-        .ah-station-art {
-            width: 40%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Slightly tighter than before — small trims across every section, which
-           is where a fluid layout's height actually lives. */
-        .ah-status-row { margin-bottom: 11px; }
-        .ah-song-title { margin-bottom: 8px; }
-        .ah-meta-pills { margin-bottom: 8px; padding-top: 6px; }
-        .ah-watermark { margin-bottom: 6px; }
-        .ah-volume-label { margin-bottom: 8px; }
-        .ah-player-controls { margin-bottom: 8px; }
+        /* No manual height math needed here — .ah-station-art already ships with
+           aspect-ratio: 1/1, flex-shrink: 1, min-height: 0 in the base stylesheet,
+           so once the screen's total height is fixed by the chassis ratio above,
+           the flex column shrinks the art square automatically to whatever space
+           is actually left after the other rows take what they need. */
 
         .ah-phone-camera {
             position: absolute;
-            top: 11px;
+            top: 12px;
             left: 50%;
             transform: translateX(-50%);
             width: 9px;
@@ -119,27 +113,29 @@
 
         .ah-phone-btn.ah-power {
             right: -3px;
-            top: 132px;
+            top: 28%;
             width: 3px;
-            height: 58px;
+            height: 12%;
         }
 
         .ah-phone-btn.ah-vol-up {
             left: -3px;
-            top: 108px;
+            top: 22%;
             width: 3px;
-            height: 34px;
+            height: 8%;
         }
 
         .ah-phone-btn.ah-vol-down {
             left: -3px;
-            top: 150px;
+            top: 32%;
             width: 3px;
-            height: 34px;
+            height: 8%;
         }
-        /* Match the wider .ah-phone frame (456px) at the small-screen breakpoint */
+
+        /* width:100% + max-width keeps the same real-device ratio at every
+           screen size — aspect-ratio recomputes height automatically. */
         .ah-phone {
-            max-width: 456px;
+            max-width: 320px;
         }
     </style>
 </head>
