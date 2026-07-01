@@ -741,40 +741,6 @@ nav.ah-nav ul li a.active {
     flex-shrink: 0;
 }
 
-/* ---------- Browse / Discover station cards ---------- */
-.ah-disc-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--ah-surface);
-    border-radius: 10px;
-    padding: 9px 10px;
-}
-
-.ah-disc-logo {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    flex-shrink: 0;
-    background: linear-gradient(135deg, var(--ah-accent), var(--ah-accent-dim));
-    transition: background 0.3s ease;
-}
-
-.ah-disc-tags {
-    display: flex;
-    gap: 4px;
-    margin-top: 3px;
-}
-
-.ah-mini-tag {
-    background: var(--ah-surface-alt);
-    color: var(--ah-text-secondary);
-    font-size: 0.6rem;
-    font-weight: 600;
-    padding: 0.15rem 0.4rem;
-    border-radius: var(--ah-radius-pill);
-}
-
 /* ---------- Settings rows ---------- */
 .ah-settings-list {
     display: flex;
@@ -878,7 +844,7 @@ nav.ah-nav ul li a.active {
 }
 
 .ah-nav-item.ah-nav-active .ah-nav-item-inner {
-    background: rgba(144, 202, 249, 0.12);
+    background: transparent;
 }
 
 .ah-nav-item svg {
@@ -1230,4 +1196,329 @@ nav.ah-nav ul li a.active {
 @media (max-width: 480px) {
     .ah-phone { width: 100%; max-width: 300px; }
     .ah-hero-text h2 { font-size: 1.9rem; }
+}
+
+/* ---------- Browse / Discover screen (new layout) ---------- */
+.ah-discover-search-row {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    margin-bottom: 4px;
+}
+
+.ah-discover-search-field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--ah-surface);
+    border-radius: var(--ah-radius-pill);
+    padding: 0 14px;
+    height: 52px;
+    position: relative;
+}
+
+.ah-discover-search-field input {
+    background: transparent;
+    border: none;
+    color: var(--ah-text);
+    font-size: 0.95rem;
+    padding-left: 10px;
+    flex: 1;
+    width: 0;
+}
+
+.ah-search-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--ah-text-muted);
+    fill: none;
+    stroke-width: 2;
+}
+
+.ah-search-trailing {
+    display: flex;
+    align-items: center;
+}
+
+.ah-filter-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    color: var(--ah-text-muted);
+}
+
+.ah-filter-btn.active {
+    color: var(--ah-accent);
+}
+
+.ah-filter-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.ah-filter-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--ah-accent);
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 700;
+    min-width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+}
+
+.ah-search-submit-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--ah-accent);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ah-search-submit-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: #000;
+    fill: none;
+    stroke-width: 2.5;
+}
+
+.ah-top-random-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.ah-tr-btn {
+    flex: 1;
+    height: 48px;
+    border-radius: var(--ah-radius-pill);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ah-tr-top {
+    background: var(--ah-accent);
+    color: #000;
+}
+
+.ah-tr-random {
+    background: rgba(255,255,255,0.06);
+    color: var(--ah-text-secondary);
+}
+
+.ah-tr-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.ah-advanced-filters {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-bottom 0.3s ease;
+    background: var(--ah-surface);
+    border-radius: 12px;
+    margin-bottom: 0;
+}
+
+.ah-advanced-filters.active {
+    max-height: 300px;
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid rgba(144, 202, 249, 0.2);
+}
+
+.ah-filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ah-filter-picker {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.75rem;
+    color: var(--ah-text-secondary);
+    text-align: center;
+}
+
+.ah-clear-filters-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--ah-text-muted);
+    font-size: 0.75rem;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* ---------- Redesigned Station Card (StationCard.kt) ---------- */
+.ah-disc-card {
+    display: flex;
+    background: var(--ah-surface);
+    border-radius: 10px;
+    padding: 12px;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.ah-disc-card-playing {
+    background: rgba(144, 202, 249, 0.08);
+    border: 1px solid rgba(144, 202, 249, 0.3);
+}
+
+.ah-disc-logo-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ah-disc-logo {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--ah-accent), var(--ah-accent-dim));
+    opacity: 0.8;
+}
+
+.ah-disc-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ah-disc-main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.ah-disc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ah-disc-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ah-text);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ah-disc-card-playing .ah-disc-name {
+    color: var(--ah-accent);
+}
+
+.ah-disc-country {
+    font-size: 0.72rem;
+    color: var(--ah-text-muted);
+    margin: 2px 0 0;
+}
+
+.ah-disc-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.ah-disc-action-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ah-accent);
+    opacity: 0.6;
+}
+
+.ah-play-action {
+    opacity: 1;
+}
+
+.ah-disc-action-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.ah-disc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ah-mini-tag {
+    background: rgba(144, 202, 249, 0.18);
+    color: var(--ah-accent);
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: var(--ah-radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ah-mini-tag-alt {
+    background: rgba(144, 202, 249, 0.1);
+    color: var(--ah-accent-dim);
+}
+
+.ah-mini-tag svg {
+    width: 10px;
+    height: 10px;
+    fill: currentColor;
+}
+
+.ah-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 0;
+    color: var(--ah-text-muted);
+}
+
+.ah-pagination svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.ah-pagination span {
+    font-size: 0.85rem;
+    color: var(--ah-text);
 }
