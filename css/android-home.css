@@ -1,0 +1,759 @@
+/* ==========================================================================
+   Live Beats WebRadio — Android Home
+   Self-contained stylesheet. Only index.html loads this file.
+   Colors are pulled directly from the app's ui/theme/Color.kt so the
+   marketing site actually matches what's on the phone.
+   ========================================================================== */
+
+:root {
+    --ah-bg: #000000;            /* Black */
+    --ah-surface: #141414;       /* SurfaceDark */
+    --ah-surface-alt: #1E1E1E;   /* SurfaceVariant */
+    --ah-text: #FFFFFF;          /* White */
+    --ah-text-secondary: #AAAAAA;/* GreyLight */
+    --ah-text-muted: #666666;    /* GreyMuted */
+    --ah-error: #CF6679;         /* ColorError */
+    --ah-live: #4CD964;
+    --ah-connecting: #FFB300;
+
+    --ah-accent: #90CAF9;        /* Steel Blue (default) */
+    --ah-accent-dim: #5B9BD5;
+
+    --ah-radius: 16px;
+    --ah-radius-pill: 999px;
+    --ah-radius-phone: 36px;
+}
+
+* { box-sizing: border-box; }
+
+body.ah {
+    margin: 0;
+    background: var(--ah-bg);
+    color: var(--ah-text);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+.ah-container {
+    width: 92%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { text-decoration: none; }
+
+/* ---------- Header ---------- */
+.ah-header {
+    background: var(--ah-surface);
+    padding: 0.9rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-header .ah-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ah-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.ah-logo img {
+    height: 56px;
+    width: auto;
+    display: block;
+}
+
+.ah-logo h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ah-text);
+    letter-spacing: -0.01em;
+}
+
+.ah-logo .ah-logo-sub {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ah-accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+nav.ah-nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+nav.ah-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav.ah-nav ul li a {
+    display: block;
+    color: var(--ah-text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    border-radius: var(--ah-radius-pill);
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+nav.ah-nav ul li a:hover,
+nav.ah-nav ul li a.active {
+    color: var(--ah-bg);
+    background: var(--ah-accent);
+}
+
+.ah-mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--ah-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ---------- Hero ---------- */
+.ah-hero {
+    padding: 64px 0 80px;
+}
+
+.ah-hero .ah-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.ah-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ah-accent);
+    background: rgba(144, 202, 249, 0.1);
+    border: 1px solid rgba(144, 202, 249, 0.25);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--ah-radius-pill);
+    margin-bottom: 1.5rem;
+}
+
+.ah-hero-text { flex: 1.1; }
+
+.ah-hero-text h2 {
+    font-size: 3.1rem;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.3rem;
+}
+
+.ah-hero-text h2 .ah-accent-word {
+    color: var(--ah-accent);
+    transition: color 0.3s ease;
+}
+
+.ah-hero-text p {
+    font-size: 1.1rem;
+    color: var(--ah-text-secondary);
+    max-width: 480px;
+    margin: 0 0 2rem;
+}
+
+.ah-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ah-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: var(--ah-radius-pill);
+    font-weight: 600;
+    font-size: 0.98rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ah-btn:hover { transform: translateY(-2px); }
+
+.ah-btn-primary {
+    background: var(--ah-accent);
+    color: #000;
+}
+
+.ah-btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(144, 202, 249, 0.3);
+}
+
+.ah-btn-ghost {
+    background: transparent;
+    color: var(--ah-text);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.ah-btn-ghost:hover {
+    border-color: var(--ah-accent);
+    color: var(--ah-accent);
+}
+
+.ah-hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* ---------- Phone mockup: real "Now Playing" card recreation ---------- */
+.ah-phone {
+    width: 300px;
+    background: #050505;
+    border-radius: var(--ah-radius-phone);
+    padding: 14px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.ah-phone-screen {
+    background: var(--ah-bg);
+    border-radius: 26px;
+    padding: 20px 16px 20px;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ah-phone-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ah-icon-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ah-surface-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+.ah-icon-badge.ah-lock { background: rgba(76, 217, 100, 0.15); }
+.ah-icon-badge.ah-lock svg { stroke: var(--ah-live); }
+.ah-icon-badge svg { width: 15px; height: 15px; stroke: var(--ah-text-secondary); fill: none; stroke-width: 2; }
+
+.ah-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ah-surface-alt);
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--ah-radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ah-live);
+}
+
+.ah-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ah-live);
+    animation: ah-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ah-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.ah-station-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ah-accent);
+    text-align: center;
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}
+
+.ah-song-title {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ah-text-secondary);
+    text-align: center;
+    margin: 0 0 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ah-meta-pills {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 14px;
+}
+
+.ah-meta-pill {
+    background: var(--ah-surface-alt);
+    color: var(--ah-text);
+    font-size: 0.66rem;
+    font-weight: 600;
+    padding: 0.32rem 0.6rem;
+    border-radius: var(--ah-radius-pill);
+    white-space: nowrap;
+}
+
+.ah-watermark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--ah-accent);
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.ah-watermark svg { width: 13px; height: 13px; stroke: var(--ah-accent); fill: none; stroke-width: 2; transition: stroke 0.3s ease; }
+
+.ah-station-art {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--ah-radius);
+    background: linear-gradient(135deg, var(--ah-accent), var(--ah-accent-dim));
+    margin-bottom: 16px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    min-height: 0;
+}
+
+.ah-station-art svg { width: 32%; height: 32%; opacity: 0.85; }
+
+.ah-volume-row {
+    margin-bottom: 4px;
+}
+
+.ah-volume-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.12);
+    border-radius: var(--ah-radius-pill);
+    position: relative;
+    margin-bottom: 6px;
+}
+
+.ah-volume-thumb {
+    position: absolute;
+    top: 50%;
+    left: 47%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--ah-accent);
+    transform: translate(-50%, -50%);
+    transition: background 0.3s ease;
+}
+
+.ah-volume-label {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--ah-text-muted);
+    margin: 0 0 16px;
+}
+
+.ah-player-controls {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    margin-bottom: 16px;
+}
+
+.ah-play-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--ah-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    box-shadow: 0 8px 20px rgba(144, 202, 249, 0.25);
+}
+
+.ah-play-btn svg { width: 20px; height: 20px; fill: #000; }
+
+.ah-skip svg { width: 18px; height: 18px; stroke: var(--ah-text-secondary); fill: var(--ah-text-secondary); }
+
+.ah-action-icons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-action-icons svg {
+    width: 17px;
+    height: 17px;
+    stroke: var(--ah-accent);
+    fill: none;
+    stroke-width: 1.8;
+    transition: stroke 0.3s ease;
+}
+
+/* ---------- Theme picker (signature section) ---------- */
+.ah-theme-section {
+    padding: 70px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+}
+
+.ah-section-head .ah-eyebrow { margin-bottom: 1rem; }
+
+.ah-section-head h3 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.8rem;
+}
+
+.ah-section-head p {
+    color: var(--ah-text-secondary);
+    font-size: 1.02rem;
+    margin: 0;
+}
+
+.ah-swatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+}
+
+.ah-swatch {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    padding: 0;
+}
+
+.ah-swatch:hover { transform: scale(1.12); }
+
+.ah-swatch.ah-active {
+    border-color: var(--ah-text);
+    transform: scale(1.15);
+}
+
+.ah-theme-label {
+    text-align: center;
+    color: var(--ah-text-secondary);
+    font-size: 0.92rem;
+}
+
+.ah-theme-label strong { color: var(--ah-text); }
+
+/* ---------- Features grid ---------- */
+.ah-features {
+    padding: 80px 0;
+}
+
+.ah-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.4rem;
+    margin-top: 2.5rem;
+}
+
+.ah-feature-card {
+    background: var(--ah-surface);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--ah-radius);
+    padding: 1.8rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ah-feature-card:hover {
+    border-color: rgba(144, 202, 249, 0.35);
+    transform: translateY(-4px);
+}
+
+.ah-feature-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(144, 202, 249, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+}
+
+.ah-feature-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--ah-accent);
+    fill: none;
+}
+
+.ah-feature-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+}
+
+.ah-feature-card p {
+    font-size: 0.92rem;
+    color: var(--ah-text-secondary);
+    margin: 0;
+}
+
+/* ---------- Discover showcase ---------- */
+.ah-discover {
+    padding: 80px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-discover .ah-container {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+.ah-discover-text { flex: 1; }
+
+.ah-discover-text h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+}
+
+.ah-discover-text p {
+    color: var(--ah-text-secondary);
+    font-size: 1.02rem;
+    max-width: 440px;
+}
+
+.ah-station-cards { flex: 1; display: flex; flex-direction: column; gap: 0.9rem; }
+
+.ah-station-row {
+    background: var(--ah-surface);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--ah-radius);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ah-station-logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--ah-accent), var(--ah-accent-dim));
+    transition: background 0.3s ease;
+}
+
+.ah-station-info { flex: 1; min-width: 0; }
+
+.ah-station-info .ah-s-name {
+    font-weight: 700;
+    font-size: 0.98rem;
+    margin: 0 0 2px;
+}
+
+.ah-station-info .ah-s-country {
+    font-size: 0.8rem;
+    color: var(--ah-text-muted);
+    margin: 0 0 6px;
+}
+
+.ah-station-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.ah-tag {
+    background: var(--ah-surface-alt);
+    color: var(--ah-text-secondary);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--ah-radius-pill);
+}
+
+/* ---------- Beta CTA ---------- */
+.ah-beta {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--ah-surface);
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-beta h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.8rem;
+}
+
+.ah-beta p {
+    color: var(--ah-text-secondary);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+}
+
+.ah-store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--ah-surface-alt);
+    color: var(--ah-text-muted);
+    padding: 0.7rem 1.3rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    border: 1px dashed rgba(255,255,255,0.15);
+}
+
+/* ---------- Windows footnote ---------- */
+.ah-windows-note {
+    text-align: center;
+    padding: 1.6rem 0;
+    font-size: 0.85rem;
+    color: var(--ah-text-muted);
+}
+
+.ah-windows-note a {
+    color: var(--ah-text-secondary);
+    text-decoration: underline;
+}
+
+.ah-windows-note a:hover { color: var(--ah-accent); }
+
+/* ---------- Footer ---------- */
+.ah-footer {
+    background: #060606;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.ah-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.ah-footer-logo img { width: 40px; }
+
+.ah-footer-logo h4 { margin: 0; font-size: 1rem; }
+
+.ah-footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ah-footer-links li { margin-bottom: 0.5rem; }
+
+.ah-footer-links a {
+    color: var(--ah-text-secondary);
+    font-size: 0.9rem;
+}
+
+.ah-footer-links a:hover { color: var(--ah-accent); }
+
+.ah-footer-contact p {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    color: var(--ah-text-secondary);
+}
+
+.ah-footer-contact a { color: var(--ah-text-secondary); }
+.ah-footer-contact a:hover { color: var(--ah-accent); }
+
+.ah-copyright {
+    text-align: center;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.82rem;
+    color: var(--ah-text-muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+    .ah-hero .ah-container,
+    .ah-discover .ah-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .ah-hero-text p { margin-left: auto; margin-right: auto; }
+    .ah-cta-row { justify-content: center; }
+    .ah-discover-text p { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 768px) {
+    .ah-mobile-menu-btn { display: block; }
+    nav.ah-nav { width: 100%; }
+    nav.ah-nav.active { max-height: 90vh; }
+    nav.ah-nav ul { flex-direction: column; margin-top: 1rem; }
+    nav.ah-nav ul li a { text-align: center; margin: 0.2rem 0; }
+    .ah-hero-text h2 { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+    .ah-phone { width: 100%; max-width: 300px; }
+    .ah-hero-text h2 { font-size: 1.9rem; }
+}
