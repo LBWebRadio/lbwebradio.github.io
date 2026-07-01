@@ -174,6 +174,28 @@ nav.ah-nav ul li a.active {
     margin: 0 0 2rem;
 }
 
+.ah-hero-swatches {
+    margin: 0 0 2rem;
+}
+
+.ah-swatch-grid-hero {
+    justify-content: flex-start;
+    max-width: 420px;
+    margin: 0 0 0.9rem;
+    gap: 10px;
+}
+
+.ah-swatch-grid-hero .ah-swatch {
+    width: 32px;
+    height: 32px;
+}
+
+.ah-theme-label-hero {
+    text-align: left;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
 .ah-cta-row {
     display: flex;
     flex-wrap: wrap;
@@ -550,13 +572,7 @@ nav.ah-nav ul li a.active {
     transition: background 0.3s ease;
 }
 
-/* ---------- Theme picker (signature section) ---------- */
-.ah-theme-section {
-    padding: 70px 0;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
+/* ---------- Theme picker swatches (used inline in hero + section-head styles below) ---------- */
 .ah-section-head {
     text-align: center;
     max-width: 620px;
@@ -859,6 +875,8 @@ nav.ah-nav ul li a.active {
     .ah-hero-text p { margin-left: auto; margin-right: auto; }
     .ah-cta-row { justify-content: center; }
     .ah-discover-text p { margin-left: auto; margin-right: auto; }
+    .ah-swatch-grid-hero { justify-content: center; margin-left: auto; margin-right: auto; }
+    .ah-theme-label-hero { text-align: center; }
 }
 
 @media (max-width: 768px) {
