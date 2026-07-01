@@ -261,6 +261,33 @@ nav.ah-nav ul li a.active {
     flex-direction: column;
 }
 
+/* ---------- Page swapper: Player / Favorites / Browse / Settings ----------
+   Each .ah-page fills the same space (absolutely positioned inside the
+   flexible .ah-phone-pages region between the notch and the bottom nav) and
+   crossfades in/out, so the chassis and nav bar never move while the JS
+   cycles or the user taps a tab. */
+.ah-phone-pages {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ah-page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.ah-page.ah-page-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* ---------- Status row: Live pill, truly centered ----------
    Mirrors MetadataCard.kt: a Box(contentAlignment = Center) holding the
    pill, with separate CenterStart (lock + flag) and CenterEnd (website)
@@ -509,6 +536,317 @@ nav.ah-nav ul li a.active {
     transition: stroke 0.3s ease;
 }
 
+/* ---------- Shared page header (Favorites / Browse / Settings) ---------- */
+.ah-page-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.ah-page-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ah-text);
+}
+
+.ah-page-count {
+    font-size: 0.78rem;
+    color: var(--ah-text-muted);
+}
+
+/* ---------- Favorites: mode-icon row (mirrors FavoritesScreen.kt top zone) ---------- */
+.ah-mode-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4px;
+    margin-bottom: 14px;
+}
+
+.ah-mode-icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ah-text-secondary);
+}
+
+.ah-mode-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.ah-mode-icon.ah-mode-active {
+    color: var(--ah-accent);
+    transition: color 0.3s ease;
+}
+
+/* ---------- Mini search bar (Favorites + Browse) ---------- */
+.ah-mini-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ah-surface);
+    border-radius: var(--ah-radius-pill);
+    padding: 9px 14px;
+    margin-bottom: 12px;
+}
+
+.ah-mini-search svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--ah-text-muted);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+}
+
+.ah-mini-search span {
+    font-size: 0.78rem;
+    color: var(--ah-text-muted);
+}
+
+/* ---------- Genre / filter chip row ---------- */
+.ah-chip-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.ah-chip {
+    display: inline-flex;
+    align-items: center;
+    background: var(--ah-surface);
+    color: var(--ah-text-secondary);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--ah-radius-pill);
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.ah-chip.ah-chip-active {
+    background: var(--ah-accent);
+    color: #000;
+    border-color: transparent;
+    transition: background 0.3s ease;
+}
+
+/* ---------- Station list (StationRow equivalent) ---------- */
+.ah-fav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ah-fav-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ah-surface);
+    border-radius: 10px;
+    padding: 9px 10px;
+}
+
+.ah-fav-row.ah-fav-row-active {
+    background: color-mix(in srgb, var(--ah-accent) 8%, var(--ah-surface));
+    border: 1px solid color-mix(in srgb, var(--ah-accent) 30%, transparent);
+}
+
+.ah-fav-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.ah-fav-icon svg {
+    width: 15px;
+    height: 15px;
+    fill: var(--ah-accent);
+    stroke: none;
+}
+
+.ah-fav-icon-idle svg {
+    fill: color-mix(in srgb, var(--ah-accent) 55%, transparent);
+}
+
+.ah-eq-bar {
+    display: inline-block;
+    width: 3px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--ah-accent);
+    animation: ah-eq-bounce 0.9s ease-in-out infinite;
+}
+.ah-eq-bar:nth-child(2) { height: 16px; animation-delay: 0.15s; }
+.ah-eq-bar:nth-child(3) { height: 7px; animation-delay: 0.3s; }
+
+@keyframes ah-eq-bounce {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+}
+
+.ah-fav-info { flex: 1; min-width: 0; }
+
+.ah-fav-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ah-text);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ah-fav-row-active .ah-fav-name { color: var(--ah-accent); }
+
+.ah-star-mini {
+    width: 11px;
+    height: 11px;
+    fill: #FFD700;
+    flex-shrink: 0;
+}
+
+.ah-fav-sub {
+    font-size: 0.68rem;
+    color: var(--ah-text-muted);
+    margin: 1px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ah-fav-sub-live { color: var(--ah-accent); }
+
+.ah-fav-dots {
+    width: 15px;
+    height: 15px;
+    fill: var(--ah-text-muted);
+    flex-shrink: 0;
+}
+
+/* ---------- Browse / Discover station cards ---------- */
+.ah-disc-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ah-surface);
+    border-radius: 10px;
+    padding: 9px 10px;
+}
+
+.ah-disc-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--ah-accent), var(--ah-accent-dim));
+    transition: background 0.3s ease;
+}
+
+.ah-disc-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 3px;
+}
+
+.ah-mini-tag {
+    background: var(--ah-surface-alt);
+    color: var(--ah-text-secondary);
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--ah-radius-pill);
+}
+
+/* ---------- Settings rows ---------- */
+.ah-settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ah-settings-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.ah-settings-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.ah-settings-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--ah-accent);
+    fill: none;
+    stroke-width: 1.8;
+    transition: stroke 0.3s ease;
+}
+
+.ah-settings-label {
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--ah-text);
+    font-weight: 500;
+}
+
+.ah-settings-value {
+    font-size: 0.74rem;
+    color: var(--ah-text-muted);
+}
+
+.ah-toggle {
+    width: 32px;
+    height: 18px;
+    border-radius: var(--ah-radius-pill);
+    background: rgba(255,255,255,0.14);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.ah-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--ah-text-secondary);
+    transition: left 0.2s ease, background 0.3s ease;
+}
+
+.ah-toggle.ah-toggle-on {
+    background: color-mix(in srgb, var(--ah-accent) 35%, transparent);
+}
+
+.ah-toggle.ah-toggle-on .ah-toggle-knob {
+    left: 16px;
+    background: var(--ah-accent);
+}
+
 /* ---------- Bottom nav bar (mirrors Navigation.kt BottomNavBar) ---------- */
 .ah-bottom-nav {
     display: flex;
@@ -527,6 +865,7 @@ nav.ah-nav ul li a.active {
     align-items: center;
     flex: 1;
     color: var(--ah-text-muted);
+    cursor: pointer;
 }
 
 .ah-nav-item-inner {
