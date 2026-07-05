@@ -148,7 +148,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    padding:88px 0 64px;
+    padding:0 0 64px;
     position:relative;
     overflow:hidden;
   }
@@ -166,6 +166,7 @@
   .hero-top{
     max-width:640px;
     margin-bottom:48px;
+    padding-top:56px;
   }
 
   .badge{
@@ -264,15 +265,14 @@
     background:var(--accent);
   }
 
-  /* wide banner card for hero */
-  .banner-card{
-    position:relative;
+  /* full-bleed banner strip at top of hero */
+  .banner-strip{
     width:100%;
-    border-radius:20px;
     overflow:hidden;
-    box-shadow:0 30px 80px -24px rgba(0,0,0,0.8), 0 0 0 1px var(--border);
+    line-height:0;
+    border-bottom:1px solid var(--border);
   }
-  .banner-card img.hero-banner{
+  .banner-strip img.hero-banner{
     width:100%;
     height:auto;
     display:block;
@@ -287,9 +287,6 @@
     padding:20px;
     background:
       repeating-linear-gradient(45deg, var(--surface), var(--surface) 10px, var(--surface-2) 10px, var(--surface-2) 20px);
-  }
-  @media (max-width:640px){
-    .banner-card{ border-radius:14px; }
   }
 
   /* ---------- SECTION SHARED ---------- */
@@ -548,6 +545,10 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="banner-strip">
+      <img class="hero-banner" src="img/banner.png" alt="Live Beats WebRadio — Internet radio for Android" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="banner-placeholder" style="display:none;">Drop banner image here<br>(img/banner.png)</div>
+    </div>
     <div class="wrap hero-grid">
       <div class="hero-top">
         <span class="badge"><span class="dot"></span>IN REVIEW · LAUNCHING SOON</span>
@@ -569,10 +570,6 @@
           <span class="pill">14.2 MB</span>
           <span class="pill">SLEEP 45:00</span>
         </div>
-      </div>
-      <div class="banner-card">
-        <img class="hero-banner" src="img/banner.png" alt="Live Beats WebRadio — Internet radio for Android" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="banner-placeholder" style="display:none;">Drop banner image here<br>(img/banner.png)</div>
       </div>
     </div>
   </section>
