@@ -318,15 +318,23 @@
   .shots-scroller{
     display:flex;
     gap:24px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
+    flex-wrap:wrap;
+    justify-content:center;
     padding:8px 24px 28px;
-    margin:0 -24px;
-    scrollbar-width:thin;
-    scrollbar-color:var(--border) transparent;
   }
-  .shots-scroller::-webkit-scrollbar{ height:6px; }
-  .shots-scroller::-webkit-scrollbar-thumb{ background:var(--border); border-radius:10px; }
+  @media (max-width:900px){
+    .shots-scroller{
+      flex-wrap:nowrap;
+      justify-content:flex-start;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      margin:0 -24px;
+      scrollbar-width:thin;
+      scrollbar-color:var(--border) transparent;
+    }
+    .shots-scroller::-webkit-scrollbar{ height:6px; }
+    .shots-scroller::-webkit-scrollbar-thumb{ background:var(--border); border-radius:10px; }
+  }
 
   .shot-card{
     flex:0 0 auto;
@@ -360,13 +368,16 @@
   }
 
   .scroll-hint{
-    display:flex;
+    display:none;
     align-items:center;
     gap:8px;
     color:var(--text-faint);
     font-size:0.8rem;
     font-family:'JetBrains Mono', monospace;
     margin-top:4px;
+  }
+  @media (max-width:900px){
+    .scroll-hint{ display:flex; }
   }
 
   /* ---------- FEATURES ---------- */
