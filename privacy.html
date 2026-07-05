@@ -1,235 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary Meta Tags -->
-    <title>Privacy Policy | Live Beats WebRadio</title>
-    <meta name="title" content="Privacy Policy | Live Beats WebRadio">
-    <meta name="description" content="Privacy Policy for Live Beats WebRadio. Learn what data stays on your device, what technical data is shared with third parties, and how we minimize data collection.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://lbwebradio.github.io/privacy.html">
+<!-- Primary Meta Tags -->
+<title>Privacy Policy | Live Beats WebRadio</title>
+<meta name="title" content="Privacy Policy | Live Beats WebRadio">
+<meta name="description" content="Privacy Policy for Live Beats WebRadio. Learn what data stays on your device, what technical data is shared with third parties, and how we minimize data collection.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lbwebradio.github.io/privacy.html">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lbwebradio.github.io/privacy.html">
-    <meta property="og:title" content="Privacy Policy | Live Beats WebRadio">
-    <meta property="og:description" content="What Live Beats WebRadio stores on your device, and what technical data is shared with third parties.">
-    <meta property="og:image" content="https://lbwebradio.github.io/img/screenshot1.png">
-    <meta property="og:site_name" content="Live Beats WebRadio Player">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lbwebradio.github.io/privacy.html">
+<meta property="og:title" content="Privacy Policy | Live Beats WebRadio">
+<meta property="og:description" content="What Live Beats WebRadio stores on your device, and what technical data is shared with third parties.">
+<meta property="og:image" content="https://lbwebradio.github.io/img/screenshot1.png">
+<meta property="og:site_name" content="Live Beats WebRadio Player">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://lbwebradio.github.io/privacy.html">
-    <meta name="twitter:title" content="Privacy Policy | Live Beats WebRadio">
-    <meta name="twitter:description" content="What Live Beats WebRadio stores on your device, and what technical data is shared with third parties.">
-    <meta name="twitter:image" content="https://lbwebradio.github.io/img/screenshot1.png">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://lbwebradio.github.io/privacy.html">
+<meta name="twitter:title" content="Privacy Policy | Live Beats WebRadio">
+<meta name="twitter:description" content="What Live Beats WebRadio stores on your device, and what technical data is shared with third parties.">
+<meta name="twitter:image" content="https://lbwebradio.github.io/img/screenshot1.png">
 
-    <!-- Stylesheets and Fonts -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="img/icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="img/icon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #000000;
+    --surface: #141414;
+    --surface-2: #1c1c1c;
+    --border: #2a2a2a;
+    --accent: #90CAF9;
+    --accent-dim: #5C8FC7;
+    --text: #FFFFFF;
+    --text-dim: #AAAAAA;
+    --text-faint: #6b6b6b;
+    --radius: 14px;
+    --max: 1120px;
+    --doc-max: 760px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:var(--accent); }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 24px; }
+  .doc{ max-width:var(--doc-max); margin:0 auto; padding:0 24px; }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; }
+  }
+
+  /* ---------- NAV (matches index.html) ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(0,0,0,0.72);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600; font-size:1.05rem;
+    text-decoration:none; color:var(--text);
+  }
+  .brand img{ width:32px; height:32px; border-radius:8px; background:var(--surface-2); }
+  .navlinks{
+    display:flex; gap:32px; list-style:none; margin:0; padding:0;
+    font-size:0.92rem; color:var(--text-dim);
+  }
+  .navlinks a{ text-decoration:none; color:var(--text-dim); transition:color .15s ease; }
+  .navlinks a:hover{ color:var(--text); }
+  .navlinks a.active{ color:var(--accent); }
+  .navToggle{ display:none; }
+
+  @media (max-width:760px){
+    .navlinks{
+      position:fixed; top:68px; left:0; right:0;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      flex-direction:column; gap:0;
+      padding:8px 24px 20px;
+      transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .navlinks.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+    .navlinks a{ display:block; padding:12px 0; border-bottom:1px solid var(--border); }
+    .navToggle{
+      display:flex; flex-direction:column; gap:4px;
+      background:none; border:none; padding:8px; cursor:pointer;
+    }
+    .navToggle span{ width:20px; height:2px; background:var(--text); }
+  }
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-header{
+    padding:72px 0 40px;
+    border-bottom:1px solid var(--border);
+  }
+  .page-header .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:14px;
+    display:block;
+  }
+  .page-header h1{
+    font-size:clamp(2rem, 4vw, 2.8rem);
+    margin-bottom:12px;
+  }
+  .page-header p{
+    color:var(--text-dim);
+    font-size:0.95rem;
+  }
+
+  /* ---------- DOCUMENT BODY ---------- */
+  .doc-body{ padding:56px 0 96px; }
+
+  .doc-body > .doc > p:first-child{
+    font-size:1.06rem;
+    color:var(--text-dim);
+    line-height:1.7;
+    margin-bottom:44px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .doc h3{
+    font-size:1.15rem;
+    margin:48px 0 16px;
+    padding-top:4px;
+    color:var(--text);
+  }
+  .doc h3::before{
+    content:"";
+    display:block;
+    width:28px; height:2px;
+    background:var(--accent);
+    margin-bottom:16px;
+  }
+  .doc p{
+    color:var(--text-dim);
+    line-height:1.75;
+    font-size:0.96rem;
+    margin:0 0 16px;
+  }
+  .doc code{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85em;
+    background:var(--surface);
+    border:1px solid var(--border);
+    padding:2px 6px;
+    border-radius:5px;
+    color:var(--accent);
+  }
+
+  .doc ul{
+    margin:0 0 20px;
+    padding:0;
+    list-style:none;
+  }
+  .doc ul li{
+    position:relative;
+    padding-left:22px;
+    color:var(--text-dim);
+    line-height:1.7;
+    font-size:0.96rem;
+    margin-bottom:10px;
+  }
+  .doc ul li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+  }
+
+  .table-container{
+    overflow-x:auto;
+    margin:0 0 24px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+  }
+  table.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.88rem;
+    min-width:560px;
+  }
+  table.comparison-table th{
+    text-align:left;
+    background:var(--surface-2);
+    color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    padding:14px 18px;
+    border-bottom:1px solid var(--border);
+  }
+  table.comparison-table td{
+    padding:16px 18px;
+    color:var(--text-dim);
+    line-height:1.6;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  table.comparison-table tr:last-child td{ border-bottom:none; }
+  table.comparison-table strong{ color:var(--text); }
+
+  .summary-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px 30px;
+    margin:0 0 44px;
+  }
+  .summary-card h3{ margin-top:0; }
+  .summary-card h3::before{ display:none; }
+
+  /* ---------- FOOTER (matches index.html) ---------- */
+  footer{ padding:56px 0 40px; border-top:1px solid var(--border); }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:32px;
+  }
+  .footer-links{
+    display:flex; gap:28px; flex-wrap:wrap; list-style:none;
+    padding:0; margin:0; font-size:0.88rem; color:var(--text-dim);
+  }
+  .footer-links a{ color:var(--text-dim); text-decoration:none; }
+  .footer-links a:hover{ color:var(--text); }
+  .footer-bottom{
+    margin-top:40px; padding-top:24px; border-top:1px solid var(--border);
+    color:var(--text-faint); font-size:0.8rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="img/icon.png" alt="Live Beats WebRadio Player Logo - Internet Radio Streaming">
-                <h1>Live Beats WebRadio</h1>
-            </div>
-            <nav aria-label="Main navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="download.html">Download</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="privacy.html" class="active" aria-current="page">Privacy</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section class="page-header">
-            <div class="container">
-                <h1>Privacy Policy</h1>
-                <p>Live Beats WebRadio &middot; Last updated: July 1, 2026</p>
-            </div>
-        </section>
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="brand">
+      <img src="img/icon.png" alt="" onerror="this.style.display='none'">
+      Live Beats WebRadio
+    </a>
+    <button class="navToggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#download">Download</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="privacy.html" class="active" aria-current="page">Privacy</a></li>
+    </ul>
+  </nav>
+</header>
 
-        <section class="about-section">
-            <div class="container blog-post">
+<main>
+  <section class="page-header">
+    <div class="doc">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p>Live Beats WebRadio &middot; Last updated: July 1, 2026</p>
+    </div>
+  </section>
 
-                <p>Live Beats WebRadio ("the app"), package name <code>com.lbwebradio.radio</code>, is an internet radio player built with a privacy-first approach. This policy explains what stays on your device, what technical data is shared with third parties, and who is responsible for the app.</p>
+  <section class="doc-body">
+    <div class="doc">
 
-                <h3>Data Controller</h3>
-                <p>Live Beats WebRadio is developed and maintained by Christian Flach, who acts as the data controller for this app. Contact: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a>.</p>
+      <p>Live Beats WebRadio ("the app"), package name <code>com.lbwebradio.radio</code>, is an internet radio player built with a privacy-first approach. This policy explains what stays on your device, what technical data is shared with third parties, and who is responsible for the app.</p>
 
-                <h3>Summary</h3>
-                <ul class="system-requirements" style="display:block; list-style:none;">
-                    <li>No account needed. We don't collect your name, email, or any other personal identifier.</li>
-                    <li>No analytics, no ads, no crash-reporting SDKs. None of that is in the app.</li>
-                    <li>No cookies. The app's network clients don't use a cookie jar.</li>
-                    <li>Your favorites, settings, and preferences live in Android DataStore, on your device. We never see them.</li>
-                    <li>A few things do go to outside services &mdash; finding stations, looking up server locations, and pulling up album art &mdash; and they're listed below.</li>
-                </ul>
+      <h3>Data Controller</h3>
+      <p>Live Beats WebRadio is developed and maintained by Christian Flach, who acts as the data controller for this app. Contact: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a>.</p>
 
-                <h3>Information Stored On Your Device</h3>
-                <p>The following stays on your device and is never transmitted to us:</p>
-                <ul class="system-requirements" style="display:block; list-style:none;">
-                    <li>Your favorite stations, including any "Super Favorites" and genre tags</li>
-                    <li>App settings (theme, language, album art preference, data tracking preference, sleep timer, etc.)</li>
-                    <li>Listening session history (previous/next station navigation)</li>
-                    <li>Estimated data usage statistics &mdash; bytes consumed per session and month, tracked locally to power the "Data Guard" and usage reporting features</li>
-                    <li>Saved songs, if you use that feature</li>
-                    <li>Cached server location data (country and flag) for your favorite stations</li>
-                </ul>
-                <p>Backing up or moving your favorites to the desktop app uses <code>.lbrx</code> files. That file gets created and read locally, wherever you choose to save it &mdash; your device, or somewhere like Google Drive if you pick that as the destination. We never see a copy.</p>
+      <div class="summary-card">
+        <h3>Summary</h3>
+        <ul>
+          <li>No account needed. We don't collect your name, email, or any other personal identifier.</li>
+          <li>No analytics, no ads, no crash-reporting SDKs. None of that is in the app.</li>
+          <li>No cookies. The app's network clients don't use a cookie jar.</li>
+          <li>Your favorites, settings, and preferences live in Android DataStore, on your device. We never see them.</li>
+          <li>A few things do go to outside services &mdash; finding stations, looking up server locations, and pulling up album art &mdash; and they're listed below.</li>
+        </ul>
+      </div>
 
-                <h3>Information Sent to Third Parties</h3>
-                <p>To work, the app talks to a handful of outside services. As with any internet request, your IP address is automatically visible to each receiving server, and every request identifies the app name, version, and that it's running on Android via a standard User-Agent string. Under some data protection laws (including the GDPR), an IP address is itself considered personal data, so this exposure is treated as personal data processing below, not merely "technical" data &mdash; see the Legal Basis section for how we justify it.</p>
+      <h3>Information Stored On Your Device</h3>
+      <p>The following stays on your device and is never transmitted to us:</p>
+      <ul>
+        <li>Your favorite stations, including any "Super Favorites" and genre tags</li>
+        <li>App settings (theme, language, album art preference, data tracking preference, sleep timer, etc.)</li>
+        <li>Listening session history (previous/next station navigation)</li>
+        <li>Estimated data usage statistics &mdash; bytes consumed per session and month, tracked locally to power the "Data Guard" and usage reporting features</li>
+        <li>Saved songs, if you use that feature</li>
+        <li>Cached server location data (country and flag) for your favorite stations</li>
+      </ul>
+      <p>Backing up or moving your favorites to the desktop app uses <code>.lbrx</code> files. That file gets created and read locally, wherever you choose to save it &mdash; your device, or somewhere like Google Drive if you pick that as the destination. We never see a copy.</p>
 
-                <div class="table-container">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Purpose</th>
-                                <th>What is sent</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Radio-Browser</strong><br>(radio-browser.info)</td>
-                                <td>Station directory, search, and the Discover/Browse tab</td>
-                                <td>Your search terms and filters. Playing a station sends an automatic "play count" signal, the same way any app using their directory does. Tapping the thumbs-up icon sends a one-time vote &mdash; this only happens on that explicit tap, never automatically.</td>
-                            </tr>
-                            <tr>
-                                <td>Internet radio stream servers</td>
-                                <td>Playing the stream you picked</td>
-                                <td>A connection to that station's stream URL &mdash; no different than opening the same stream in a browser.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>ipwho.is</strong></td>
-                                <td>Identifying the server location (country and flag) of the radio station</td>
-                                <td>Only the streaming server's IP address, sent to <code>ipwho.is/{ip}?fields=success,country_code,flag.emoji</code> &mdash; a request scoped to just that data. No account, device, or personal identifiers are included. Your own IP is visible to this service during the request, as with any internet request.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Apple iTunes Search API</strong></td>
-                                <td>Looking up album artwork for the currently playing track</td>
-                                <td>The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This reveals what you're currently listening to, to Apple. No account or device identifier is included.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Last.fm API</strong></td>
-                                <td>Fallback album artwork lookup if iTunes has no match</td>
-                                <td>The artist and track name &mdash; again revealing current listening activity, this time to Last.fm &mdash; sent using an app-level API key (not specific to you or your device).</td>
-                            </tr>
-                            <tr>
-                                <td>Image &amp; CDN hosts<br><span style="font-size:0.85em;opacity:0.8;">(various)</span></td>
-                                <td>Displaying station favicons and album artwork</td>
-                                <td>The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm &mdash; for example Apple's <code>is1-ssl.mzstatic.com</code> or Last.fm's <code>lastfm.freetls.fastly.net</code>, or a station's own web server. These can be many different third-party hosts depending on the station or track, not one fixed service.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+      <h3>Information Sent to Third Parties</h3>
+      <p>To work, the app talks to a handful of outside services. As with any internet request, your IP address is automatically visible to each receiving server, and every request identifies the app name, version, and that it's running on Android via a standard User-Agent string. Under some data protection laws (including the GDPR), an IP address is itself considered personal data, so this exposure is treated as personal data processing below, not merely "technical" data &mdash; see the Legal Basis section for how we justify it.</p>
 
-                <p><strong>You can turn these off.</strong> The "Show Album Art" and "Show Server Location" settings actually do what they say: switch them off and the app stops contacting iTunes, Last.fm, and ipwho.is entirely &mdash; no metadata or server info gets sent.</p>
+      <div class="table-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Purpose</th>
+              <th>What is sent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Radio-Browser</strong><br>(radio-browser.info)</td>
+              <td>Station directory, search, and the Discover/Browse tab</td>
+              <td>Your search terms and filters. Playing a station sends an automatic "play count" signal, the same way any app using their directory does. Tapping the thumbs-up icon sends a one-time vote &mdash; this only happens on that explicit tap, never automatically.</td>
+            </tr>
+            <tr>
+              <td>Internet radio stream servers</td>
+              <td>Playing the stream you picked</td>
+              <td>A connection to that station's stream URL &mdash; no different than opening the same stream in a browser.</td>
+            </tr>
+            <tr>
+              <td><strong>ipwho.is</strong></td>
+              <td>Identifying the server location (country and flag) of the radio station</td>
+              <td>Only the streaming server's IP address, sent to <code>ipwho.is/{ip}?fields=success,country_code,flag.emoji</code> &mdash; a request scoped to just that data. No account, device, or personal identifiers are included. Your own IP is visible to this service during the request, as with any internet request.</td>
+            </tr>
+            <tr>
+              <td><strong>Apple iTunes Search API</strong></td>
+              <td>Looking up album artwork for the currently playing track</td>
+              <td>The artist and track name read from the station's broadcast metadata (ICY metadata), when available. This reveals what you're currently listening to, to Apple. No account or device identifier is included.</td>
+            </tr>
+            <tr>
+              <td><strong>Last.fm API</strong></td>
+              <td>Fallback album artwork lookup if iTunes has no match</td>
+              <td>The artist and track name &mdash; again revealing current listening activity, this time to Last.fm &mdash; sent using an app-level API key (not specific to you or your device).</td>
+            </tr>
+            <tr>
+              <td>Image &amp; CDN hosts<br><span style="font-size:0.85em;opacity:0.8;">(various)</span></td>
+              <td>Displaying station favicons and album artwork</td>
+              <td>The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm &mdash; for example Apple's <code>is1-ssl.mzstatic.com</code> or Last.fm's <code>lastfm.freetls.fastly.net</code>, or a station's own web server. These can be many different third-party hosts depending on the station or track, not one fixed service.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                <h3>Legal Basis for Processing (GDPR)</h3>
-                <p>For users in the European Economic Area, we rely on legitimate interest (GDPR Article 6(1)(f)) to provide the core app functionality you've requested, limited to what's necessary to deliver streaming, station directory, and metadata services. This includes the technical data described above, such as IP addresses visible to third-party services during these requests, which we recognize as personal data under the GDPR even though no account or identity information is attached to it.</p>
+      <p><strong style="color:var(--text);">You can turn these off.</strong> The "Show Album Art" and "Show Server Location" settings actually do what they say: switch them off and the app stops contacting iTunes, Last.fm, and ipwho.is entirely &mdash; no metadata or server info gets sent.</p>
 
-                <h3>Notifications</h3>
-                <p>Android's notification system shows playback controls while a station plays in the background. That's all handled by the OS &mdash; no outside service involved.</p>
+      <h3>Legal Basis for Processing (GDPR)</h3>
+      <p>For users in the European Economic Area, we rely on legitimate interest (GDPR Article 6(1)(f)) to provide the core app functionality you've requested, limited to what's necessary to deliver streaming, station directory, and metadata services. This includes the technical data described above, such as IP addresses visible to third-party services during these requests, which we recognize as personal data under the GDPR even though no account or identity information is attached to it.</p>
 
-                <h3>Permissions</h3>
-                <div class="table-container">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Permission</th>
-                                <th>Why it's needed</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Internet</td>
-                                <td>Streaming, searching stations, fetching metadata/artwork</td>
-                            </tr>
-                            <tr>
-                                <td>Notifications</td>
-                                <td>Playback control notification (Android 13+)</td>
-                            </tr>
-                            <tr>
-                                <td>Wake Lock</td>
-                                <td>Keeps audio playing when the screen turns off</td>
-                            </tr>
-                            <tr>
-                                <td>Foreground Service / Media Playback</td>
-                                <td>Android requires this for background audio apps</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+      <h3>Notifications</h3>
+      <p>Android's notification system shows playback controls while a station plays in the background. That's all handled by the OS &mdash; no outside service involved.</p>
 
-                <h3>Security Note</h3>
-                <p>Some radio stations still broadcast over plain <code>http://</code> instead of <code>https://</code>. That's a limitation of those individual stations, not something we can fix on our end &mdash; it's common across radio apps generally. In practice it means your network provider could potentially see which station you're streaming, same as with any unencrypted connection.</p>
+      <h3>Permissions</h3>
+      <div class="table-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Permission</th>
+              <th>Why it's needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Internet</td>
+              <td>Streaming, searching stations, fetching metadata/artwork</td>
+            </tr>
+            <tr>
+              <td>Notifications</td>
+              <td>Playback control notification (Android 13+)</td>
+            </tr>
+            <tr>
+              <td>Wake Lock</td>
+              <td>Keeps audio playing when the screen turns off</td>
+            </tr>
+            <tr>
+              <td>Foreground Service / Media Playback</td>
+              <td>Android requires this for background audio apps</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                <h3>Data Retention &amp; Deletion</h3>
-                <p>We don't run servers that store your favorites, settings, or listening history &mdash; there's nothing on our end to retain in the first place. That data lives in Android DataStore on your device and stays there until you delete it yourself, either inside the app or by clearing the app's data/storage in Android settings. Uninstalling the app removes it too.</p>
-                <p>Because we never receive this data, we have no way to retain or delete it on your behalf &mdash; your device is the only copy. The one exception is anything you choose to export yourself (like an <code>.lbrx</code> backup file); once it's saved somewhere, deleting it is up to you, the same as any file.</p>
+      <h3>Security Note</h3>
+      <p>Some radio stations still broadcast over plain <code>http://</code> instead of <code>https://</code>. That's a limitation of those individual stations, not something we can fix on our end &mdash; it's common across radio apps generally. In practice it means your network provider could potentially see which station you're streaming, same as with any unencrypted connection.</p>
 
-                <h3>Children's Privacy</h3>
-                <p>The app isn't directed at children and doesn't knowingly collect personal information from anyone. Depending on where you live, the age at which you can use online services without parental involvement varies &mdash; for example, 13 in the United States, or as high as 16 in parts of the European Union (with individual EU member states able to set it as low as 13). We don't gate any content by age beyond whatever individual radio stations broadcast.</p>
+      <h3>Data Retention &amp; Deletion</h3>
+      <p>We don't run servers that store your favorites, settings, or listening history &mdash; there's nothing on our end to retain in the first place. That data lives in Android DataStore on your device and stays there until you delete it yourself, either inside the app or by clearing the app's data/storage in Android settings. Uninstalling the app removes it too.</p>
+      <p>Because we never receive this data, we have no way to retain or delete it on your behalf &mdash; your device is the only copy. The one exception is anything you choose to export yourself (like an <code>.lbrx</code> backup file); once it's saved somewhere, deleting it is up to you, the same as any file.</p>
 
-                <h3>Changes to This Policy</h3>
-                <p>If anything here changes, we'll update the "Last updated" date above. Using the app after a change goes live means you accept the updated version.</p>
+      <h3>Children's Privacy</h3>
+      <p>The app isn't directed at children and doesn't knowingly collect personal information from anyone. Depending on where you live, the age at which you can use online services without parental involvement varies &mdash; for example, 13 in the United States, or as high as 16 in parts of the European Union (with individual EU member states able to set it as low as 13). We don't gate any content by age beyond whatever individual radio stations broadcast.</p>
 
-                <h3>Contact</h3>
-                <p>Questions about this policy or the app's data practices can be sent to:<br>
-                <strong>Live Beats WebRadio</strong><br>
-                Developer: Christian Flach<br>
-                Email: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a></p>
+      <h3>Changes to This Policy</h3>
+      <p>If anything here changes, we'll update the "Last updated" date above. Using the app after a change goes live means you accept the updated version.</p>
 
-            </div>
-        </section>
-    </main>
+      <h3>Contact</h3>
+      <p>Questions about this policy or the app's data practices can be sent to:<br>
+      <strong style="color:var(--text);">Live Beats WebRadio</strong><br>
+      Developer: Christian Flach<br>
+      Email: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a></p>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="img/icon.png" alt="Live Beats WebRadio Player Logo">
-                    <h3>Live Beats WebRadio Player</h3>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="download.html">Download</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p>Email: <a href="mailto:livebeatswrp@gmail.com">livebeatswrp@gmail.com</a></p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; <span id="copyright-year">2026</span> Live Beats WebRadio Player. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
+  </section>
+</main>
 
-    <script src="js/main.js"></script>
-    <script>
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
-    </script>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <a href="index.html" class="brand">
+        <img src="img/icon.png" alt="" onerror="this.style.display='none'">
+        Live Beats WebRadio
+      </a>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#download">Download</a></li>
+        <li><a href="mailto:livebeatswrp@gmail.com">Contact</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Live Beats WebRadio</span>
+      <span>Built for Android</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
