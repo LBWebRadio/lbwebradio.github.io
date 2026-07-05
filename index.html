@@ -161,14 +161,11 @@
     pointer-events:none;
   }
   .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr 0.95fr;
-    gap:56px;
-    align-items:center;
     position:relative;
   }
-  @media (max-width:900px){
-    .hero-grid{ grid-template-columns:1fr; }
+  .hero-top{
+    max-width:640px;
+    margin-bottom:48px;
   }
 
   .badge{
@@ -267,31 +264,32 @@
     background:var(--accent);
   }
 
-  /* phone mockup for hero */
-  .phone{
+  /* wide banner card for hero */
+  .banner-card{
     position:relative;
-    margin:0 auto;
-    width:260px;
-    aspect-ratio:9/19.5;
-    background:var(--surface);
-    border:8px solid #0a0a0a;
-    border-radius:36px;
-    box-shadow:0 30px 80px -20px rgba(0,0,0,0.8), 0 0 0 1px var(--border);
+    width:100%;
+    border-radius:20px;
     overflow:hidden;
+    box-shadow:0 30px 80px -24px rgba(0,0,0,0.8), 0 0 0 1px var(--border);
   }
-  .phone img.hero-banner{
-    width:100%; height:100%;
-    object-fit:cover;
+  .banner-card img.hero-banner{
+    width:100%;
+    height:auto;
+    display:block;
   }
-  .phone-placeholder{
-    width:100%; height:100%;
+  .banner-placeholder{
+    width:100%;
+    aspect-ratio:2.85/1;
     display:flex; align-items:center; justify-content:center;
     text-align:center;
     color:var(--text-faint);
-    font-size:0.78rem;
+    font-size:0.85rem;
     padding:20px;
     background:
       repeating-linear-gradient(45deg, var(--surface), var(--surface) 10px, var(--surface-2) 10px, var(--surface-2) 20px);
+  }
+  @media (max-width:640px){
+    .banner-card{ border-radius:14px; }
   }
 
   /* ---------- SECTION SHARED ---------- */
@@ -551,7 +549,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-grid">
-      <div>
+      <div class="hero-top">
         <span class="badge"><span class="dot"></span>IN REVIEW · LAUNCHING SOON</span>
         <h1>Internet radio,<br>without the <span>noise</span>.</h1>
         <p class="lead">
@@ -572,11 +570,9 @@
           <span class="pill">SLEEP 45:00</span>
         </div>
       </div>
-      <div>
-        <div class="phone">
-          <!-- Replace with: <img class="hero-banner" src="img/banner.png" alt="Live Beats WebRadio app screen"> -->
-          <div class="phone-placeholder">Drop banner image here<br>(img/banner.png)</div>
-        </div>
+      <div class="banner-card">
+        <img class="hero-banner" src="img/banner.png" alt="Live Beats WebRadio — Internet radio for Android" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="banner-placeholder" style="display:none;">Drop banner image here<br>(img/banner.png)</div>
       </div>
     </div>
   </section>
