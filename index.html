@@ -16,7 +16,7 @@
     --surface-2: #1c1c1c;
     --border: #2a2a2a;
     --accent: #90CAF9;
-    --accent-dim: #5C8FC7;
+    --accent-dim: #5B9BD5;
     --text: #FFFFFF;
     --text-dim: #AAAAAA;
     --text-faint: #6b6b6b;
@@ -788,16 +788,17 @@
 
   // theme swatches — visual only, previews accent on this page
   var colors = [
-    "#90CAF9","#EF9A9A","#A5D6A7","#FFCC80","#CE93D8","#80CBC4",
-    "#F48FB1","#B0BEC5","#FFE082","#9FA8DA","#80DEEA","#E6EE9C",
-    "#BCAAA4","#C5E1A5","#F0F4C3","#FFAB91","#B39DDB","#90A4AE",
-    "#81D4FA","#A1887F","#EEEEEE","#FFF59D","#8C9EFF","#82B1FF",
-    "#B9F6CA","#FF8A80"
+    "#00BCD4","#ECEFF1","#E91E8C","#9C27B0","#76FF03","#FFB300",
+    "#FF5722","#3F51B5","#F44336","#1DE9B6","#FFEA00","#90CAF9",
+    "#FF6E40","#69F0AE","#FF80AB","#00B0FF","#CCFF00","#B388FF",
+    "#FF1744","#FFAB76","#40C4FF","#E040FB","#FFD740","#00E676",
+    "#2E7D32","#2C3E50"
   ];
   var wrap = document.getElementById('swatches');
+  var defaultAccent = "#90CAF9";
   colors.forEach(function(c, i){
     var b = document.createElement('button');
-    b.className = 'swatch' + (i === 0 ? ' active' : '');
+    b.className = 'swatch' + (c === defaultAccent ? ' active' : '');
     b.style.background = c;
     b.type = 'button';
     b.setAttribute('role','listitem');
