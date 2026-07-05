@@ -418,6 +418,7 @@
 
       <h3>Security Note</h3>
       <p>Some radio stations still broadcast over plain <code>http://</code> instead of <code>https://</code>. That's a limitation of those individual stations, not something we can fix on our end &mdash; it's common across radio apps generally. In practice it means your network provider could potentially see which station you're streaming, same as with any unencrypted connection.</p>
+      <p>If you'd rather avoid unencrypted connections entirely, the <strong style="color:var(--text);">HTTPS Only</strong> setting blocks playback of any station using an unencrypted <code>http://</code> link, requiring <code>https://</code> instead. If you're listening to an <code>http://</code> stream when you turn this on, playback stops immediately and the app shows "Insecure (HTTP) stream blocked by your settings." Turning it on means some stations may become unavailable, since not every station offers an encrypted stream.</p>
 
       <h3>Data Retention &amp; Deletion</h3>
       <p>We don't run servers that store your favorites, settings, or listening history &mdash; there's nothing on our end to retain in the first place. That data lives in Android DataStore on your device and stays there until you delete it yourself, either inside the app or by clearing the app's data/storage in Android settings. Uninstalling the app removes it too.</p>
