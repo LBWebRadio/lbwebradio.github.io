@@ -296,7 +296,7 @@
     <div class="doc">
       <span class="eyebrow">Legal</span>
       <h1>Privacy Policy</h1>
-      <p>Live Beats WebRadio &middot; Last updated: July 1, 2026</p>
+      <p>Live Beats WebRadio &middot; Last updated: July 7, 2026</p>
     </div>
   </section>
 
@@ -316,6 +316,7 @@
           <li>No cookies. The app's network clients don't use a cookie jar.</li>
           <li>Your favorites, settings, and preferences live in Android DataStore, on your device. We never see them.</li>
           <li>A few things do go to outside services &mdash; finding stations, looking up server locations, and pulling up album art &mdash; and they're listed below.</li>
+          <li>The optional PRO upgrade is purchased and processed entirely through Google Play Billing &mdash; we never see or handle your payment details.</li>
         </ul>
       </div>
 
@@ -374,6 +375,11 @@
               <td>Displaying station favicons and album artwork</td>
               <td>The app downloads images from URLs supplied by Radio-Browser, iTunes, or Last.fm &mdash; for example Apple's <code>is1-ssl.mzstatic.com</code> or Last.fm's <code>lastfm.freetls.fastly.net</code>, or a station's own web server. These can be many different third-party hosts depending on the station or track, not one fixed service.</td>
             </tr>
+            <tr>
+              <td><strong>Google Play Billing</strong></td>
+              <td>Processing the optional one-time or subscription purchase that unlocks PRO features</td>
+              <td>Handled entirely by Google Play on your device &mdash; payment details, billing address, and transaction data go directly to Google, not to us. We only receive a purchase confirmation (whether PRO is active), with no payment or card information ever passed to or stored by the app. See Google's own Privacy Policy for how Google Play Billing handles this data.</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -381,7 +387,7 @@
       <p><strong style="color:var(--text);">You can turn these off.</strong> The "Show Album Art" and "Show Server Location" settings actually do what they say: switch them off and the app stops contacting iTunes, Last.fm, and ipwho.is entirely &mdash; no metadata or server info gets sent.</p>
 
       <h3>Legal Basis for Processing (GDPR)</h3>
-      <p>For users in the European Economic Area, we rely on legitimate interest (GDPR Article 6(1)(f)) to provide the core app functionality you've requested, limited to what's necessary to deliver streaming, station directory, and metadata services. This includes the technical data described above, such as IP addresses visible to third-party services during these requests, which we recognize as personal data under the GDPR even though no account or identity information is attached to it.</p>
+      <p>For users in the European Economic Area, we rely on legitimate interest (GDPR Article 6(1)(f)) to provide the core app functionality you've requested, limited to what's necessary to deliver streaming, station directory, and metadata services. This includes the technical data described above, such as IP addresses visible to third-party services during these requests, which we recognize as personal data under the GDPR even though no account or identity information is attached to it. Where the app processes a PRO purchase, this is instead based on the necessity to perform a contract (GDPR Article 6(1)(b)) &mdash; fulfilling the purchase you initiated via Google Play Billing.</p>
 
       <h3>Notifications</h3>
       <p>Android's notification system shows playback controls while a station plays in the background. That's all handled by the OS &mdash; no outside service involved.</p>
@@ -401,6 +407,10 @@
               <td>Streaming, searching stations, fetching metadata/artwork</td>
             </tr>
             <tr>
+              <td>Access Network State</td>
+              <td>Checking connectivity type (e.g. Wi-Fi vs. mobile data) to support the "Wi-Fi Only" setting and Data Guard usage tracking. No data is sent anywhere for this &mdash; it's a local system check only.</td>
+            </tr>
+            <tr>
               <td>Notifications</td>
               <td>Playback control notification (Android 13+)</td>
             </tr>
@@ -412,6 +422,14 @@
               <td>Foreground Service / Media Playback</td>
               <td>Android requires this for background audio apps</td>
             </tr>
+            <tr>
+              <td>Billing (<code>com.android.vending.BILLING</code>)</td>
+              <td>Allows the app to offer the optional PRO purchase through Google Play Billing. Purchase and payment data is handled by Google, not by us &mdash; see the third-party table above.</td>
+            </tr>
+            <tr>
+              <td>Check License (<code>com.android.vending.CHECK_LICENSE</code>)</td>
+              <td>Standard Google Play licensing check used alongside Billing to verify entitlement to purchased features. No personal data is sent by this permission itself.</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -422,7 +440,7 @@
 
       <h3>Data Retention &amp; Deletion</h3>
       <p>We don't run servers that store your favorites, settings, or listening history &mdash; there's nothing on our end to retain in the first place. That data lives in Android DataStore on your device and stays there until you delete it yourself, either inside the app or by clearing the app's data/storage in Android settings. Uninstalling the app removes it too.</p>
-      <p>Because we never receive this data, we have no way to retain or delete it on your behalf &mdash; your device is the only copy. The one exception is anything you choose to export yourself (like an <code>.lbrx</code> backup file); once it's saved somewhere, deleting it is up to you, the same as any file.</p>
+      <p>Because we never receive this data, we have no way to retain or delete it on your behalf &mdash; your device is the only copy. The one exception is anything you choose to export yourself (like an <code>.lbrx</code> backup file); once it's saved somewhere, deleting it is up to you, the same as any file. Purchase records for the PRO upgrade are retained by Google as part of your Google Play account, separately from anything stored by this app; see Google Play's own policies to manage or delete that record.</p>
 
       <h3 id="data-deletion">How to Delete Your Data</h3>
       <p>Live Beats WebRadio does not use accounts, so there is no central account or server-side profile to delete. All app data &mdash; favorites, listening history, saved songs, settings, and cached server-location info &mdash; is stored locally on your device in Android DataStore and was never sent to us in the first place.</p>
@@ -432,7 +450,7 @@
         <li><strong style="color:var(--text);">Full reset:</strong> go to Android Settings &rarr; Apps &rarr; Live Beats WebRadio &rarr; Storage &amp; cache &rarr; Clear storage. This immediately and permanently erases all app data on your device.</li>
         <li><strong style="color:var(--text);">Uninstalling</strong> the app also removes all locally stored data.</li>
       </ul>
-      <p>The only data that ever leaves your device &mdash; search terms sent to Radio-Browser, or artist/track lookups sent to iTunes/Last.fm for album art &mdash; is not linked to any account or persistent identifier, so there's no request needed to delete it: it isn't retained or tied back to you by those services in a way we can act on. If you disable "Show Album Art" and "Show Server Location" in Settings, the app stops sending these lookups going forward.</p>
+      <p>The only data that ever leaves your device &mdash; search terms sent to Radio-Browser, or artist/track lookups sent to iTunes/Last.fm for album art &mdash; is not linked to any account or persistent identifier, so there's no request needed to delete it: it isn't retained or tied back to you by those services in a way we can act on. If you disable "Show Album Art" and "Show Server Location" in Settings, the app stops sending these lookups going forward. Purchase history for the PRO upgrade is managed through your Google account at <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener">Google Play &rarr; Payments &amp; subscriptions</a>, not through this app.</p>
 
       <h3>Children's Privacy</h3>
       <p>The app isn't directed at children and doesn't knowingly collect personal information from anyone. Depending on where you live, the age at which you can use online services without parental involvement varies &mdash; for example, 13 in the United States, or as high as 16 in parts of the European Union (with individual EU member states able to set it as low as 13). We don't gate any content by age beyond whatever individual radio stations broadcast.</p>
