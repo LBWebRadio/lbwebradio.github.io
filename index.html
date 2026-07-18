@@ -642,6 +642,55 @@
   }
   .organize-views svg{ flex-shrink:0; }
 
+  /* ---------- DATA GUARD SPOTLIGHT ---------- */
+  .guard-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:44px;
+    display:grid;
+    grid-template-columns:minmax(280px, 380px) 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:800px){
+    .guard-panel{
+      grid-template-columns:1fr;
+      padding:28px;
+    }
+  }
+  @media (max-width:480px){
+    .guard-panel{ padding:22px; }
+  }
+  .guard-panel .guard-shot{
+    order:2;
+  }
+  .guard-panel .guard-text{
+    order:1;
+  }
+  @media (max-width:800px){
+    .guard-panel .guard-shot{ order:1; margin:0 auto; }
+    .guard-panel .guard-text{ order:2; }
+  }
+  .guard-text h3{
+    font-size:1.5rem;
+    margin-bottom:14px;
+  }
+  .guard-text p{
+    color:var(--text-dim);
+    line-height:1.65;
+    margin-bottom:14px;
+  }
+  .guard-text p:last-child{ margin-bottom:0; }
+  .guard-text .guard-highlight{
+    color:var(--text);
+    font-weight:600;
+  }
+  .guard-shot .shot-frame{
+    width:260px;
+    margin:0 auto;
+  }
+
   /* ---------- PRO SECTION ---------- */
   .pro-panel{
     background:linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
@@ -905,6 +954,7 @@
       <li><a href="#discover">Discover</a></li>
       <li><a href="#organize">Organize</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#data-guard">Data Guard</a></li>
       <li><a href="#pro">Pro</a></li>
       <li><a href="#accessibility">Accessibility</a></li>
       <li><a href="#download">Download</a></li>
@@ -1159,6 +1209,34 @@
     </div>
   </section>
 
+  <!-- DATA GUARD SPOTLIGHT -->
+  <section id="data-guard">
+    <div class="wrap">
+      <div class="guard-panel">
+        <div class="guard-shot">
+          <div class="shot-frame">
+            <img src="img/screenshot6.jpg" alt="Data Guard settings screen" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="shot-placeholder" style="display:none;">img/screenshot6.jpg<br>Data Guard screen</div>
+          </div>
+        </div>
+        <div class="guard-text">
+          <span class="eyebrow">Pro feature spotlight</span>
+          <h3>Never get blindsided by a data spike.</h3>
+          <p>
+            <span class="guard-highlight">Data Guard</span> watches your streaming in real time using a rolling
+            60-second window. The moment your usage jumps past the limit you've set, playback stops automatically
+            — before it turns into a surprise on your bill.
+          </p>
+          <p>
+            Dial in your own sensitivity anywhere from <span class="guard-highlight">1 to 50 MB per minute</span>,
+            depending on how cautious you want to be. Pair it with Wi-Fi-only mode for full control, or turn it off
+            entirely whenever you don't need it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRO -->
   <section id="pro">
     <div class="wrap">
@@ -1182,7 +1260,7 @@
             <span class="pro-item-text"><span class="pro-item-title">Full library backup &amp; restore</span><span class="pro-item-desc">Backup and restore your favorites, including genre and station icons, between all your devices</span></span>
           </li>
           <li>
-            <span class="pro-item-text"><span class="pro-item-title">Smart Data Protection</span><span class="pro-item-desc">A sliding-window monitor that auto-stops playback within 60 seconds of a usage spike, at a sensitivity you choose (1–50 MB/min)</span></span>
+            <span class="pro-item-text"><span class="pro-item-title">Data Guard</span><span class="pro-item-desc">Auto-stops playback within 60 seconds of a usage spike, at a sensitivity you choose</span></span>
           </li>
           <li>
             <span class="pro-item-text"><span class="pro-item-title">Wi-Fi-only mode</span><span class="pro-item-desc">Stream only through Wi-Fi to protect your data plan</span></span>
