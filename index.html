@@ -298,6 +298,9 @@
 
   /* ---------- SECTION SHARED ---------- */
   section{ padding:96px 0; }
+  @media (max-width:600px){
+    section{ padding:56px 0; }
+  }
   .eyebrow{
     font-family:'JetBrains Mono', monospace;
     font-size:0.78rem;
@@ -485,6 +488,323 @@
   .swatch:hover{ transform:scale(1.12); }
   .swatch.active{ border-color:#fff; }
 
+  /* ---------- DISCOVER SECTION ---------- */
+  .discover-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-bottom:28px;
+  }
+  @media (max-width:900px){
+    .discover-grid{ grid-template-columns:1fr; }
+  }
+  .discover-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+  .discover-card .icon{
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+    color:var(--accent);
+  }
+  .discover-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .discover-card p{
+    color:var(--text-dim);
+    font-size:0.92rem;
+    line-height:1.6;
+    margin:0;
+  }
+  .filter-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:16px;
+  }
+  .filter-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    padding:5px 10px;
+    border-radius:100px;
+  }
+  .ecosystem-strip{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px 30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .ecosystem-strip .stat{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    flex:1 1 140px;
+  }
+  .ecosystem-strip .stat .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .ecosystem-strip .stat .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- ORGANIZE SECTION ---------- */
+  .organize-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media (max-width:900px){
+    .organize-grid{ grid-template-columns:1fr; }
+  }
+  .organize-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+  .organize-card .icon{
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+    color:var(--accent);
+  }
+  .organize-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .organize-card p{
+    color:var(--text-dim);
+    font-size:0.92rem;
+    line-height:1.6;
+    margin:0;
+  }
+  .chip-demo{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:16px;
+  }
+  .chip-demo span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    padding:5px 10px;
+    border-radius:100px;
+  }
+  .organize-views{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+  }
+  .organize-views span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-faint);
+    border:1px solid var(--border);
+    padding:5px 10px;
+    border-radius:6px;
+  }
+
+  /* ---------- PRO SECTION ---------- */
+  .pro-panel{
+    background:linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .pro-panel::before{
+    content:"";
+    position:absolute;
+    top:-140px; left:-140px;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(144,202,249,0.10) 0%, rgba(144,202,249,0) 70%);
+    pointer-events:none;
+  }
+  @media (max-width:600px){
+    .pro-panel{ padding:28px; }
+  }
+  .pro-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:36px;
+    position:relative;
+  }
+  .pro-head h2{
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    max-width:480px;
+    margin-bottom:12px;
+  }
+  .pro-head p{
+    color:var(--text-dim);
+    line-height:1.65;
+    max-width:480px;
+    margin:0;
+  }
+  .pro-price{
+    flex-shrink:0;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 28px;
+    text-align:center;
+  }
+  .pro-price .amount{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--accent);
+    line-height:1;
+  }
+  .pro-price .label{
+    color:var(--text-faint);
+    font-size:0.78rem;
+    font-family:'JetBrains Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:6px;
+  }
+  .pro-list{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:16px 28px;
+    list-style:none;
+    margin:0; padding:0;
+    position:relative;
+  }
+  @media (max-width:640px){
+    .pro-list{ grid-template-columns:1fr; }
+  }
+  .pro-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    color:var(--text-dim);
+    font-size:0.94rem;
+    line-height:1.5;
+  }
+  .pro-list li::before{
+    content:"✓";
+    color:var(--accent);
+    font-weight:700;
+    flex-shrink:0;
+    margin-top:1px;
+  }
+  .pro-list li strong{ color:var(--text); font-weight:600; }
+  @media (max-width:600px){
+    .pro-price{ width:100%; }
+  }
+  .pro-foot{
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid var(--border);
+    color:var(--text-faint);
+    font-size:0.84rem;
+    position:relative;
+  }
+
+  /* ---------- ACCESSIBILITY SECTION ---------- */
+  .access-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-bottom:36px;
+  }
+  @media (max-width:900px){
+    .access-grid{ grid-template-columns:1fr; }
+  }
+  .access-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+  .access-card .icon{
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+    color:var(--accent);
+  }
+  .access-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .access-card p{
+    color:var(--text-dim);
+    font-size:0.92rem;
+    line-height:1.6;
+    margin:0;
+  }
+  .lang-strip{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 30px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .lang-strip .lang-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    flex-shrink:0;
+  }
+  .lang-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .lang-pills span{
+    font-size:0.85rem;
+    color:var(--text-dim);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    padding:6px 12px;
+    border-radius:100px;
+  }
+
   /* ---------- PRIVACY BAND ---------- */
   .privacy-band{
     background:var(--surface);
@@ -567,7 +887,11 @@
     </button>
     <ul class="navlinks" id="navLinks">
       <li><a href="#top">Home</a></li>
+      <li><a href="#discover">Discover</a></li>
+      <li><a href="#organize">Organize</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#pro">Pro</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
       <li><a href="#download">Download</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="privacy.html">Privacy</a></li>
@@ -591,8 +915,8 @@
         <h1>Internet radio<br>without the <span>noise</span>.</h1>
         <p class="lead">
           Live Beats WebRadio streams thousands of stations from around the world
-          in a clean and fast Android app. No accounts. No ads. No data quietly
-          collected in the background.
+          in a clean, fast Android app. No account required. No ads. No data
+          quietly collected in the background.
         </p>
         <div class="hero-ctas">
           <a href="#download" class="btn btn-primary">Get notified at launch</a>
@@ -662,6 +986,83 @@
     </div>
   </section>
 
+  <!-- ORGANIZE -->
+  <section id="organize">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Your library, your way</span>
+        <h2>Organize your way.</h2>
+        <p>The Favorites tab isn't just a list. It's a hub built around how you actually listen.</p>
+      </div>
+
+      <div class="organize-grid">
+        <div class="organize-card">
+          <div class="icon">★</div>
+          <h3>Your own personal Top 10</h3>
+          <p>Auto-curated from your real listening habits. It updates itself as your taste does. Not a static "recent" list.</p>
+        </div>
+        <div class="organize-card">
+          <div class="icon">✥</div>
+          <h3>Drag to pin</h3>
+          <p>Drag a station to the top of your list and it's pinned as a Super Favorite. Drag it back down to unpin it. No extra menus.</p>
+        </div>
+        <div class="organize-card">
+          <div class="icon">▦</div>
+          <h3>Genre chips built from your library</h3>
+          <p>A filter row generated from the genres in your favorites. It grows and changes as your library does.
+            <span class="chip-demo" aria-hidden="true"><span>Jazz</span><span>Lo-fi</span><span>Talk</span><span>Rock</span></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="organize-views" aria-hidden="true">
+        <span>Favorites</span>
+        <span>History</span>
+        <span>Top 10</span>
+        <span>Saved Songs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <section id="discover">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The global directory</span>
+        <h2>Search fast. Support the stations you love.</h2>
+        <p>Live Beats plugs into the open Radio Browser directory. Thousands of community-run stations, searchable in an instant, and your plays and votes actually count.</p>
+      </div>
+
+      <div class="discover-grid">
+        <div class="discover-card">
+          <div class="icon">⚡</div>
+          <h3>Instant results</h3>
+          <p>Search requests race across multiple directory servers at once. Whichever answers first wins, so a lagging mirror never slows you down.</p>
+          <div class="filter-tags" aria-hidden="true">
+            <span>Country</span><span>Language</span><span>Tag</span><span>Codec</span><span>Bitrate</span>
+          </div>
+        </div>
+        <div class="discover-card">
+          <div class="icon">▲</div>
+          <h3>Help niche stations climb</h3>
+          <p>Every play you make counts toward a station's global popularity. You can also cast a vote once every 24 hours to help your favorites rank higher.</p>
+        </div>
+        <div class="discover-card">
+          <div class="icon">◈</div>
+          <h3>See the ecosystem in real time</h3>
+          <p>A built-in stats dialog shows live totals across the whole directory: stations online, countries, languages, and how many people are listening right now.</p>
+        </div>
+      </div>
+
+      <div class="ecosystem-strip" aria-hidden="true">
+        <div class="stat"><span class="num">60,000+</span><span class="lbl">Stations even offline</span></div>
+        <div class="stat"><span class="num">Global</span><span class="lbl">Country & language coverage</span></div>
+        <div class="stat"><span class="num">Live</span><span class="lbl">Click & vote counts</span></div>
+        <div class="stat"><span class="num">24h</span><span class="lbl">Vote cooldown per station</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section id="features">
     <div class="wrap">
@@ -673,29 +1074,24 @@
 
       <div class="feature-grid">
         <div class="feature">
-          <div class="icon">▶</div>
-          <h3>Media3 / ExoPlayer streaming</h3>
-          <p>Built on Android's own media stack for reliable low-latency playback. Live ICY metadata shows track and station info.</p>
-        </div>
-        <div class="feature">
-          <div class="icon">◎</div>
-          <h3>Discover thousands of stations</h3>
-          <p>Search and filter by country, language, tag, codec, or bitrate. Find stations worth keeping.</p>
+          <div class="icon">⬇</div>
+          <h3>Browse offline</h3>
+          <p>A local cache of 60,000+ stations means you can search and pick something new even without a connection.</p>
         </div>
         <div class="feature">
           <div class="icon">☰</div>
-          <h3>Favorites & history</h3>
-          <p>Save the stations you return to. Back them up and revisit anything you've played recently.</p>
+          <h3>Favorites, history & backup</h3>
+          <p>Save the stations you return to. Sort them your way. Back up your whole library to move it between devices.</p>
         </div>
         <div class="feature">
           <div class="icon">◷</div>
           <h3>Sleep timer</h3>
-          <p>Set the app to stop playback after a set time. Handy for falling asleep to the radio without it running all night.</p>
+          <p>Set the app to stop playback after a set time. Fall asleep to the radio without it running all night.</p>
         </div>
         <div class="feature">
           <div class="icon">▤</div>
           <h3>Data usage tracking</h3>
-          <p>See how much mobile data your listening uses. Streaming on the go won't come as a surprise.</p>
+          <p>See exactly how much mobile data your listening uses, broken down by day, month, or year.</p>
         </div>
         <div class="feature">
           <div class="icon">◫</div>
@@ -710,7 +1106,12 @@
         <div class="feature">
           <div class="icon">◐</div>
           <h3>Light on your device</h3>
-          <p>A lean Kotlin/Compose app with no bloated background services. Just the player, running when you need it.</p>
+          <p>A lean app with no bloated background services. Just the player, running when you need it.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Stream securely</h3>
+          <p>Turn on HTTPS-only mode to block unencrypted streams. Handy peace of mind on public Wi-Fi.</p>
         </div>
       </div>
     </div>
@@ -735,14 +1136,83 @@
     </div>
   </section>
 
+  <!-- PRO -->
+  <section id="pro">
+    <div class="wrap">
+      <div class="pro-panel">
+        <div class="pro-head">
+          <div>
+            <span class="eyebrow">One-time unlock</span>
+            <h2>Unlock your full library. Once. For good.</h2>
+            <p>Live Beats is free to use, no account required. If you outgrow the 25-favorite limit, a single purchase unlocks your library for life. No subscription, ever.</p>
+          </div>
+          <div class="pro-price">
+            <div class="amount">$2.99</div>
+            <div class="label">Lifetime · One-Time</div>
+          </div>
+        </div>
+        <ul class="pro-list">
+          <li><strong>Up to 1,000 favorites</strong>, up from the free 25-station limit</li>
+          <li><strong>Full library backup & restore</strong> to move your stations between devices</li>
+          <li><strong>Smart Data Protection</strong>, a sliding-window monitor that auto-stops playback within 60 seconds of a usage spike, at a sensitivity you choose (1–50 MB/min)</li>
+          <li><strong>Wi-Fi-only mode</strong> to restrict streaming when you want to</li>
+          <li><strong>Full usage stats</strong>, totals by day, month, and year</li>
+          <li><strong>Turn off data monitoring</strong> entirely, your choice</li>
+        </ul>
+        <div class="pro-foot">
+          One-time purchase through Google Play. No subscription and no account required to buy it. Your unlock is tied to your Google Play account and restores automatically on reinstall or a new device.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESSIBILITY & LANGUAGES -->
+  <section id="accessibility">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Built for everyone</span>
+        <h2>Real accessibility, not an afterthought.</h2>
+        <p>Radio should work for everyone who wants to listen. That's reflected in how the app is actually built, not just claimed.</p>
+      </div>
+
+      <div class="access-grid">
+        <div class="access-card">
+          <div class="icon">◉</div>
+          <h3>Screen reader friendly</h3>
+          <p>TalkBack announces exactly what's happening, like "Now Playing" or "Connecting." Help questions read as one block, so answers aren't a second tap away.</p>
+        </div>
+        <div class="access-card">
+          <div class="icon">A</div>
+          <h3>Scales with your text size</h3>
+          <p>Every screen respects your system's large-text setting, so the app reads the way you've already set up your phone.</p>
+        </div>
+        <div class="access-card">
+          <div class="icon">✓</div>
+          <h3>Clear, labeled controls</h3>
+          <p>Every icon, toggle, and slider has a real description behind it — not just a generic "button" when you're using a screen reader.</p>
+        </div>
+      </div>
+
+      <div class="lang-strip">
+        <span class="lang-label">Available in</span>
+        <div class="lang-pills" aria-hidden="true">
+          <span>English</span><span>Deutsch</span><span>Español</span><span>Français</span>
+          <span>Bahasa Indonesia</span><span>Português (BR)</span><span>Русский</span><span>Svenska</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRIVACY BAND -->
   <section class="privacy-band">
     <div class="wrap privacy-inner">
-      <h2>No ads. No accounts. No tracking.</h2>
+      <h2>No ads. No required accounts. No tracking.</h2>
       <ul class="privacy-list">
-        <li>Nothing to sign up for</li>
-        <li>No ad networks</li>
+        <li>Nothing to sign up for to use the app</li>
+        <li>No ad networks, ever</li>
         <li>No analytics on your listening</li>
+        <li>Optional HTTPS-only streaming mode</li>
+        <li>One optional lifetime unlock, no subscriptions</li>
         <li><a href="privacy.html" style="color:var(--accent); text-decoration:underline;">Read the full policy</a></li>
       </ul>
     </div>
@@ -773,6 +1243,7 @@
       <ul class="footer-links">
         <li><a href="#top">Home</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#pro">Pro</a></li>
         <li><a href="#download">Download</a></li>
         <li><a href="mailto:livebeatswrp@gmail.com">Contact</a></li>
         <li><a href="privacy.html">Privacy</a></li>
