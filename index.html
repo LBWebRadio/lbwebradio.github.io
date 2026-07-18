@@ -708,7 +708,7 @@
   .pro-list{
     display:grid;
     grid-template-columns:repeat(2, 1fr);
-    gap:16px 28px;
+    gap:24px 28px;
     list-style:none;
     margin:0; padding:0;
     position:relative;
@@ -722,7 +722,7 @@
     gap:12px;
     color:var(--text-dim);
     font-size:0.94rem;
-    line-height:1.5;
+    line-height:1.55;
   }
   .pro-list li::before{
     content:"✓";
@@ -731,7 +731,15 @@
     flex-shrink:0;
     margin-top:1px;
   }
-  .pro-list li strong{ color:var(--text); font-weight:600; }
+  .pro-list li .pro-item-text{
+    display:flex;
+    flex-direction:column;
+  }
+  .pro-list li .pro-item-title{
+    color:var(--text);
+    font-weight:600;
+    margin-bottom:2px;
+  }
   @media (max-width:600px){
     .pro-price{ width:100%; }
   }
@@ -1167,12 +1175,24 @@
           </div>
         </div>
         <ul class="pro-list">
-          <li><strong>Up to 1,000 favorites</strong>, up from the free 25-station limit</li>
-          <li><strong>Full library backup & restore</strong> to move your stations between devices</li>
-          <li><strong>Smart Data Protection</strong>, a sliding-window monitor that auto-stops playback within 60 seconds of a usage spike, at a sensitivity you choose (1–50 MB/min)</li>
-          <li><strong>Wi-Fi-only mode</strong> to restrict streaming when you want to</li>
-          <li><strong>Full usage stats</strong>, totals by day, month, and year</li>
-          <li><strong>Turn off data monitoring</strong> entirely, your choice</li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Up to 1,000 favorites</span><span class="pro-item-desc">Up from the free 25-station limit</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Full library backup &amp; restore</span><span class="pro-item-desc">Backup and restore your favorites, including genre and station icons, between all your devices</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Smart Data Protection</span><span class="pro-item-desc">A sliding-window monitor that auto-stops playback within 60 seconds of a usage spike, at a sensitivity you choose (1–50 MB/min)</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Wi-Fi-only mode</span><span class="pro-item-desc">Stream only through Wi-Fi to protect your data plan</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Full usage stats</span><span class="pro-item-desc">Totals by day, month, and year</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Turn off data monitoring</span><span class="pro-item-desc">Entirely, your choice</span></span>
+          </li>
         </ul>
         <div class="pro-foot">
           One-time purchase through Google Play. No subscription and no account required to buy it. Your unlock is tied to your Google Play account and restores automatically on reinstall or a new device.
