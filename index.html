@@ -89,15 +89,18 @@
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
     font-size:1.05rem;
+    white-space:nowrap;
+    flex-shrink:0;
   }
   .brand img{
     width:32px; height:32px;
     border-radius:8px;
     background:var(--surface-2);
+    flex-shrink:0;
   }
   .navlinks{
     display:flex;
-    gap:32px;
+    gap:28px;
     list-style:none;
     margin:0; padding:0;
     font-size:0.92rem;
@@ -109,9 +112,10 @@
     white-space:nowrap;
   }
   .navlinks a:hover{ color:var(--text); }
+  .navlinks a.active{ color:var(--accent); }
   .navToggle{ display:none; }
 
-  @media (max-width:760px){
+  @media (max-width:1000px){
     .navlinks{
       position:fixed;
       top:68px; left:0; right:0;
@@ -966,10 +970,10 @@
   </nav>
 </header>
 
-<main id="top">
+<main>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="banner-strip">
       <div class="banner-inner">
         <img class="hero-banner" src="img/banner.png" alt="Live Beats WebRadio, internet radio for Android" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1401,6 +1405,34 @@
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- scroll-spy: highlight the nav link for the section in view ----
+  (function scrollSpy(){
+    var navAnchors = Array.prototype.slice.call(links.querySelectorAll('a[href^="#"]'));
+    var sections = navAnchors
+      .map(function(a){ return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    function setActive(id){
+      navAnchors.forEach(function(a){
+        var match = a.getAttribute('href') === '#' + id;
+        a.classList.toggle('active', match);
+      });
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      // pick the entry closest to the top of the viewport that's currently intersecting
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if (visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: '-72px 0px -70% 0px', threshold: 0 });
+
+    sections.forEach(function(s){ observer.observe(s); });
+  })();
 
   // theme swatches — visual only, previews accent on this page
   var colors = [
