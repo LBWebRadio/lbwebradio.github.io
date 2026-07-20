@@ -1042,7 +1042,7 @@
       <div class="shot-card">
         <div class="shot-frame">
           <img src="img/screenshot5.jpg" alt="Station details" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="shot-placeholder" style="display:none;">img/screenshot5.jpg<br>Station details</div>
+          <div class="shot-placeholder" style="display:none;">img/screenshot5.jpg<br>Station Details</div>
         </div>
         <p class="shot-caption">Station Details</p>
       </div>
@@ -1371,6 +1371,20 @@
 </footer>
 
 <script>
+  // ---- persistent accent color ----
+  var ACCENT_KEY = 'lbwr-accent-color';
+
+  (function applyStoredAccent(){
+    try {
+      var saved = localStorage.getItem(ACCENT_KEY);
+      if (saved) {
+        document.documentElement.style.setProperty('--accent', saved);
+      }
+    } catch (e) {
+      // localStorage unavailable (e.g. private browsing) — just skip persistence
+    }
+  })();
+
   // mobile nav toggle
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
@@ -1397,9 +1411,14 @@
   ];
   var wrap = document.getElementById('swatches');
   var defaultAccent = "#90CAF9";
+  var currentAccent = defaultAccent;
+  try {
+    currentAccent = localStorage.getItem(ACCENT_KEY) || defaultAccent;
+  } catch (e) {}
+
   colors.forEach(function(c, i){
     var b = document.createElement('button');
-    b.className = 'swatch' + (c === defaultAccent ? ' active' : '');
+    b.className = 'swatch' + (c.toLowerCase() === currentAccent.toLowerCase() ? ' active' : '');
     b.style.background = c;
     b.type = 'button';
     b.setAttribute('role','listitem');
@@ -1408,6 +1427,11 @@
       document.documentElement.style.setProperty('--accent', c);
       wrap.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('active'); });
       b.classList.add('active');
+      try {
+        localStorage.setItem(ACCENT_KEY, c);
+      } catch (e) {
+        // localStorage unavailable — color still applies for this page view
+      }
     });
     wrap.appendChild(b);
   });
