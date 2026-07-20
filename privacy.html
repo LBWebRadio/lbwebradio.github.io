@@ -96,10 +96,11 @@
     font-family:'Space Grotesk', sans-serif;
     font-weight:600; font-size:1.05rem;
     text-decoration:none; color:var(--text);
+    white-space:nowrap; flex-shrink:0;
   }
-  .brand img{ width:32px; height:32px; border-radius:8px; background:var(--surface-2); }
+  .brand img{ width:32px; height:32px; border-radius:8px; background:var(--surface-2); flex-shrink:0; }
   .navlinks{
-    display:flex; gap:32px; list-style:none; margin:0; padding:0;
+    display:flex; gap:28px; list-style:none; margin:0; padding:0;
     font-size:0.92rem; color:var(--text-dim);
   }
   .navlinks a{ text-decoration:none; color:var(--text-dim); transition:color .15s ease; white-space:nowrap; }
@@ -107,7 +108,7 @@
   .navlinks a.active{ color:var(--accent); }
   .navToggle{ display:none; }
 
-  @media (max-width:760px){
+  @media (max-width:1000px){
     .navlinks{
       position:fixed; top:68px; left:0; right:0;
       background:var(--bg);
