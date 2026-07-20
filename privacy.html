@@ -502,6 +502,18 @@
 </footer>
 
 <script>
+  // ---- persistent accent color (set from index.html swatches) ----
+  (function applyStoredAccent(){
+    try {
+      var saved = localStorage.getItem('lbwr-accent-color');
+      if (saved) {
+        document.documentElement.style.setProperty('--accent', saved);
+      }
+    } catch (e) {
+      // localStorage unavailable (e.g. private browsing) — just skip persistence
+    }
+  })();
+
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   toggle.addEventListener('click', function(){
