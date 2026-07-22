@@ -88,10 +88,9 @@
     border-bottom:1px solid var(--border);
   }
   nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:40px;
+    display:flex; align-items:center; justify-content:flex-start;
+    gap:48px;
     height:68px;
-    max-width:820px;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
@@ -108,7 +107,7 @@
   .navlinks a{ text-decoration:none; color:var(--text-dim); transition:color .15s ease; white-space:nowrap; }
   .navlinks a:hover{ color:var(--text); }
   .navlinks a.active{ color:var(--accent); }
-  .navToggle{ display:none; }
+  .navToggle{ display:none; margin-left:auto; }
 
   @media (max-width:1000px){
     .navlinks{
