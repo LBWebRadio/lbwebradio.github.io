@@ -88,7 +88,7 @@
     border-bottom:1px solid var(--border);
   }
   nav.wrap{
-    display:flex; align-items:center; justify-content:flex-start;
+    display:flex; align-items:center; justify-content:center;
     gap:48px;
     height:68px;
   }
@@ -110,6 +110,7 @@
   .navToggle{ display:none; margin-left:auto; }
 
   @media (max-width:1000px){
+    nav.wrap{ justify-content:space-between; }
     .navlinks{
       position:fixed; top:68px; left:0; right:0;
       background:var(--bg);
