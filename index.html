@@ -470,6 +470,15 @@
     max-width:440px;
     margin-bottom:0;
   }
+  .swatch-name{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--accent);
+    margin-bottom:14px;
+    transition:color .15s ease;
+  }
+
   .swatches{
     display:grid;
     grid-template-columns:repeat(9, 1fr);
@@ -1067,8 +1076,11 @@
             detail. But it's yours to set. Nothing is chosen for you.
           </p>
         </div>
-        <div class="swatches" id="swatches" role="list" aria-label="Preview accent colors">
-          <!-- swatches injected by script -->
+        <div>
+          <p class="swatch-name" id="swatchName" aria-live="polite">Steel Blue</p>
+          <div class="swatches" id="swatches" role="list" aria-label="Preview accent colors">
+            <!-- swatches injected by script -->
+          </div>
         </div>
       </div>
     </div>
@@ -1435,53 +1447,67 @@
   // theme swatches — visual only, previews accent on this page
   // Synced with com.lbwebradio.radio.ui.theme.Color.kt AppThemes list
   var colors = [
-    "#2A99A8", // Cyan
-    "#ECEFF1", // Soft White
-    "#C94A85", // Pink
-    "#8E4A9E", // Purple
-    "#8BAE4A", // Lime
-    "#C99332", // Amber
-    "#C65A38", // Orange
-    "#4F5FA0", // Indigo
-    "#C24940", // Red
-    "#3EA88C", // Teal
-    "#C9AC3D", // Yellow
-    "#7FA8CC", // Steel Blue (default)
-    "#C96B4C", // Coral
-    "#5CB48D", // Mint
-    "#C97F97", // Rose Gold
-    "#3E86AD", // Electric Blue
-    "#9AAE4A", // Neon Green
-    "#9986C9", // Lavender
-    "#C03E52", // Crimson
-    "#C98F6B", // Peach
-    "#4FA0C9", // Sky Blue
-    "#AE569E", // Magenta
-    "#C9A24A", // Gold
-    "#3EAE7A", // Emerald
-    "#2E7D32", // Forest Green
-    "#2C3E50"  // Midnight
+    { name: "Cyan",          hex: "#2A99A8" },
+    { name: "Soft White",    hex: "#ECEFF1" },
+    { name: "Pink",          hex: "#C94A85" },
+    { name: "Purple",        hex: "#8E4A9E" },
+    { name: "Lime",          hex: "#8BAE4A" },
+    { name: "Amber",         hex: "#C99332" },
+    { name: "Orange",        hex: "#C65A38" },
+    { name: "Indigo",        hex: "#4F5FA0" },
+    { name: "Red",           hex: "#C24940" },
+    { name: "Teal",          hex: "#3EA88C" },
+    { name: "Yellow",        hex: "#C9AC3D" },
+    { name: "Steel Blue",    hex: "#7FA8CC" }, // default
+    { name: "Coral",         hex: "#C96B4C" },
+    { name: "Mint",          hex: "#5CB48D" },
+    { name: "Rose Gold",     hex: "#C97F97" },
+    { name: "Electric Blue", hex: "#3E86AD" },
+    { name: "Neon Green",    hex: "#9AAE4A" },
+    { name: "Lavender",      hex: "#9986C9" },
+    { name: "Crimson",       hex: "#C03E52" },
+    { name: "Peach",         hex: "#C98F6B" },
+    { name: "Sky Blue",      hex: "#4FA0C9" },
+    { name: "Magenta",       hex: "#AE569E" },
+    { name: "Gold",          hex: "#C9A24A" },
+    { name: "Emerald",       hex: "#3EAE7A" },
+    { name: "Forest Green",  hex: "#2E7D32" },
+    { name: "Midnight",      hex: "#2C3E50" }
   ];
   var wrap = document.getElementById('swatches');
+  var nameLabel = document.getElementById('swatchName');
   var defaultAccent = "#7FA8CC";
   var currentAccent = defaultAccent;
   try {
     currentAccent = localStorage.getItem(ACCENT_KEY) || defaultAccent;
   } catch (e) {}
 
+  function findColor(hex){
+    return colors.find(function(c){ return c.hex.toLowerCase() === hex.toLowerCase(); });
+  }
+
+  function setLabel(hex){
+    var match = findColor(hex);
+    nameLabel.textContent = match ? match.name : hex;
+    nameLabel.style.color = hex;
+  }
+
+  setLabel(currentAccent);
+
   colors.forEach(function(c, i){
     var b = document.createElement('button');
-    b.className = 'swatch' + (c.toLowerCase() === currentAccent.toLowerCase() ? ' active' : '');
-    b.style.background = c;
+    b.className = 'swatch' + (c.hex.toLowerCase() === currentAccent.toLowerCase() ? ' active' : '');
+    b.style.background = c.hex;
     b.type = 'button';
     b.setAttribute('role','listitem');
-    b.setAttribute('aria-label','Preview accent color ' + c);
+    b.setAttribute('aria-label','Preview accent color ' + c.name);
     b.addEventListener('click', function(){
-      document.documentElement.style.setProperty('--accent', c);
+      document.documentElement.style.setProperty('--accent', c.hex);
       wrap.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('active'); });
       b.classList.add('active');
+      setLabel(c.hex);
       try {
-        localStorage.setItem(ACCENT_KEY, c);
+        localStorage.setItem(ACCENT_KEY, c.hex);
       } catch (e) {
         // localStorage unavailable — color still applies for this page view
       }
