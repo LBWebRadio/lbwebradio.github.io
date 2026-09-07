@@ -278,20 +278,26 @@
     padding:8px 12px;
   }
   .barcode-box img{
-    width:64px;
-    height:64px;
+    width:120px;
+    height:120px;
     display:block;
     background:#fff;
-    border-radius:4px;
-    padding:4px;
+    border-radius:6px;
+    padding:6px;
   }
   .barcode-box span{
     font-family:'JetBrains Mono', monospace;
-    font-size:0.62rem;
+    font-size:0.68rem;
     color:var(--text-faint);
     text-transform:uppercase;
     letter-spacing:0.06em;
     white-space:nowrap;
+  }
+  @media (max-width:480px){
+    .barcode-box img{
+      width:100px;
+      height:100px;
+    }
   }
   @media (max-width:480px){
     .store-cta{
