@@ -721,7 +721,63 @@
   }
   .organize-views svg{ flex-shrink:0; }
 
-  /* ---------- DATA GUARD SPOTLIGHT ---------- */
+  /* ---------- PODCASTS SECTION ---------- */
+  .podcast-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-bottom:28px;
+  }
+  @media (max-width:900px){
+    .podcast-grid{ grid-template-columns:1fr; }
+  }
+  .podcast-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+  .podcast-card .icon{
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+    color:var(--accent);
+  }
+  .podcast-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .podcast-card p{
+    color:var(--text-dim);
+    font-size:0.92rem;
+    line-height:1.6;
+    margin:0;
+  }
+  .podcast-card .shot-frame{
+    width:150px;
+    margin:18px auto 0;
+  }
+  .podcast-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:16px;
+  }
+  .podcast-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    padding:5px 10px;
+    border-radius:100px;
+  }
+
+  /* ---------- DATA GUARD / SPOTLIGHT PANEL (shared) ---------- */
   .guard-panel{
     background:var(--surface);
     border:1px solid var(--border);
@@ -750,6 +806,12 @@
   @media (max-width:800px){
     .guard-panel .guard-shot{ order:1; margin:0 auto; }
     .guard-panel .guard-text{ order:2; }
+  }
+  .guard-panel.reverse .guard-shot{ order:1; }
+  .guard-panel.reverse .guard-text{ order:2; }
+  @media (max-width:800px){
+    .guard-panel.reverse .guard-shot{ order:1; margin:0 auto; }
+    .guard-panel.reverse .guard-text{ order:2; }
   }
   .guard-text h3{
     font-size:1.5rem;
@@ -1031,6 +1093,7 @@
     <ul class="navlinks" id="navLinks">
       <li><a href="#top">Home</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#podcasts">Podcasts</a></li>
       <li><a href="#pro">Pro</a></li>
       <li><a href="#download">Download</a></li>
       <li><a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio">Get the App</a></li>
@@ -1077,6 +1140,7 @@
           <span class="pill">00:17:47</span>
           <span class="pill">24.82 MB</span>
           <span class="pill">SLEEP 45:00</span>
+          <span class="pill">PODCASTS</span>
         </div>
       </div>
     </div>
@@ -1201,6 +1265,60 @@
         <span><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>History</span>
         <span><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.95V18H7v2h10v-2h-4v-2.11c1.63-.32 2.98-1.45 3.61-2.95C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>Top 10</span>
         <span><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>Saved Songs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PODCASTS -->
+  <section id="podcasts">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Now playing: podcasts</span>
+        <h2>Podcasts, right next to your stations.</h2>
+        <p>Shows live in the same app as your radio stations, with the same offline-first approach: browse charts, queue episodes, and download for the road.</p>
+      </div>
+
+      <div class="podcast-grid">
+        <div class="podcast-card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3v18h18v-2H5V3H3zm4 14h2v-6H7v6zm4 0h2V7h-2v10zm4 0h2v-4h-2v4z"/></svg></div>
+          <h3>Charts &amp; genres</h3>
+          <p>Top-charting shows for your country, switchable in a tap. Browse over 50 genres, from True Crime and Comedy to Tech News and Self-Improvement.</p>
+          <div class="podcast-tags" aria-hidden="true">
+            <span>True Crime</span><span>Comedy</span><span>Tech News</span><span>Business</span>
+          </div>
+        </div>
+        <div class="podcast-card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-1.48 0-2.85.43-4.01 1.17l1.46 1.46C10.21 6.23 11.08 6 12 6c3.04 0 5.5 2.46 5.5 5.5v.5H19c1.66 0 3 1.34 3 3 0 1.13-.64 2.11-1.56 2.62l1.45 1.45C23.16 18.16 24 16.68 24 15c0-2.64-2.05-4.78-4.65-4.96zM3 5.27l2.75 2.74C2.56 8.15 0 10.77 0 14c0 3.31 2.69 6 6 6h11.73l1.99 2L21 20.73 4.27 4 3 5.27zM7.73 10l8 8H6c-2.21 0-4-1.79-4-4 0-2.21 1.79-4 4-4h1.73z"/></svg></div>
+          <h3>True offline listening</h3>
+          <p>Episodes download in the background and survive a dropped connection or a closed app. Once downloaded, playback uses zero data. Delete with a swipe when you're done.</p>
+        </div>
+        <div class="podcast-card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg></div>
+          <h3>Listen Later &amp; history</h3>
+          <p>Queue up episodes and reorder them however you like. A 30-day history remembers exactly where you left off, whether it's a download, a queued item, or something you played last week.</p>
+        </div>
+      </div>
+
+      <div class="guard-panel reverse" style="margin-bottom:0;">
+        <div class="guard-shot">
+          <div class="shot-frame">
+            <img src="img/screenshot7.jpg" alt="Podcast episode detail screen" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="shot-placeholder" style="display:none;">img/screenshot7.jpg<br>Podcast browse & detail</div>
+          </div>
+        </div>
+        <div class="guard-text">
+          <span class="eyebrow">Podcast feature spotlight</span>
+          <h3>Shrink episodes without shrinking quality.</h3>
+          <p>
+            Downloaded episodes can be <span class="guard-highlight">compressed on-device</span>, often cutting file
+            size by <span class="guard-highlight">50% or more</span> while keeping vocals clear. Flip on
+            auto-compress and every new download is optimized the moment it arrives — nothing to remember.
+          </p>
+          <p>
+            The downloads screen doubles as a storage dashboard: your device's free space alongside a running
+            total of exactly how much room compression has saved you.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -1334,7 +1452,7 @@
           <div>
             <span class="eyebrow">One-time unlock</span>
             <h2>Unlock your full library. Once. For good.</h2>
-            <p>Live Beats is free to use, no account required. If you outgrow the 25-favorite limit, a single purchase unlocks your library for life. No subscription, ever.</p>
+            <p>Live Beats is free to use, no account required. If you outgrow the free limits, a single purchase unlocks everything for life. No subscription, ever.</p>
           </div>
           <a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio" class="pro-price" style="text-decoration:none; display:block; transition:border-color .15s ease, transform .15s ease;" onmouseover="this.style.borderColor='var(--accent-dim)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)';">
             <div class="amount" style="font-size:1.3rem;">See price on<br>Google Play</div>
@@ -1359,6 +1477,9 @@
           </li>
           <li>
             <span class="pro-item-text"><span class="pro-item-title">Turn off data usage monitoring</span><span class="pro-item-desc">Entirely, your choice</span></span>
+          </li>
+          <li>
+            <span class="pro-item-text"><span class="pro-item-title">Unlimited podcast downloads &amp; favorites</span><span class="pro-item-desc">Free keeps 1 episode downloaded and 5 favorite shows at a time; Pro removes both limits</span></span>
           </li>
         </ul>
         <div class="pro-foot">
@@ -1452,6 +1573,7 @@
       <ul class="footer-links">
         <li><a href="#top">Home</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#podcasts">Podcasts</a></li>
         <li><a href="#pro">Pro</a></li>
         <li><a href="#download">Download</a></li>
         <li><a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio">Get the App</a></li>
