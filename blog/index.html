@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+description: News, notes and links from the Live Beats WebRadio project.
+---
+<h1 class="page-title">Blog</h1>
+<p class="sub">News, notes and links from the project.</p>
+<ul class="post-list">
+{% for post in site.posts %}
+  <li><a class="post-card" href="{{ post.url }}">
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+  </a></li>
+{% else %}
+  <li>No posts yet.</li>
+{% endfor %}
+</ul>

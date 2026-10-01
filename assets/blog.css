@@ -1,0 +1,34 @@
+:root{--bg:#000;--surface:#141414;--surface-2:#1c1c1c;--border:#2a2a2a;--accent:#8E4A9E;--text:#fff;--text-dim:#aaa;--text-faint:#6b6b6b;--radius:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.2}
+a{color:var(--accent)}
+img{max-width:100%;height:auto;display:block;border-radius:var(--radius)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+header .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none}
+.brand img{width:32px;height:32px;border-radius:8px}
+nav a{color:var(--text-dim);text-decoration:none;margin-left:22px;font-size:.92rem}
+nav a:hover,nav a.on{color:var(--text)}
+nav a.on{color:var(--accent)}
+main{padding:56px 0 80px}
+.page-title{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 8px}
+.sub{color:var(--text-dim);margin:0 0 40px}
+.post-list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.post-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;text-decoration:none;color:inherit}
+.post-card:hover{border-color:var(--accent)}
+.post-card h2{font-size:1.3rem;margin:0 0 6px}
+.post-card p{color:var(--text-dim);margin:8px 0 0;font-size:.95rem}
+time{color:var(--text-faint);font-size:.85rem}
+.post h1{font-size:clamp(2rem,5vw,2.8rem);margin:6px 0 28px}
+.post-body{font-size:1.05rem}
+.post-body img{margin:28px 0}
+.post-body blockquote{margin:24px 0;padding:4px 20px;border-left:3px solid var(--accent);color:var(--text-dim)}
+.post-body pre,.post-body code{background:var(--surface-2);border-radius:6px}
+.post-body code{padding:2px 6px}
+.post-body pre{padding:16px;overflow-x:auto}
+.back{display:inline-block;margin-top:48px}
+footer{border-top:1px solid var(--border);padding:32px 0;color:var(--text-faint);font-size:.85rem}
+footer .wrap{max-width:1120px}
