@@ -32,3 +32,6 @@ time{color:var(--text-faint);font-size:.85rem}
 .back{display:inline-block;margin-top:48px}
 footer{border-top:1px solid var(--border);padding:32px 0;color:var(--text-faint);font-size:.85rem}
 footer .wrap{max-width:1120px}
+.post-card h2,
+.post h1,
+.page-title{color:var(--accent)}
