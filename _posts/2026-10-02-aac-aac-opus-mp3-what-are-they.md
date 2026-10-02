@@ -74,7 +74,7 @@ The data numbers are rough because real streams vary a little.
 
 Usually the station decides for you. When there is a choice a simple rule works. On mobile data go for AAC+ or Opus at a low bitrate. On Wi-Fi almost anything at 128 kbps or higher is plenty. Got good headphones and a fast connection? Try a higher bitrate Opus or AAC. Or FLAC if the station has it.
 
-One  thing. Past roughly 128 kbps for AAC or 96 for Opus most people struggle to hear any difference in a blind test. Your headphones and your room matter more than the codec.
+One  thing. Past roughly 128 kbps for AAC or 96 for Opus most people struggle to hear any difference in a blind test. Your headphones or your speakers matter more than the codec.
 
 ## The short version
 
