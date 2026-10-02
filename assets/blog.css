@@ -7,10 +7,11 @@ img{max-width:100%;height:auto;display:block;border-radius:var(--radius)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 .wrap{max-width:720px;margin:0 auto;padding:0 24px}
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-header .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;flex-wrap:wrap}
+header .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:8px 24px;min-height:68px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none}
 .brand img{width:32px;height:32px;border-radius:8px}
 nav a{color:var(--text-dim);text-decoration:none;margin-left:22px;font-size:.92rem}
+nav a:first-child{margin-left:0}
 nav a:hover,nav a.on{color:var(--text)}
 nav a.on{color:var(--accent)}
 main{padding:56px 0 80px}
@@ -35,3 +36,10 @@ footer .wrap{max-width:1120px}
 .post-card h2,
 .post h1,
 .page-title{color:var(--accent)}
+
+/* Mobile header fix */
+@media (max-width:600px){
+  header .wrap{gap:6px 24px}
+  nav{flex-basis:100%;display:flex;gap:22px;overflow-x:auto}
+  nav a{margin-left:0;white-space:nowrap}
+}
