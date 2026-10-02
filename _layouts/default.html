@@ -13,15 +13,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/blog.css">
+<link rel="stylesheet" href="/assets/blog.css?v=3">
 <script>try{var a=localStorage.getItem('lbwr-accent-color');if(a)document.documentElement.style.setProperty('--accent',a)}catch(e){}</script>
 </head>
 <body>
 <header><div class="wrap">
   <a class="brand" href="/"><img src="/img/icon.png" alt="">Live Beats WebRadio</a>
-  <nav>
+  <button class="navToggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="navLinks">
     <a href="/">Home</a>
+    <a href="/#features">Features</a>
     <a href="/blog/" class="on">Blog</a>
+    <a href="/#podcasts">Podcasts</a>
+    <a href="/#pro">Pro</a>
+    <a href="/#download">Download</a>
+    <a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio">Get the App</a>
     <a href="/privacy.html">Privacy</a>
     <a href="/eula.html">Terms</a>
   </nav>
@@ -30,5 +38,19 @@
 {{ content }}
 </div></main>
 <footer><div class="wrap">&copy; {{ 'now' | date: '%Y' }} Live Beats WebRadio</div></footer>
+<script>
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>
