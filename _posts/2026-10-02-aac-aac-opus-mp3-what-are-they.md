@@ -1,7 +1,7 @@
 ---
 title: AAC? AAC+? OPUS? MP3? What are they??
 ---
-*What those little labels on your radio stations actually mean*
+*What those little labels in the app actually mean*
 
 Open any station in Live Beats and you'll see something like "MP3 128 kbps" or "AAC+ 48 kbps". Most people don´t think too much about it. That's fine. But those labels say a lot about how a station will sound and how much of your data plan it will eat.
 
