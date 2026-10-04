@@ -7,56 +7,7 @@ img{max-width:100%;height:auto;display:block;border-radius:var(--radius)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 .wrap{max-width:720px;margin:0 auto;padding:0 24px}
 
-/* ---------- HEADER / NAV ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-header .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;flex-wrap:nowrap}
-.brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap;flex-shrink:0}
-.brand img{width:32px;height:32px;border-radius:8px;flex-shrink:0}
-nav{display:flex;align-items:center}
-nav a{color:var(--text-dim);text-decoration:none;margin-left:22px;font-size:.92rem;white-space:nowrap;transition:color .15s ease}
-nav a:first-child{margin-left:0}
-nav a:hover{color:var(--text)}
-nav a.on{color:var(--accent)}
-.navToggle{display:none;margin-left:auto}
-
-@media (max-width:1000px){
-  .navToggle{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-    background:none;
-    border:none;
-    padding:8px;
-    cursor:pointer;
-  }
-  .navToggle span{display:block;width:20px;height:2px;background:var(--text)}
-  nav{
-    position:absolute;
-    top:100%;left:0;right:0;
-    background:var(--bg);
-    border-bottom:1px solid var(--border);
-    flex-direction:column;
-    align-items:stretch;
-    padding:8px 24px 20px;
-    transform:translateY(-8px);
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:opacity .18s ease, transform .18s ease, visibility .18s;
-  }
-  nav.open{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-    pointer-events:auto;
-  }
-  nav a{
-    display:block;
-    margin-left:0;
-    padding:12px 0;
-    border-bottom:1px solid var(--border);
-  }
-}
+/* Header / nav styles live in _layouts/default.html (same as the home page) */
 
 /* ---------- CONTENT ---------- */
 main{padding:56px 0 80px}
