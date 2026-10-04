@@ -12,42 +12,138 @@
 <link rel="icon" href="/img/icon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/blog.css?v=7">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/blog.css?v=8">
 <style>
-header .wrap{height:68px;min-height:0;padding:0 24px;gap:24px;flex-wrap:nowrap}
-nav{display:flex;align-items:center;gap:0;overflow:visible;flex-basis:auto}
-nav a{margin-left:22px;white-space:nowrap}
-nav a:first-child{margin-left:0}
-.navToggle{display:none;margin-left:auto}
+/* ---------- HEADER (identical to home page) ---------- */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(0,0,0,0.72);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border, #2a2a2a);
+}
+header .site-nav{
+  max-width:1120px;
+  width:100%;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:48px;
+  height:68px;
+  min-height:0;
+  flex-wrap:nowrap;
+  box-sizing:border-box;
+}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:600;
+  font-size:1.05rem;
+  white-space:nowrap;
+  flex-shrink:0;
+  text-decoration:none;
+  color:var(--text, #fff);
+}
+header .brand img{
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  flex-shrink:0;
+}
+header .navlinks{
+  display:flex;
+  gap:28px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  font-size:0.92rem;
+  color:var(--text-dim, #aaa);
+}
+header .navlinks li{ margin:0; padding:0; }
+header .navlinks a{
+  text-decoration:none;
+  white-space:nowrap;
+  color:inherit;
+  margin:0;
+  transition:color .15s ease;
+}
+header .navlinks a:hover{ color:var(--text, #fff); }
+header .navlinks a.active{ color:var(--accent, #8E4A9E); }
+header .navToggle{ display:none; margin-left:auto; }
+
 @media (max-width:1000px){
-  .navToggle{display:flex;flex-direction:column;gap:4px;background:none;border:none;padding:8px;cursor:pointer}
-  .navToggle span{display:block;width:20px;height:2px;background:var(--text)}
-  nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;align-items:stretch;padding:8px 24px 20px;transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility .18s}
-  nav.open{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
-  nav a{display:block;margin-left:0;padding:12px 0;border-bottom:1px solid var(--border)}
+  header .site-nav{ justify-content:space-between; }
+  header .navlinks{
+    position:fixed;
+    top:68px; left:0; right:0;
+    background:var(--bg, #000);
+    border-bottom:1px solid var(--border, #2a2a2a);
+    flex-direction:column;
+    gap:0;
+    padding:8px 24px 20px;
+    transform:translateY(-8px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+  header .navlinks.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  header .navlinks a{
+    display:block;
+    padding:12px 0;
+    border-bottom:1px solid var(--border, #2a2a2a);
+  }
+  header .navToggle{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    background:none;
+    border:none;
+    padding:8px;
+    cursor:pointer;
+  }
+  header .navToggle span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--text, #fff);
+  }
 }
 </style>
 <script>try{var a=localStorage.getItem('lbwr-accent-color');if(a)document.documentElement.style.setProperty('--accent',a)}catch(e){}</script>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="/"><img src="/img/icon.png" alt="">Live Beats WebRadio</a>
-  <button class="navToggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <nav id="navLinks">
-    <a href="/">Home</a>
-    <a href="/#features">Features</a>
-    <a href="/#podcasts">Podcasts</a>
-    <a href="/#pro">Pro</a>
-    <a href="/#download">Download</a>
-    <a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio">Get the App</a>
-    <a href="/blog/" class="on">Blog</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/eula.html">Terms</a>
-  </nav>
-</div></header>
+<header>
+  <div class="site-nav" role="navigation" aria-label="Main">
+    <a class="brand" href="/"><img src="/img/icon.png" alt="">Live Beats WebRadio</a>
+    <button class="navToggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#podcasts">Podcasts</a></li>
+      <li><a href="/#pro">Pro</a></li>
+      <li><a href="/#download">Download</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.lbwebradio.radio">Get the App</a></li>
+      <li><a href="/blog/"{% if page.url contains '/blog' %} class="active"{% endif %}>Blog</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/eula.html">Terms</a></li>
+    </ul>
+  </div>
+</header>
 <main><div class="wrap">
 {{ content }}
 </div></main>
