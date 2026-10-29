@@ -1,6 +1,8 @@
 ---
 title: "Where is Android Auto? Spoiler: It´s coming!"
 ---
+Update 2026-10-29: Android Auto is now available in version 2.37.
+
 Android Auto is the most requested feature and I had to remove it temporarily. But why?
 
 The reason is simple and it´s becasue Google´s review time was 15 days for each update when I had Android Auto functionality in Live Beats. Without it the reviews take 10-20 minutes from uploading to Playstore and until it´s  live and this made it difficult for me to update and improve Live Beats. 
